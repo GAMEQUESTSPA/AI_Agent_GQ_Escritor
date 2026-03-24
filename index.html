@@ -9,41 +9,48 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Inter', sans-serif; background: #f2f2f2; color: #1a1a1a; min-height: 100vh; }
 h1,h2,h3,h4 { font-family: 'Inter Tight', sans-serif; font-weight: 800; letter-spacing: -.01em; }
-.wrap { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
-.header { background: #1a1a1a; border-radius: 14px; padding: 18px 24px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
-.header-title { font-size: 17px; font-weight: 900; text-transform: uppercase; letter-spacing: .04em; color: #fff; }
-.header-sub { font-size: 10px; color: rgba(255,255,255,.45); font-weight: 600; text-transform: uppercase; letter-spacing: .1em; margin-top: 1px; }
-.header-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.header-status { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: rgba(255,255,255,.6); text-transform: uppercase; letter-spacing: .06em; }
-.status-dot { width: 7px; height: 7px; border-radius: 50%; background: #f44336; flex-shrink:0; }
-.status-dot.ok { background: #4caf50; box-shadow: 0 0 6px #4caf50; }
-.search-counter { font-size: 10px; font-weight: 700; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .06em; background: rgba(255,255,255,.07); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(255,255,255,.1); cursor: pointer; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 24px 20px 60px; }
+/* HEADER */
+.header { background: #1a1a1a; border-radius: 14px; padding: 16px 22px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.header-title { font-size: 16px; font-weight: 900; text-transform: uppercase; letter-spacing: .04em; color: #fff; }
+.header-sub { font-size: 9px; color: rgba(255,255,255,.4); font-weight: 600; text-transform: uppercase; letter-spacing: .1em; margin-top: 1px; }
+.header-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.header-status { display: flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 700; color: rgba(255,255,255,.55); text-transform: uppercase; letter-spacing: .06em; }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: #f44336; flex-shrink:0; }
+.status-dot.ok { background: #4caf50; box-shadow: 0 0 5px #4caf50; }
+.search-counter { font-size: 10px; font-weight: 700; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .05em; background: rgba(255,255,255,.07); padding: 3px 9px; border-radius: 20px; border: 1px solid rgba(255,255,255,.1); cursor: pointer; white-space: nowrap; }
 .search-counter.warn { color: #ffcc44; border-color: rgba(255,204,68,.3); }
-.api-input-wrap { display: flex; align-items: center; gap: 7px; }
-.api-input { background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.15); border-radius: 8px; color: #fff; padding: 6px 10px; font-family: monospace; font-size: 11px; width: 150px; outline: none; transition: border-color .15s; }
+.api-input-wrap { display: flex; align-items: center; gap: 6px; }
+.api-input { background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.14); border-radius: 7px; color: #fff; padding: 5px 9px; font-family: monospace; font-size: 11px; width: 140px; outline: none; transition: border-color .15s; }
 .api-input:focus { border-color: #CC3333; }
-.api-input::placeholder { color: rgba(255,255,255,.3); }
-.shortcuts { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
-.shortcut-btn { flex: 1; min-width: 120px; padding: 11px 14px; border-radius: 10px; background: #fff; border: 1.5px solid #e8e8e8; font-family: 'Inter Tight', sans-serif; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: #555; cursor: pointer; transition: all .15s; display: flex; align-items: center; gap: 7px; box-shadow: 0 2px 6px rgba(0,0,0,.04); }
+.api-input::placeholder { color: rgba(255,255,255,.28); }
+/* NAV */
+.shortcuts { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+.shortcut-btn { flex: 1; min-width: 110px; padding: 10px 12px; border-radius: 10px; background: #fff; border: 1.5px solid #e8e8e8; font-family: 'Inter Tight', sans-serif; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: #555; cursor: pointer; transition: all .15s; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 5px rgba(0,0,0,.04); }
 .shortcut-btn:hover { border-color: #CC3333; color: #CC3333; background: #fff5f5; }
-.shortcut-btn.active { background: #CC3333; color: #fff; border-color: #CC3333; box-shadow: 0 4px 12px rgba(204,51,51,.25); }
+.shortcut-btn.active { background: #CC3333; color: #fff; border-color: #CC3333; box-shadow: 0 4px 10px rgba(204,51,51,.22); }
 .section { display: none; } .section.active { display: block; }
-.panel { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 14px; padding: 20px 22px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
-.panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; padding-bottom: 11px; border-bottom: 1px solid #f0f0f0; }
-.panel-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #1a1a1a; }
+/* PANELS */
+.panel { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 14px; padding: 18px 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+.panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 13px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+.panel-title { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #1a1a1a; }
 .panel-badge { font-size: 10px; font-weight: 700; color: #bbb; text-transform: uppercase; letter-spacing: .08em; }
-.gen-grid { display: grid; grid-template-columns: 300px 1fr; gap: 14px; align-items: start; }
-.form-group { margin-bottom: 12px; }
-.form-label { display: block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #aaa; margin-bottom: 5px; }
+/* GRID */
+.gen-grid { display: grid; grid-template-columns: 290px 1fr; gap: 12px; align-items: start; }
+/* FORMS */
+.form-group { margin-bottom: 11px; }
+.form-label { display: block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #aaa; margin-bottom: 4px; }
 .cfg-input { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 7px; color: #1a1a1a; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; padding: 7px 10px; width: 100%; transition: border-color .15s; outline: none; appearance: none; }
 .cfg-input:focus { border-color: #CC3333; }
-textarea.cfg-input { resize: vertical; min-height: 80px; font-size: 13px; line-height: 1.5; }
-.tag-group { display: flex; flex-wrap: wrap; gap: 6px; }
-.tag { font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 20px; border: 1.5px solid #e8e8e8; color: #888; cursor: pointer; transition: all .15s; text-transform: uppercase; letter-spacing: .05em; font-family: 'Inter Tight', sans-serif; }
+textarea.cfg-input { resize: vertical; min-height: 76px; font-size: 13px; line-height: 1.5; }
+/* TAGS */
+.tag-group { display: flex; flex-wrap: wrap; gap: 5px; }
+.tag { font-size: 10px; font-weight: 800; padding: 4px 9px; border-radius: 20px; border: 1.5px solid #e8e8e8; color: #888; cursor: pointer; transition: all .15s; text-transform: uppercase; letter-spacing: .05em; font-family: 'Inter Tight', sans-serif; }
 .tag:hover { border-color: #CC3333; color: #CC3333; }
 .tag.active { background: #CC3333; color: #fff; border-color: #CC3333; }
-.btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 16px; border-radius: 8px; font-family: 'Inter Tight', sans-serif; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; cursor: pointer; border: none; transition: all .15s; }
-.btn-primary { background: #CC3333; color: #fff; box-shadow: 0 4px 12px rgba(204,51,51,.2); }
+/* BUTTONS */
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; font-family: 'Inter Tight', sans-serif; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; cursor: pointer; border: none; transition: all .15s; }
+.btn-primary { background: #CC3333; color: #fff; box-shadow: 0 3px 10px rgba(204,51,51,.2); }
 .btn-primary:hover:not(:disabled) { background: #aa2222; transform: translateY(-1px); }
 .btn-dark { background: #1a1a1a; color: #fff; }
 .btn-dark:hover:not(:disabled) { background: #333; }
@@ -52,131 +59,146 @@ textarea.cfg-input { resize: vertical; min-height: 80px; font-size: 13px; line-h
 .btn-gold { background: #fff8e1; color: #e65100; border: 1.5px solid #ffe082; }
 .btn-gold:hover:not(:disabled) { background: #fff3cd; }
 .btn-red { background: #fdecea; color: #c62828; border: 1.5px solid #f5c6cb; }
+.btn-green { background: #e8f5e9; color: #2e7d32; border: 1.5px solid #a5d6a7; }
 .btn:disabled { opacity: .4; cursor: not-allowed; transform: none !important; }
-.btn-full { width: 100%; justify-content: center; padding: 11px; }
-.brow { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
-.spin { width: 12px; height: 12px; border: 2px solid rgba(255,255,255,.35); border-top-color: #fff; border-radius: 50%; animation: spin .6s linear infinite; display: none; }
-.btn-ghost .spin,.btn-gold .spin,.btn-red .spin { border-color: rgba(0,0,0,.12); border-top-color: #555; }
+.btn-full { width: 100%; justify-content: center; padding: 10px; }
+.brow { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 9px; }
+.spin { width: 11px; height: 11px; border: 2px solid rgba(255,255,255,.35); border-top-color: #fff; border-radius: 50%; animation: spin .6s linear infinite; display: none; }
+.btn-ghost .spin,.btn-gold .spin,.btn-red .spin,.btn-green .spin { border-color: rgba(0,0,0,.12); border-top-color: #555; }
 .btn.loading .spin { display: block; } .btn.loading .btn-ico { display: none; }
 @keyframes spin { to { transform: rotate(360deg); } }
-.output-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
-.output-tab { font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; border: 1.5px solid #e8e8e8; cursor: pointer; color: #aaa; background: transparent; transition: all .15s; }
+/* OUTPUT */
+.output-tabs { display: flex; gap: 5px; flex-wrap: wrap; }
+.output-tab { font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; padding: 4px 11px; border-radius: 20px; border: 1.5px solid #e8e8e8; cursor: pointer; color: #aaa; background: transparent; transition: all .15s; }
 .output-tab:hover { border-color: #CC3333; color: #CC3333; }
 .output-tab.active { background: #CC3333; color: #fff; border-color: #CC3333; }
-.post-preview { background: #fafafa; border: 1.5px solid #e8e8e8; border-radius: 10px; padding: 16px; min-height: 180px; font-size: 14px; line-height: 1.75; white-space: pre-wrap; color: #1a1a1a; position: relative; }
+.post-preview { background: #fafafa; border: 1.5px solid #e8e8e8; border-radius: 10px; padding: 15px; min-height: 180px; font-size: 14px; line-height: 1.75; white-space: pre-wrap; color: #1a1a1a; position: relative; }
 .post-placeholder { color: #bbb; font-size: 13px; line-height: 1.65; }
-.char-count { font-size: 10px; color: #bbb; font-weight: 700; letter-spacing: .05em; text-align: right; margin-top: 5px; text-transform: uppercase; }
+.char-count { font-size: 10px; color: #bbb; font-weight: 700; letter-spacing: .05em; text-align: right; margin-top: 4px; text-transform: uppercase; }
 .char-count.over { color: #CC3333; } .char-count.good { color: #2e7d32; }
-.copy-btn { position: absolute; top: 9px; right: 9px; background: #fff; border: 1.5px solid #e8e8e8; border-radius: 6px; color: #888; padding: 3px 9px; font-size: 10px; cursor: pointer; font-family: 'Inter Tight', sans-serif; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; transition: all .15s; }
+.copy-btn { position: absolute; top: 8px; right: 8px; background: #fff; border: 1.5px solid #e8e8e8; border-radius: 6px; color: #888; padding: 3px 8px; font-size: 10px; cursor: pointer; font-family: 'Inter Tight', sans-serif; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; transition: all .15s; }
 .copy-btn:hover { border-color: #CC3333; color: #CC3333; }
+/* LOADING */
 .loading-state { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 180px; gap: 10px; }
-.load-ring { width: 30px; height: 30px; border: 3px solid #e8e8e8; border-top-color: #CC3333; border-radius: 50%; animation: spin .7s linear infinite; }
-.load-txt { font-size: 11px; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: .08em; }
-.load-steps { display: flex; flex-direction: column; gap: 5px; width: 100%; max-width: 300px; }
-.load-step { font-size: 12px; color: #aaa; padding: 5px 11px; background: #f9f9f9; border-radius: 6px; border-left: 3px solid #e8e8e8; transition: all .3s; }
+.load-ring { width: 28px; height: 28px; border: 3px solid #e8e8e8; border-top-color: #CC3333; border-radius: 50%; animation: spin .7s linear infinite; }
+.load-txt { font-size: 11px; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: .07em; }
+.load-steps { display: flex; flex-direction: column; gap: 4px; width: 100%; max-width: 280px; }
+.load-step { font-size: 12px; color: #aaa; padding: 5px 10px; background: #f9f9f9; border-radius: 6px; border-left: 3px solid #e8e8e8; transition: all .25s; }
 .load-step.active { color: #CC3333; border-left-color: #CC3333; background: #fff5f5; font-weight: 600; }
 .load-step.done { color: #2e7d32; border-left-color: #2e7d32; background: #f1f8f1; }
-.alert { padding: 10px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; margin-bottom: 12px; border: 1.5px solid; }
+/* ALERTS */
+.alert { padding: 9px 13px; border-radius: 8px; font-size: 13px; font-weight: 600; margin-bottom: 11px; border: 1.5px solid; }
 .alert-warn { background: #fff8e1; border-color: #ffe082; color: #e65100; }
 .alert-info { background: #e8f0fe; border-color: #afc6f6; color: #1a56db; }
 .alert-ok { background: #e8f5e9; border-color: #a5d6a7; color: #2e7d32; }
 .alert-err { background: #fdecea; border-color: #f5c6cb; color: #c62828; }
-.sources-box { background: #fafafa; border: 1.5px solid #e8e8e8; border-radius: 10px; padding: 12px 14px; margin-top: 10px; }
-.sources-title { font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #aaa; margin-bottom: 8px; }
-.source-item { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 1px solid #f0f0f0; font-size: 12px; }
+/* SOURCES */
+.sources-box { background: #fafafa; border: 1.5px solid #e8e8e8; border-radius: 10px; padding: 11px 13px; margin-top: 9px; }
+.sources-title { font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #aaa; margin-bottom: 7px; }
+.source-item { display: flex; align-items: center; gap: 7px; padding: 4px 0; border-bottom: 1px solid #f0f0f0; font-size: 12px; }
 .source-item:last-child { border-bottom: none; }
-.source-query { font-weight: 700; color: #555; min-width: 90px; flex-shrink:0; font-size:11px; }
+.source-query { font-weight: 700; color: #555; min-width: 80px; flex-shrink:0; font-size:10px; }
 .source-result { color: #888; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 /* HISTORY */
-.history-list { display: flex; flex-direction: column; gap: 7px; margin-top: 14px; }
-.hist-item { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 9px; padding: 11px 14px; cursor: pointer; transition: all .15s; display: flex; align-items: center; justify-content: space-between; gap: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.04); }
+.hist-item { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 9px; padding: 10px 13px; cursor: pointer; transition: all .15s; display: flex; align-items: center; justify-content: space-between; gap: 9px; box-shadow: 0 1px 4px rgba(0,0,0,.04); margin-bottom: 6px; }
 .hist-item:hover { border-color: #CC3333; }
-.hist-meta { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
-.hist-pilar { font-size: 9px; font-weight: 800; padding: 2px 7px; border-radius: 3px; font-family: 'Inter Tight', sans-serif; text-transform: uppercase; flex-shrink:0; }
+.hist-meta { display: flex; align-items: center; gap: 9px; flex: 1; min-width: 0; }
 .hist-title { font-size: 13px; font-weight: 700; color: #1a1a1a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex:1; }
 .hist-date { font-size: 10px; color: #bbb; font-weight: 600; flex-shrink:0; font-family: 'Inter Tight', sans-serif; }
 /* MODAL */
-.modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 16px; }
 .modal-bg.hidden { display: none; }
-.modal { background: #fff; border-radius: 14px; width: 100%; max-width: 720px; max-height: 90vh; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 20px 60px rgba(0,0,0,.25); }
-.modal-header { padding: 18px 22px 14px; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; justify-content: space-between; flex-shrink:0; }
+.modal { background: #fff; border-radius: 14px; width: 100%; max-width: 700px; max-height: 92vh; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 16px 50px rgba(0,0,0,.22); }
+.modal-header { padding: 16px 20px 12px; border-bottom: 1px solid #f0f0f0; display: flex; align-items: flex-start; justify-content: space-between; flex-shrink:0; gap: 10px; }
 .modal-title { font-family: 'Inter Tight', sans-serif; font-size: 14px; font-weight: 800; color: #1a1a1a; }
 .modal-meta { font-size: 11px; color: #aaa; margin-top: 2px; }
-.modal-close { background: #f2f2f2; border: none; border-radius: 6px; width: 28px; height: 28px; cursor: pointer; font-size: 16px; color: #555; display: flex; align-items: center; justify-content: center; transition: background .15s; flex-shrink:0; }
+.modal-close { background: #f2f2f2; border: none; border-radius: 6px; width: 26px; height: 26px; cursor: pointer; font-size: 14px; color: #555; display: flex; align-items: center; justify-content: center; flex-shrink:0; }
 .modal-close:hover { background: #e0e0e0; }
-.modal-tabs { display: flex; gap: 6px; padding: 12px 22px 0; border-bottom: 1px solid #f0f0f0; flex-shrink:0; }
-.modal-tab { font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; padding: 5px 12px; border-radius: 20px 20px 0 0; border: 1.5px solid #e8e8e8; border-bottom: none; cursor: pointer; color: #aaa; background: #fafafa; transition: all .15s; }
+.modal-tabs { display: flex; gap: 5px; padding: 10px 20px 0; border-bottom: 1px solid #f0f0f0; flex-shrink:0; overflow-x: auto; }
+.modal-tab { font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; padding: 5px 12px; border-radius: 20px 20px 0 0; border: 1.5px solid #e8e8e8; border-bottom: none; cursor: pointer; color: #aaa; background: #fafafa; white-space: nowrap; }
 .modal-tab.active { background: #fff; color: #CC3333; border-color: #CC3333; }
-.modal-body { flex: 1; overflow-y: auto; padding: 16px 22px; }
-.modal-textarea { width: 100%; min-height: 260px; border: 1.5px solid #e8e8e8; border-radius: 9px; padding: 14px; font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.75; color: #1a1a1a; resize: vertical; outline: none; transition: border-color .15s; background: #fafafa; }
+.modal-body { flex: 1; overflow-y: auto; padding: 14px 20px; }
+.modal-textarea { width: 100%; min-height: 240px; border: 1.5px solid #e8e8e8; border-radius: 9px; padding: 12px; font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.75; color: #1a1a1a; resize: vertical; outline: none; transition: border-color .15s; background: #fafafa; }
 .modal-textarea:focus { border-color: #CC3333; background: #fff; }
-.modal-footer { padding: 12px 22px; border-top: 1px solid #f0f0f0; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; flex-shrink:0; }
+.modal-footer { padding: 11px 20px; border-top: 1px solid #f0f0f0; display: flex; gap: 7px; flex-wrap: wrap; align-items: center; flex-shrink:0; }
 .modal-char { font-size: 10px; color: #bbb; font-weight: 700; text-transform: uppercase; margin-left: auto; }
 /* ACCORDION */
-.accordion { margin-bottom: 10px; }
-.accordion-header { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 12px; padding: 14px 18px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; transition: all .15s; user-select: none; box-shadow: 0 2px 6px rgba(0,0,0,.04); }
+.accordion { margin-bottom: 9px; }
+.accordion-header { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 11px; padding: 13px 17px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; transition: all .15s; user-select: none; box-shadow: 0 2px 5px rgba(0,0,0,.04); }
 .accordion-header:hover { border-color: #CC3333; }
-.accordion-header.open { border-radius: 12px 12px 0 0; border-bottom-color: transparent; }
-.accordion-title { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; display: flex; align-items: center; gap: 10px; }
+.accordion-header.open { border-radius: 11px 11px 0 0; border-bottom-color: transparent; }
+.accordion-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; display: flex; align-items: center; gap: 9px; }
 .accordion-arrow { font-size: 11px; color: #aaa; transition: transform .2s; }
 .accordion-header.open .accordion-arrow { transform: rotate(180deg); }
-.accordion-body { background: #fff; border: 1.5px solid #e8e8e8; border-top: none; border-radius: 0 0 12px 12px; padding: 18px; display: none; box-shadow: 0 4px 12px rgba(0,0,0,.04); }
+.accordion-body { background: #fff; border: 1.5px solid #e8e8e8; border-top: none; border-radius: 0 0 11px 11px; padding: 16px; display: none; box-shadow: 0 4px 10px rgba(0,0,0,.04); }
 .accordion-body.open { display: block; }
-.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
-.tbl th { font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #aaa; text-align: left; padding: 7px 11px; border-bottom: 1.5px solid #e8e8e8; }
-.tbl td { padding: 8px 11px; border-bottom: 1px solid #f4f4f4; color: #555; vertical-align: top; line-height: 1.55; }
-.tbl tr:last-child td { border-bottom: none; }
-.tbl td:first-child { color: #1a1a1a; font-weight: 700; white-space: nowrap; }
+/* EDITORIAL EDITABLE */
+.ed-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ed-table th { font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #aaa; text-align: left; padding: 7px 10px; border-bottom: 1.5px solid #e8e8e8; }
+.ed-table td { padding: 6px 4px; border-bottom: 1px solid #f4f4f4; vertical-align: top; }
+.ed-table tr:last-child td { border-bottom: none; }
+.ed-input { width: 100%; border: 1.5px solid transparent; border-radius: 6px; padding: 5px 8px; font-family: 'Inter', sans-serif; font-size: 13px; color: #1a1a1a; background: transparent; outline: none; transition: all .15s; resize: none; overflow: hidden; }
+.ed-input:hover { border-color: #e8e8e8; background: #fafafa; }
+.ed-input:focus { border-color: #CC3333; background: #fff; }
+.ed-input.key { font-weight: 700; color: #1a1a1a; min-width: 120px; }
+.ed-del { background: none; border: none; color: #ddd; cursor: pointer; font-size: 14px; padding: 4px 6px; border-radius: 4px; transition: all .15s; }
+.ed-del:hover { color: #c62828; background: #fdecea; }
 .chip { display: inline-block; font-size: 10px; font-weight: 800; padding: 2px 7px; border-radius: 4px; margin: 2px; font-family: 'Inter Tight', sans-serif; letter-spacing: .04em; }
 .chip-do { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
 .chip-dont { background: #fdecea; color: #c62828; border: 1px solid #f5c6cb; }
 .chip-warn { background: #fff8e1; color: #e65100; border: 1px solid #ffe082; }
 .chip-info { background: #e8f0fe; color: #1a56db; border: 1px solid #afc6f6; }
 /* CALENDAR */
-.month-nav { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-.month-nav span { font-family: 'Inter Tight', sans-serif; font-size: 15px; font-weight: 800; min-width: 150px; text-align: center; }
-.cal-head { display: grid; grid-template-columns: repeat(7,1fr); gap: 5px; margin-bottom: 4px; }
-.cal-head-lbl { font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: #bbb; text-align: center; padding: 3px 0; }
-.cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 5px; }
-.cal-day { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 8px; min-height: 76px; padding: 6px; transition: border-color .15s; position: relative; }
-.cal-day:not(.empty):hover { border-color: #aaa; }
+.month-nav { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.month-nav span { font-family: 'Inter Tight', sans-serif; font-size: 15px; font-weight: 800; min-width: 140px; text-align: center; }
+.cal-head { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; margin-bottom: 3px; }
+.cal-head-lbl { font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; color: #bbb; text-align: center; padding: 3px 0; }
+.cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; }
+.cal-day { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 8px; min-height: 80px; padding: 6px; transition: border-color .15s; }
+.cal-day:not(.empty):hover { border-color: #bbb; }
 .cal-day.today { border-color: #CC3333; border-width: 2px; }
 .cal-day.empty { background: transparent; border-color: transparent; }
 .cal-day-num { font-family: 'Inter Tight', sans-serif; font-size: 12px; font-weight: 800; color: #ccc; margin-bottom: 3px; }
 .cal-day.today .cal-day-num { color: #CC3333; }
-.cal-evt { font-size: 9px; font-weight: 800; padding: 2px 5px; border-radius: 3px; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Inter Tight', sans-serif; text-transform: uppercase; letter-spacing: .03em; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 3px; }
-.cal-evt-del { opacity: 0; font-size: 9px; line-height: 1; flex-shrink:0; }
+.cal-evt { font-size: 9px; font-weight: 800; padding: 2px 4px; border-radius: 3px; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Inter Tight', sans-serif; text-transform: uppercase; letter-spacing: .03em; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 2px; }
+.cal-evt-del { opacity: 0; font-size: 9px; flex-shrink:0; }
 .cal-evt:hover .cal-evt-del { opacity: 1; }
 .e-tip { background: #e8f0fe; color: #1a56db; }
 .e-restock { background: #fff8e1; color: #e65100; }
+.e-lanzamiento { background: #fce4ec; color: #c2185b; }
 .e-torneo { background: #fdecea; color: #c62828; }
 .e-lore { background: #e8f5e9; color: #2e7d32; }
 .e-comunidad { background: #f3e8ff; color: #7c3aed; }
 .e-blog { background: #f0f0f0; color: #333; }
-.cal-add-btn { width: 100%; margin-top: 3px; background: transparent; border: 1px dashed #e0e0e0; border-radius: 3px; color: #ccc; font-size: 10px; cursor: pointer; padding: 2px; text-align: center; transition: all .15s; }
+.e-tiktok { background: #e0f7fa; color: #00838f; }
+.cal-add-btn { width: 100%; margin-top: 2px; background: transparent; border: 1px dashed #e0e0e0; border-radius: 3px; color: #ccc; font-size: 10px; cursor: pointer; padding: 2px; text-align: center; transition: all .15s; }
 .cal-add-btn:hover { border-color: #CC3333; color: #CC3333; }
-.legend { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
-.legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; color: #888; font-family: 'Inter Tight', sans-serif; text-transform: uppercase; letter-spacing: .05em; }
-.legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+.legend { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 11px; }
+.legend-item { display: flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; color: #888; font-family: 'Inter Tight', sans-serif; text-transform: uppercase; }
+.legend-dot { width: 7px; height: 7px; border-radius: 2px; flex-shrink: 0; }
 /* BULK */
-.bulk-post { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 10px; padding: 14px; margin-bottom: 10px; box-shadow: 0 2px 6px rgba(0,0,0,.04); }
-.bulk-post-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 9px; }
-.bulk-post-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.bulk-post-day { font-family: 'Inter Tight', sans-serif; font-size: 13px; font-weight: 800; }
-.bulk-body { font-size: 13px; color: #555; line-height: 1.65; max-height: 80px; overflow: hidden; cursor: pointer; white-space: pre-wrap; }
-.bulk-body.expanded { max-height: 3000px; }
-.bulk-hint { font-size: 10px; color: #ccc; font-weight: 700; letter-spacing: .05em; margin-top: 5px; text-transform: uppercase; cursor: pointer; }
+.bulk-post { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 10px; padding: 13px; margin-bottom: 9px; box-shadow: 0 2px 5px rgba(0,0,0,.04); }
+.bulk-post-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 6px; }
+.bulk-post-meta { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+.bulk-post-day { font-family: 'Inter Tight', sans-serif; font-size: 12px; font-weight: 800; }
+.bulk-body { font-size: 13px; color: #555; line-height: 1.65; max-height: 80px; overflow: hidden; cursor: pointer; white-space: pre-wrap; transition: max-height .3s; }
+.bulk-body.expanded { max-height: 5000px; }
+.bulk-edit { width: 100%; min-height: 120px; border: 1.5px solid #e8e8e8; border-radius: 7px; padding: 10px; font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.65; color: #1a1a1a; resize: vertical; outline: none; display: none; margin-top: 8px; }
+.bulk-edit.visible { display: block; }
+.bulk-hint { font-size: 10px; color: #ccc; font-weight: 700; letter-spacing: .05em; margin-top: 4px; text-transform: uppercase; cursor: pointer; }
 /* CONFIG */
-.config-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.cost-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid #f0f0f0; }
+.config-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.cost-row { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 11px; padding-top: 11px; border-top: 1px solid #f0f0f0; }
 .cost-item span { font-size: 10px; font-weight: 700; color: #bbb; text-transform: uppercase; letter-spacing: .06em; display: block; margin-bottom: 2px; }
-.cost-item strong { font-family: 'Inter Tight', sans-serif; font-size: 15px; font-weight: 900; }
-/* CAL ADD MODAL */
-.cal-modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 900; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.cost-item strong { font-family: 'Inter Tight', sans-serif; font-size: 14px; font-weight: 900; }
+/* CAL MODALS */
+.cal-modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 900; display: flex; align-items: center; justify-content: center; padding: 16px; }
 .cal-modal-bg.hidden { display: none; }
-.cal-modal { background: #fff; border-radius: 12px; width: 100%; max-width: 380px; box-shadow: 0 12px 40px rgba(0,0,0,.2); padding: 22px; }
-.cal-modal-title { font-family: 'Inter Tight', sans-serif; font-size: 14px; font-weight: 800; margin-bottom: 16px; color: #1a1a1a; }
-@media (max-width: 780px) { .gen-grid,.config-grid { grid-template-columns: 1fr; } .shortcuts .shortcut-btn { min-width: calc(50% - 5px); } }
+.cal-modal { background: #fff; border-radius: 12px; width: 100%; max-width: 360px; box-shadow: 0 10px 36px rgba(0,0,0,.18); padding: 20px; }
+.cal-modal-title { font-family: 'Inter Tight', sans-serif; font-size: 13px; font-weight: 800; margin-bottom: 14px; color: #1a1a1a; }
+/* GH SYNC */
+.gh-status { font-size: 11px; padding: 6px 10px; border-radius: 6px; margin-top: 10px; font-weight: 600; }
+@media (max-width: 780px) { .gen-grid,.config-grid { grid-template-columns: 1fr; } .shortcuts .shortcut-btn { min-width: calc(50% - 4px); } }
 </style>
 </head>
 <body>
@@ -186,17 +208,18 @@ textarea.cfg-input { resize: vertical; min-height: 80px; font-size: 13px; line-h
 <div class="header">
   <div>
     <div class="header-title">GameQuest — Agente MKT</div>
-    <div class="header-sub">Agente IA · Groq + Tavily · Búsqueda web autónoma</div>
+    <div class="header-sub">Agente IA · Groq LLaMA 3.3 + Tavily Search · gamequest.cl</div>
   </div>
   <div class="header-right">
     <div class="header-status">
       <div class="status-dot" id="statusDot"></div>
       <span id="statusText">Sin API Keys</span>
     </div>
-    <div class="search-counter" id="searchCounter" onclick="showSection('config', document.querySelectorAll('.shortcut-btn')[4])" title="Búsquedas Tavily este mes">🔍 0 búsquedas</div>
+    <div class="search-counter" id="searchCounter" title="Búsquedas Tavily este mes">🔍 0 búsquedas</div>
     <div class="api-input-wrap">
       <input class="api-input" type="password" id="apiKeyInput" placeholder="gsk_..." title="Groq API Key" />
       <input class="api-input" type="password" id="tavilyInput" placeholder="tvly-..." title="Tavily API Key" />
+      <input class="api-input" type="password" id="ghTokenInput" placeholder="github_pat_..." title="GitHub Token" />
       <button class="btn btn-primary" onclick="saveApiKeys()">Activar</button>
     </div>
   </div>
@@ -222,9 +245,10 @@ textarea.cfg-input { resize: vertical; min-height: 80px; font-size: 13px; line-h
           <label class="form-label">Pilar Temático</label>
           <select class="cfg-input" id="pilarSelect" onchange="updateTabs()">
             <option value="tip">🧠 Tip del Aventurero</option>
-            <option value="restock">📦 Restock & Novedades</option>
-            <option value="torneo">⚔️ Torneos & Eventos</option>
             <option value="lore">📖 Lore & Historia</option>
+            <option value="restock">📦 Restock</option>
+            <option value="lanzamiento">🚀 Nuevo Lanzamiento</option>
+            <option value="torneo">⚔️ Torneos & Eventos</option>
             <option value="comunidad">🤝 Comunidad</option>
             <option value="blog">📰 Noticias Quest</option>
             <option value="tiktok">🎬 TikTok (carrusel)</option>
@@ -242,9 +266,8 @@ textarea.cfg-input { resize: vertical; min-height: 80px; font-size: 13px; line-h
         <div class="form-group">
           <label class="form-label">Red Social</label>
           <div class="tag-group" id="networkTags">
-            <span class="tag active" data-net="instagram">Instagram</span>
-            <span class="tag active" data-net="facebook">Facebook</span>
-            <span class="tag" data-net="whatsapp">WhatsApp</span>
+            <span class="tag active" data-net="ig">IG / FB</span>
+            <span class="tag" data-net="wa">WhatsApp</span>
             <span class="tag" data-net="tiktok">TikTok</span>
             <span class="tag" data-net="blog">Blog</span>
           </div>
@@ -278,7 +301,7 @@ textarea.cfg-input { resize: vertical; min-height: 80px; font-size: 13px; line-h
           </div>
         </div>
         <div id="outputArea">
-          <div class="post-preview"><div class="post-placeholder">El post aparecerá aquí. El agente buscará en internet antes de redactar.<br><br>Ingresa tus API Keys de Groq y Tavily para activar.</div></div>
+          <div class="post-preview"><div class="post-placeholder">El agente buscará en internet antes de redactar.<br><br>Ingresa tus API Keys de Groq y Tavily para activar.</div></div>
         </div>
         <div id="sourcesArea"></div>
         <div class="brow" id="genActions" style="display:none;">
@@ -293,8 +316,8 @@ textarea.cfg-input { resize: vertical; min-height: 80px; font-size: 13px; line-h
 
 <!-- MES COMPLETO -->
 <div class="section" id="section-bulk">
-  <div class="alert alert-warn">⚠ Genera el plan completo del mes (~20 posts + 2 blogs) con búsqueda web. Puede demorar 60-90 segundos.</div>
-  <div class="panel" style="max-width:500px;">
+  <div class="alert alert-warn">⚠ Genera el plan completo del mes por plataforma con búsqueda web. Tarda 60-90 segundos — se hacen varias llamadas para cubrir todo el mes.</div>
+  <div class="panel" style="max-width:480px;">
     <div class="panel-header"><div class="panel-title">Plan de Contenido Mensual</div></div>
     <div class="form-group">
       <label class="form-label">Mes</label>
@@ -306,8 +329,8 @@ textarea.cfg-input { resize: vertical; min-height: 80px; font-size: 13px; line-h
       </select>
     </div>
     <div class="form-group">
-      <label class="form-label">Novedades del mes</label>
-      <textarea class="cfg-input" id="bulkContext" placeholder="Lanzamientos, torneos, restocks confirmados..."></textarea>
+      <label class="form-label">Novedades del mes (lanzamientos, torneos, restocks)</label>
+      <textarea class="cfg-input" id="bulkContext" placeholder="Ej: Sale Tarkir Dragonstorm el 11. Torneo Bracket 3 el día 20..."></textarea>
     </div>
     <button class="btn btn-primary btn-full" onclick="generateBulk()" id="bulkBtn">
       <span class="btn-ico">⚔</span><span class="spin"></span> Generar Plan Mensual
@@ -334,11 +357,13 @@ textarea.cfg-input { resize: vertical; min-height: 80px; font-size: 13px; line-h
   </div>
   <div class="legend">
     <div class="legend-item"><div class="legend-dot" style="background:#1a56db"></div>Tip</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#e65100"></div>Restock</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#c62828"></div>Torneo</div>
     <div class="legend-item"><div class="legend-dot" style="background:#2e7d32"></div>Lore</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#e65100"></div>Restock</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#c2185b"></div>Lanzamiento</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#c62828"></div>Torneo</div>
     <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>Comunidad</div>
     <div class="legend-item"><div class="legend-dot" style="background:#333"></div>Blog</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#00838f"></div>TikTok</div>
   </div>
 </div>
 
@@ -349,7 +374,7 @@ textarea.cfg-input { resize: vertical; min-height: 80px; font-size: 13px; line-h
       <div class="panel-title">Historial de Generaciones</div>
       <span class="panel-badge">Últimas 10</span>
     </div>
-    <div id="historyList"><div style="color:#bbb;font-size:13px;">Aún no hay posts generados en esta sesión.</div></div>
+    <div id="historyList"><div style="color:#bbb;font-size:13px;padding:10px 0;">Aún no hay posts generados.</div></div>
   </div>
 </div>
 
@@ -360,17 +385,12 @@ textarea.cfg-input { resize: vertical; min-height: 80px; font-size: 13px; line-h
       <div class="accordion-title">✦ Identidad de Marca</div>
       <div class="accordion-arrow">▼</div>
     </div>
-    <div class="accordion-body open">
-      <table class="tbl">
-        <thead><tr><th>Dimensión</th><th>Definición</th></tr></thead>
-        <tbody>
-          <tr><td>Quiénes somos</td><td>Jugadores que quisieron hacer del TCG una forma de vida. Montamos una tienda para eso. Somos parte de la comunidad, no estamos por encima.</td></tr>
-          <tr><td>Humildad genuina</td><td>No somos "los expertos". Los términos técnicos los usamos porque así se habla en la mesa, no para impresionar. Voz de par, no de profesor.</td></tr>
-          <tr><td>Firma</td><td>🔥 Saludos Aventureros 🔥 — siempre, sin excepción.</td></tr>
-          <tr><td>Tratamiento</td><td>Tuteo siempre. Nunca ustedear. Mínimo ingles — "mazo" no "deck", salvo nombres oficiales.</td></tr>
-          <tr><td>Tono</td><td>Cercano, apasionado, honesto. Como un amigo que sabe mucho pero no lo presume.</td></tr>
-        </tbody>
+    <div class="accordion-body open" id="ed-identity-body">
+      <table class="ed-table" id="ed-identity-table">
+        <thead><tr><th style="width:160px;">Dimensión</th><th>Definición</th><th style="width:30px;"></th></tr></thead>
+        <tbody id="ed-identity-rows"></tbody>
       </table>
+      <button class="btn btn-ghost" style="margin-top:10px;font-size:10px;" onclick="addEdRow('identity')">+ Agregar dimensión</button>
     </div>
   </div>
   <div class="accordion">
@@ -378,20 +398,17 @@ textarea.cfg-input { resize: vertical; min-height: 80px; font-size: 13px; line-h
       <div class="accordion-title">⚔ Pilares y Longitudes</div>
       <div class="accordion-arrow">▼</div>
     </div>
-    <div class="accordion-body">
-      <table class="tbl">
-        <thead><tr><th>Pilar</th><th>Día</th><th>Longitud IG/FB</th><th>Descripción</th></tr></thead>
-        <tbody>
-          <tr><td>🧠 Tip del Aventurero</td><td>Miércoles</td><td>2000–2200 chars</td><td>Mecánica completa con explicación, ejemplo práctico y conclusión aplicable.</td></tr>
-          <tr><td>📖 Lore & Historia</td><td>Lunes</td><td>1300–1500 chars</td><td>Historia de cartas, sets o personajes MTG. Narrativo.</td></tr>
-          <tr><td>📦 Restock & Novedades</td><td>Mar / Jue</td><td>400–550 chars</td><td>Singles, precons, catálogo nuevo. Corto y directo.</td></tr>
-          <tr><td>⚔ Torneos & Eventos</td><td>Según agenda</td><td>700–900 chars</td><td>Convocatoria o resultados con datos concretos.</td></tr>
-          <tr><td>🤝 Comunidad</td><td>Viernes</td><td>500–650 chars</td><td>Calendario de actividades y colaboraciones.</td></tr>
-          <tr><td>📰 Noticias Quest</td><td>2x mes</td><td>Sin límite</td><td>Meta, baneos, spoilers, torneos regionales, novedades GQ. Mínimo 1200 palabras.</td></tr>
-          <tr><td>🎬 TikTok</td><td>Miércoles</td><td>Brief slide a slide</td><td>Estructura de carrusel: portada → contenido → cierre gamequest.cl</td></tr>
-        </tbody>
+    <div class="accordion-body" id="ed-pilares-body">
+      <table class="ed-table" id="ed-pilares-table">
+        <thead><tr><th style="width:160px;">Pilar</th><th style="width:120px;">Longitud</th><th>Descripción</th><th style="width:30px;"></th></tr></thead>
+        <tbody id="ed-pilares-rows"></tbody>
       </table>
+      <button class="btn btn-ghost" style="margin-top:10px;font-size:10px;" onclick="addEdRow('pilares')">+ Agregar pilar</button>
     </div>
+  </div>
+  <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+    <button class="btn btn-primary" onclick="saveEditorial()"><span class="btn-ico">💾</span><span class="spin"></span> Guardar en GitHub</button>
+    <div id="ghSyncStatus" class="gh-status" style="display:none;"></div>
   </div>
 </div>
 
@@ -401,28 +418,30 @@ textarea.cfg-input { resize: vertical; min-height: 80px; font-size: 13px; line-h
   <div class="config-grid">
     <div class="panel">
       <div class="panel-header"><div class="panel-title">API de Groq</div><span class="panel-badge">Redacción</span></div>
-      <p style="font-size:13px;color:#777;margin-bottom:12px;line-height:1.6;">Gratis en <strong style="color:#1a1a1a">console.groq.com</strong>. Sin tarjeta.</p>
+      <p style="font-size:13px;color:#777;margin-bottom:10px;line-height:1.6;">Gratis en <strong style="color:#1a1a1a">console.groq.com</strong>. Sin tarjeta.</p>
       <div class="form-group"><label class="form-label">API Key</label><input type="password" class="cfg-input" id="configGroqKey" placeholder="gsk_..." /></div>
-      <button class="btn btn-primary btn-full" onclick="saveApiKeys()">Guardar y Activar</button>
+      <button class="btn btn-primary btn-full" onclick="saveApiKeys()">Guardar</button>
     </div>
     <div class="panel">
       <div class="panel-header"><div class="panel-title">API de Tavily</div><span class="panel-badge">Búsqueda web</span></div>
-      <p style="font-size:13px;color:#777;margin-bottom:12px;line-height:1.6;">Gratis en <strong style="color:#1a1a1a">tavily.com</strong>. 1.000 búsquedas/mes.</p>
+      <p style="font-size:13px;color:#777;margin-bottom:10px;line-height:1.6;">Gratis en <strong style="color:#1a1a1a">tavily.com</strong>. 1.000 búsquedas/mes.</p>
       <div class="form-group"><label class="form-label">API Key</label><input type="password" class="cfg-input" id="configTavilyKey" placeholder="tvly-..." /></div>
-      <button class="btn btn-primary btn-full" onclick="saveApiKeys()">Guardar y Activar</button>
+      <button class="btn btn-primary btn-full" onclick="saveApiKeys()">Guardar</button>
       <div class="cost-row">
         <div class="cost-item"><span>Búsquedas/mes</span><strong style="color:#2e7d32">1.000 gratis</strong></div>
         <div class="cost-item"><span>Hosting</span><strong style="color:#2e7d32">$0</strong></div>
       </div>
     </div>
     <div class="panel">
-      <div class="panel-header"><div class="panel-title">Google Calendar</div><span class="panel-badge">Fase 2</span></div>
-      <p style="font-size:13px;color:#777;margin-bottom:12px;line-height:1.6;">Alertas automáticas al guardar cada post.</p>
-      <button class="btn btn-ghost btn-full" disabled>Conectar →</button>
+      <div class="panel-header"><div class="panel-title">GitHub Token</div><span class="panel-badge">Editorial sync</span></div>
+      <p style="font-size:13px;color:#777;margin-bottom:10px;line-height:1.6;">Sincroniza la biblia editorial entre dispositivos vía tu repositorio.</p>
+      <div class="form-group"><label class="form-label">Personal Access Token</label><input type="password" class="cfg-input" id="configGhToken" placeholder="github_pat_..." /></div>
+      <div class="form-group"><label class="form-label">Repo (usuario/nombre)</label><input type="text" class="cfg-input" id="configGhRepo" placeholder="gamequestspa/AI_Agent_GQ_Escritor" /></div>
+      <button class="btn btn-primary btn-full" onclick="saveApiKeys()">Guardar</button>
     </div>
     <div class="panel">
       <div class="panel-header"><div class="panel-title">Meta Business</div><span class="panel-badge">Fase 3</span></div>
-      <p style="font-size:13px;color:#777;margin-bottom:12px;line-height:1.6;">Programación directa en Instagram y Facebook.</p>
+      <p style="font-size:13px;color:#777;margin-bottom:10px;line-height:1.6;">Programación directa en Instagram y Facebook.</p>
       <button class="btn btn-ghost btn-full" disabled>Conectar →</button>
     </div>
   </div>
@@ -434,16 +453,11 @@ textarea.cfg-input { resize: vertical; min-height: 80px; font-size: 13px; line-h
 <div class="modal-bg hidden" id="histModal">
   <div class="modal">
     <div class="modal-header">
-      <div>
-        <div class="modal-title" id="histModalTitle">—</div>
-        <div class="modal-meta" id="histModalMeta">—</div>
-      </div>
+      <div><div class="modal-title" id="histModalTitle">—</div><div class="modal-meta" id="histModalMeta">—</div></div>
       <button class="modal-close" onclick="closeHistModal()">✕</button>
     </div>
     <div class="modal-tabs" id="histModalTabs"></div>
-    <div class="modal-body">
-      <textarea class="modal-textarea" id="histModalText"></textarea>
-    </div>
+    <div class="modal-body"><textarea class="modal-textarea" id="histModalText"></textarea></div>
     <div class="modal-footer">
       <button class="btn btn-primary" onclick="copyModalText()">Copiar</button>
       <button class="btn btn-gold" onclick="saveEditedPost()">Guardar como nuevo</button>
@@ -453,39 +467,32 @@ textarea.cfg-input { resize: vertical; min-height: 80px; font-size: 13px; line-h
   </div>
 </div>
 
-<!-- CALENDAR ADD MODAL -->
+<!-- CAL SAVE MODAL -->
 <div class="cal-modal-bg hidden" id="calAddModal">
   <div class="cal-modal">
     <div class="cal-modal-title" id="calModalTitle">Guardar en calendario</div>
-    <div class="form-group">
-      <label class="form-label">Título del post</label>
-      <input type="text" class="cfg-input" id="calSaveTitle" placeholder="Ej: Tip sobre Mana Curve" />
+    <div class="form-group"><label class="form-label">Título del post</label><input type="text" class="cfg-input" id="calSaveTitle" placeholder="Ej: Tip sobre Mana Curve" /></div>
+    <div class="form-group"><label class="form-label">Pilar</label>
+      <select class="cfg-input" id="calSavePilar">
+        <option value="tip">Tip del Aventurero</option><option value="lore">Lore & Historia</option>
+        <option value="restock">Restock</option><option value="lanzamiento">Nuevo Lanzamiento</option>
+        <option value="torneo">Torneo & Evento</option><option value="comunidad">Comunidad</option>
+        <option value="blog">Noticias Quest</option><option value="tiktok">TikTok</option>
+      </select>
     </div>
-    <div class="form-group">
-      <label class="form-label">Fecha de publicación</label>
-      <input type="date" class="cfg-input" id="calSaveDate" />
-    </div>
-    <div class="brow" style="margin-top:4px;">
-      <button class="btn btn-primary" onclick="confirmSaveCalendar()">Guardar</button>
-      <button class="btn btn-ghost" onclick="document.getElementById('calAddModal').classList.add('hidden')">Cancelar</button>
-    </div>
+    <div class="form-group"><label class="form-label">Fecha de publicación</label><input type="date" class="cfg-input" id="calSaveDate" /></div>
+    <div class="brow"><button class="btn btn-primary" onclick="confirmSaveCalendar()">Guardar</button><button class="btn btn-ghost" onclick="document.getElementById('calAddModal').classList.add('hidden')">Cancelar</button></div>
   </div>
 </div>
 
-<!-- CALENDAR EVENT EDIT MODAL -->
+<!-- CAL EVENT EDIT MODAL -->
 <div class="cal-modal-bg hidden" id="calEvtModal">
   <div class="cal-modal">
-    <div class="cal-modal-title" id="calEvtModalTitle">Editar evento</div>
-    <div class="form-group">
-      <label class="form-label">Título</label>
-      <input type="text" class="cfg-input" id="calEvtTitle" />
-    </div>
-    <div class="form-group">
-      <label class="form-label">Mover a fecha</label>
-      <input type="date" class="cfg-input" id="calEvtDate" />
-    </div>
-    <div class="brow" style="margin-top:4px;">
-      <button class="btn btn-primary" onclick="confirmMoveEvent()">Mover / Guardar</button>
+    <div class="cal-modal-title">Editar evento</div>
+    <div class="form-group"><label class="form-label">Título</label><input type="text" class="cfg-input" id="calEvtTitle" /></div>
+    <div class="form-group"><label class="form-label">Mover a fecha</label><input type="date" class="cfg-input" id="calEvtDate" /></div>
+    <div class="brow">
+      <button class="btn btn-primary" onclick="confirmMoveEvent()">Guardar</button>
       <button class="btn btn-red" onclick="confirmDeleteEvent()">Eliminar</button>
       <button class="btn btn-ghost" onclick="document.getElementById('calEvtModal').classList.add('hidden')">Cancelar</button>
     </div>
@@ -493,11 +500,14 @@ textarea.cfg-input { resize: vertical; min-height: 80px; font-size: 13px; line-h
 </div>
 
 <script>
+// ── STATE ──
 let apiKey = localStorage.getItem('gq_api_key') || '';
 let tavilyKey = localStorage.getItem('gq_tavily_key') || '';
+let ghToken = localStorage.getItem('gq_gh_token') || '';
+let ghRepo = localStorage.getItem('gq_gh_repo') || 'gamequestspa/AI_Agent_GQ_Escritor';
 let calYear, calMonth;
 let savedPosts = JSON.parse(localStorage.getItem('gq_posts') || '{}');
-let history = JSON.parse(localStorage.getItem('gq_history') || '[]');
+let postHistory = JSON.parse(localStorage.getItem('gq_history') || '[]');
 let searchCount = parseInt(localStorage.getItem('gq_search_count') || '0');
 let searchCountMonth = localStorage.getItem('gq_search_month') || '';
 let currentPost = {ig:'', wa:'', img:'', blog:''};
@@ -507,74 +517,282 @@ let currentTitle = '';
 let lastSources = [];
 let editingHistIdx = -1;
 let editingEvt = null;
+let editorialData = null;
+
 const MONTHS = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-const PILAR_COLORS = {tip:'e-tip',restock:'e-restock',torneo:'e-torneo',lore:'e-lore',comunidad:'e-comunidad',blog:'e-blog',tiktok:'e-tip'};
+const PILAR_COLORS = {tip:'e-tip',lore:'e-lore',restock:'e-restock',lanzamiento:'e-lanzamiento',torneo:'e-torneo',comunidad:'e-comunidad',blog:'e-blog',tiktok:'e-tiktok'};
+const PILAR_LENGTHS = {tip:2200,lore:2200,restock:550,lanzamiento:1400,torneo:900,comunidad:650,blog:99999,tiktok:400};
 
-const SYSTEM = `Eres el Redactor Oficial de GameQuest, una tienda TCG chilena fundada y dirigida por jugadores que quisieron hacer del TCG una forma de vida. No somos expertos que aleccionan — somos pares dentro de la comunidad.
+const DEFAULT_EDITORIAL = {
+  identity: [
+    {key:'Quiénes somos', val:'Jugadores que quisieron hacer del TCG una forma de vida. Montamos una tienda para eso. Somos parte de la comunidad, no estamos por encima.'},
+    {key:'Humildad genuina', val:'No somos "los expertos". Los términos técnicos los usamos porque así se habla en la mesa, no para impresionar. Voz de par, no de profesor.'},
+    {key:'Firma de apertura', val:'🔥 Saludos Aventureros 🔥 — siempre, sin excepción.'},
+    {key:'Tratamiento', val:'Tuteo siempre. Nunca ustedear. Mínimo inglés — "mazo" no "deck", salvo nombres oficiales.'},
+    {key:'Tono', val:'Cercano, apasionado, honesto. Como un amigo que sabe mucho pero no lo presume.'},
+    {key:'Meta', val:'Usar siempre "meta" para referirse al metagame. Nunca escribir "metagame".'}
+  ],
+  pilares: [
+    {key:'🧠 Tip del Aventurero', len:'2000–2200 chars', val:'Mecánica completa con explicación, ejemplo práctico y aplicación real.'},
+    {key:'📖 Lore & Historia', len:'1800–2200 chars', val:'Historia de cartas, sets o personajes MTG. Narrativo y extenso.'},
+    {key:'📦 Restock', len:'400–550 chars', val:'Singles nuevos, precons disponibles. Corto y directo.'},
+    {key:'🚀 Nuevo Lanzamiento', len:'1200–1400 chars', val:'Sets nuevos, prereleases, fechas WPN, qué trae el set.'},
+    {key:'⚔ Torneos & Eventos', len:'700–900 chars', val:'Convocatoria o resultados con datos concretos.'},
+    {key:'🤝 Comunidad', len:'500–650 chars', val:'Calendario de actividades y colaboraciones con tiendas aliadas.'},
+    {key:'📰 Noticias Quest', len:'Mínimo 4000 chars', val:'Meta, baneos, spoilers, torneos regionales, novedades GQ. Artículo completo consultable.'},
+    {key:'🎬 TikTok', len:'Brief slide a slide', val:'Portada → contenido (cartas/combos) → cierre gamequest.cl.'}
+  ]
+};
 
-VOZ OBLIGATORIA:
-- Cercana, apasionada, honesta. Como un amigo que sabe mucho pero no lo presume.
-- Humildad genuina: nunca "somos expertos". Frases como "a nosotros también nos pasó", "como todos sabemos", "si eres nuevo en esto".
-- Los términos técnicos se usan porque así se habla en la mesa, no para impresionar.
-- Escritura en capas: expertos validan, nuevos aprenden. Sin patronear.
-- MÍNIMO INGLÉS: usar "mazo" no "deck", "baraja" cuando aplique. Solo inglés para nombres oficiales (Commander, Stack, Bracket, Game Changers, etc.).
-- NO repetir palabras clave dentro del mismo párrafo — usar sinónimos con criterio editorial.
-- Si se mencionan spoilers o cartas nuevas, NOMBRAR cartas específicas — no hablar de spoilers en abstracto.
+// ── SYSTEM PROMPT ──
+function buildSystem() {
+  const ed = editorialData || DEFAULT_EDITORIAL;
+  const identityStr = ed.identity.map(r=>`- ${r.key}: ${r.val}`).join('\n');
+  const pilaresStr = ed.pilares.map(r=>`- ${r.key} (${r.len}): ${r.val}`).join('\n');
+
+  return `Eres el Redactor Oficial de GameQuest, una tienda TCG chilena fundada y dirigida por jugadores que quisieron hacer del TCG una forma de vida.
+
+IDENTIDAD DE MARCA:
+${identityStr}
 
 REGLAS INAMOVIBLES:
-1. Abrir con: 🔥 Saludos Aventureros 🔥
-2. Cerrar con CTA a gamequest.cl
+1. Abrir SIEMPRE con: 🔥 Saludos Aventureros 🔥
+2. Cerrar SIEMPRE con CTA a gamequest.cl
 3. Tutear siempre. Jamás ustedear.
-4. Usar terminología TCG natural con criterio.
+4. Español latinoamericano neutro. NUNCA usar: vosotros, habéis, vuestro, compartid, ni ninguna forma peninsular.
+5. "Meta" siempre para referirse al metagame. Nunca "metagame".
+6. NO repetir palabras clave en el mismo párrafo — usar sinónimos con criterio editorial.
+7. Si se mencionan spoilers o cartas nuevas, NOMBRAR cartas específicas con sus nombres reales.
+8. Mínimo inglés: "mazo" no "deck". Solo inglés para nombres oficiales (Commander, Stack, Bracket, etc.).
 
-NUNCA ESCRIBIR: "nos complace anunciar", "en el dinámico mundo de", "soluciones", "potenciar sinergias", "innovador", "es un placer", "de primer nivel", "somos expertos", ni nada corporativo o que suene a IA.
+NUNCA ESCRIBIR: "nos complace anunciar", "en el dinámico mundo de", "soluciones", "potenciar sinergias", "innovador", "es un placer", "de primer nivel", "somos expertos", nada corporativo ni que suene a IA generada.
 
-LONGITUDES ESTRICTAS:
-- Tip del Aventurero: ENTRE 2000 y 2200 caracteres. Desarrollo completo: explicación + ejemplo práctico + aplicación real. NO menos.
-- Lore & Historia: entre 1300 y 1500 caracteres. Narrativo con contexto.
-- Restock & Novedades: entre 400 y 550 caracteres. Corto, urgente, directo.
-- Torneos & Eventos: entre 700 y 900 caracteres. Datos concretos.
-- Comunidad: entre 500 y 650 caracteres. Cálido, foco en calendario de actividades.
-- Noticias Quest / Blog: MÍNIMO 4000 caracteres. Artículo completo con intro, secciones desarrolladas, datos reales, conclusión. Entretenido y dinámico, que la gente quiera volver a consultarlo.
-- TikTok: Brief visual SLIDE A SLIDE. Estructura: Slide 1 (portada con gancho) → Slides intermedios (contenido: cartas/combos/comandantes, uno por slide) → Slide final (CTA gamequest.cl). Describir cada slide con texto y elementos visuales.
+LONGITUDES POR PILAR:
+${pilaresStr}
 
-WHATSAPP — CONCEPTO DIFERENTE AL DE IG:
-El mensaje de WhatsApp NO es un resumen del post de IG. Es comunicación directa con la comunidad. Debe:
-- Ser más informal y cercano, como un mensaje de un amigo
+WHATSAPP — es comunicación directa con la comunidad, NO un resumen del post de IG:
+- Más informal, como un mensaje de un amigo
 - Hacer preguntas directas que inviten a responder
 - Proponer encuestas o votaciones cuando aplique
-- Motivar a la comunidad a participar, ir a la tienda, o compartir
-- Puede extenderse si el tema lo amerita
+- Motivar a participar, ir a la tienda o compartir
 - Tono de comunidad, no de marca
 
-BRIEF VISUAL — RAZONAR EL FORMATO:
-El agente debe decidir el formato más efectivo para el marketing:
-- Post fijo: para anuncios simples, citas, frases destacadas
-- Carrusel: para spoilers (una carta por slide), tips con pasos, comparativas, listas de cartas
-- Historia: para urgencia, contadores, flash sales
-Siempre describir cada slide/elemento con instrucciones claras para el diseñador.
+BRIEF VISUAL — razonar el formato más efectivo:
+- Post fijo: anuncios simples, frases destacadas
+- Carrusel: spoilers (una carta por slide), tips con pasos, listas de cartas
+- Historia: urgencia, contadores, flash sales
+Describir cada slide con instrucciones claras para el diseñador.
 
 JUEGOS: Magic → core 70%. Pokémon → solo anticipación. Neuroscape → educativo. One Piece/Riftbound → solo con stock real.
 
-RESPONDE SOLO con este JSON exacto, sin markdown:
-{"titulo":"título corto descriptivo del post (max 60 chars)","ig_post":"texto IG/FB con longitud correcta","wa_post":"mensaje WhatsApp comunitario con preguntas y dinámica","image_brief":"brief visual con formato decidido (post fijo/carrusel/historia) y descripción slide a slide","blog_post":"solo para Noticias Quest: artículo completo extenso. Para otros dejar string vacío.","char_count_ig":numero_entero}`;
+RESPONDE SOLO con este JSON exacto, sin markdown ni texto extra:
+{"titulo":"título corto max 60 chars","ig_post":"texto IG/FB con longitud correcta del pilar","wa_post":"mensaje WhatsApp comunitario con preguntas y dinámica","image_brief":"brief visual con formato decidido y descripción slide a slide","blog_post":"SOLO para Noticias Quest: artículo completo extenso mínimo 4000 chars. Para todos los demás pilares: string vacío exactamente así: ","char_count_ig":0}`;
+}
 
-const PILAR_LENGTHS = {tip:2200,lore:1500,restock:550,torneo:900,comunidad:650,blog:99999,tiktok:400};
-const TOOL_DEF = [{type:'function',function:{name:'search_web',description:'Busca información actualizada en internet sobre Magic TCG, sets, cartas, baneos, torneos, meta, spoilers, o cualquier tema necesario para redactar contenido preciso y actual para GameQuest.',parameters:{type:'object',properties:{query:{type:'string',description:'Consulta de búsqueda en español o inglés.'},reason:{type:'string',description:'Por qué necesitas esta búsqueda para el post.'}},required:['query','reason']}}}];
+const PILAR_LABELS = {
+  tip:'Tip del Aventurero — ENTRE 2000 y 2200 chars. Explicación completa de mecánica TCG + ejemplo práctico + aplicación real. NO hacer uno más corto bajo ningún concepto.',
+  lore:'Lore & Historia — ENTRE 1800 y 2200 chars. Historia narrativa extensa de carta, set o personaje MTG con contexto del lore.',
+  restock:'Restock — 400 a 550 chars exactos. Corto y directo. Singles o precons llegaron al catálogo. Nada más.',
+  lanzamiento:'Nuevo Lanzamiento — 1200 a 1400 chars. Set nuevo, prerelease, fechas WPN, qué trae el set, cómo participar. Informativo.',
+  torneo:'Torneos & Eventos — 700 a 900 chars. Datos concretos, fechas, lugar, premios, cómo inscribirse.',
+  comunidad:'Comunidad — 500 a 650 chars. Cálido, foco en calendario de actividades y colaboraciones.',
+  blog:'Noticias Quest — MÍNIMO 4000 caracteres OBLIGATORIO. Artículo completo con intro, múltiples secciones desarrolladas con datos reales obtenidos de las búsquedas web, entretenido y dinámico. La gente debe querer guardarlo y volver a consultarlo.',
+  tiktok:'TikTok carrusel visual — brief SLIDE A SLIDE detallado: Slide 1 (portada con gancho + logo GQ) → slides de contenido (una carta/combo/dato por slide con descripción visual) → slide final (CTA gamequest.cl). Describir elementos visuales de cada slide.'
+};
 
-window.onload = () => {
+const TOOL_DEF = [{type:'function',function:{name:'search_web',description:'Busca información actualizada en internet sobre Magic TCG, sets, cartas, baneos, torneos, meta, spoilers, jugadores, novedades.',parameters:{type:'object',properties:{query:{type:'string'},reason:{type:'string'}},required:['query','reason']}}}];
+
+// ── INIT ──
+window.onload = async () => {
   const now = new Date();
   calYear = now.getFullYear(); calMonth = now.getMonth();
   const thisMonth = `${now.getFullYear()}-${now.getMonth()}`;
-  if (searchCountMonth !== thisMonth) { searchCount = 0; searchCountMonth = thisMonth; localStorage.setItem('gq_search_month', thisMonth); localStorage.setItem('gq_search_count', '0'); }
+  if (searchCountMonth !== thisMonth) {
+    searchCount = 0; searchCountMonth = thisMonth;
+    localStorage.setItem('gq_search_month', thisMonth);
+    localStorage.setItem('gq_search_count', '0');
+  }
   if (apiKey) document.getElementById('apiKeyInput').value = apiKey;
   if (tavilyKey) document.getElementById('tavilyInput').value = tavilyKey;
+  if (ghToken) document.getElementById('ghTokenInput').value = ghToken;
+  if (ghRepo) { const el = document.getElementById('configGhRepo'); if(el) el.value = ghRepo; }
   updateStatus(); updateSearchCounter(); renderCalendar(); renderHistory();
   document.querySelectorAll('.tag').forEach(t => t.addEventListener('click', () => t.classList.toggle('active')));
   document.getElementById('histModalText').addEventListener('input', function(){ document.getElementById('histModalChar').textContent = this.value.length + ' chars'; });
-  const today = new Date(); document.getElementById('calSaveDate').value = today.toISOString().split('T')[0];
+  document.getElementById('calSaveDate').value = now.toISOString().split('T')[0];
+
+  // Load editorial from GitHub or defaults
+  await loadEditorial();
 };
 
+// ── API KEYS ──
+function saveApiKeys() {
+  const k = (document.getElementById('apiKeyInput').value || document.getElementById('configGroqKey')?.value || '').trim();
+  const t = (document.getElementById('tavilyInput').value || document.getElementById('configTavilyKey')?.value || '').trim();
+  const g = (document.getElementById('ghTokenInput').value || document.getElementById('configGhToken')?.value || '').trim();
+  const r = document.getElementById('configGhRepo')?.value?.trim() || ghRepo;
+  if (k) { apiKey = k; localStorage.setItem('gq_api_key', k); }
+  if (t) { tavilyKey = t; localStorage.setItem('gq_tavily_key', t); }
+  if (g) { ghToken = g; localStorage.setItem('gq_gh_token', g); }
+  if (r) { ghRepo = r; localStorage.setItem('gq_gh_repo', r); }
+  if (document.getElementById('configGroqKey')) document.getElementById('configGroqKey').value = apiKey;
+  if (document.getElementById('configTavilyKey')) document.getElementById('configTavilyKey').value = tavilyKey;
+  if (document.getElementById('configGhToken')) document.getElementById('configGhToken').value = ghToken;
+  updateStatus();
+}
+
+function updateStatus() {
+  const ok = apiKey && tavilyKey;
+  document.getElementById('statusDot').className = 'status-dot'+(ok?' ok':'');
+  document.getElementById('statusText').textContent = ok ? 'Agente Activo' : apiKey ? 'Sin Tavily' : 'Sin API Keys';
+}
+
+function updateSearchCounter() {
+  const el = document.getElementById('searchCounter');
+  el.textContent = `🔍 ${searchCount} búsquedas`;
+  el.className = 'search-counter'+(searchCount > 800 ? ' warn' : '');
+}
+
+// Each individual Tavily call increments by 1
+function incrementSearch() {
+  searchCount++;
+  localStorage.setItem('gq_search_count', searchCount.toString());
+  updateSearchCounter();
+}
+
+// ── GITHUB EDITORIAL SYNC ──
+async function loadEditorial() {
+  if (!ghToken || !ghRepo) {
+    editorialData = JSON.parse(localStorage.getItem('gq_editorial') || 'null') || DEFAULT_EDITORIAL;
+    renderEditorial();
+    return;
+  }
+  try {
+    const res = await fetch(`https://api.github.com/repos/${ghRepo}/contents/editorial.json`, {
+      headers: { 'Authorization': `token ${ghToken}`, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if (res.ok) {
+      const data = await res.json();
+      const content = JSON.parse(atob(data.content.replace(/\n/g,'')));
+      editorialData = content;
+      localStorage.setItem('gq_editorial', JSON.stringify(content));
+    } else {
+      editorialData = JSON.parse(localStorage.getItem('gq_editorial') || 'null') || DEFAULT_EDITORIAL;
+    }
+  } catch(e) {
+    editorialData = JSON.parse(localStorage.getItem('gq_editorial') || 'null') || DEFAULT_EDITORIAL;
+  }
+  renderEditorial();
+}
+
+async function saveEditorial() {
+  // Collect current editorial data from DOM
+  const identityRows = [...document.querySelectorAll('#ed-identity-rows tr')];
+  const identity = identityRows.map(tr => {
+    const inputs = tr.querySelectorAll('.ed-input');
+    return {key: inputs[0]?.value||'', val: inputs[1]?.value||''};
+  }).filter(r => r.key);
+
+  const pilaresRows = [...document.querySelectorAll('#ed-pilares-rows tr')];
+  const pilares = pilaresRows.map(tr => {
+    const inputs = tr.querySelectorAll('.ed-input');
+    return {key: inputs[0]?.value||'', len: inputs[1]?.value||'', val: inputs[2]?.value||''};
+  }).filter(r => r.key);
+
+  editorialData = {identity, pilares};
+  localStorage.setItem('gq_editorial', JSON.stringify(editorialData));
+
+  if (!ghToken || !ghRepo) {
+    showGhStatus('Guardado localmente (sin GitHub configurado)', 'ok');
+    return;
+  }
+
+  const saveBtn = document.querySelector('#section-editorial .btn-primary');
+  if (saveBtn) setLoad(saveBtn, true);
+  showGhStatus('Guardando en GitHub...', 'info');
+
+  try {
+    // Get current SHA if file exists
+    let sha = '';
+    const getRes = await fetch(`https://api.github.com/repos/${ghRepo}/contents/editorial.json`, {
+      headers: {'Authorization': `token ${ghToken}`, 'Accept': 'application/vnd.github.v3+json'}
+    });
+    if (getRes.ok) { const d = await getRes.json(); sha = d.sha; }
+
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(editorialData, null, 2))));
+    const body = {message: 'Update editorial.json', content};
+    if (sha) body.sha = sha;
+
+    const putRes = await fetch(`https://api.github.com/repos/${ghRepo}/contents/editorial.json`, {
+      method: 'PUT',
+      headers: {'Authorization': `token ${ghToken}`, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json'},
+      body: JSON.stringify(body)
+    });
+
+    if (putRes.ok) {
+      showGhStatus('✅ Guardado en GitHub — sincronizado en todos los dispositivos', 'ok');
+    } else {
+      const err = await putRes.json();
+      showGhStatus('Error GitHub: ' + (err.message||'desconocido'), 'err');
+    }
+  } catch(e) {
+    showGhStatus('Error: ' + e.message, 'err');
+  }
+  if (saveBtn) setLoad(saveBtn, false);
+}
+
+function showGhStatus(msg, type) {
+  const el = document.getElementById('ghSyncStatus');
+  el.style.display = 'block';
+  el.textContent = msg;
+  el.style.background = type==='ok'?'#e8f5e9':type==='err'?'#fdecea':'#e8f0fe';
+  el.style.color = type==='ok'?'#2e7d32':type==='err'?'#c62828':'#1a56db';
+  el.style.border = `1px solid ${type==='ok'?'#a5d6a7':type==='err'?'#f5c6cb':'#afc6f6'}`;
+  el.style.borderRadius = '6px';
+  el.style.padding = '6px 10px';
+}
+
+function renderEditorial() {
+  const ed = editorialData || DEFAULT_EDITORIAL;
+  const tbody1 = document.getElementById('ed-identity-rows');
+  const tbody2 = document.getElementById('ed-pilares-rows');
+  if (!tbody1 || !tbody2) return;
+  tbody1.innerHTML = ed.identity.map((r,i) => `
+    <tr>
+      <td><textarea class="ed-input key" rows="1" onInput="autoResize(this)">${escRaw(r.key)}</textarea></td>
+      <td><textarea class="ed-input" rows="2" onInput="autoResize(this)">${escRaw(r.val)}</textarea></td>
+      <td><button class="ed-del" onclick="this.closest('tr').remove()">✕</button></td>
+    </tr>`).join('');
+  tbody2.innerHTML = ed.pilares.map((r,i) => `
+    <tr>
+      <td><textarea class="ed-input key" rows="1" onInput="autoResize(this)">${escRaw(r.key)}</textarea></td>
+      <td><textarea class="ed-input" rows="1" onInput="autoResize(this)">${escRaw(r.len||'')}</textarea></td>
+      <td><textarea class="ed-input" rows="2" onInput="autoResize(this)">${escRaw(r.val)}</textarea></td>
+      <td><button class="ed-del" onclick="this.closest('tr').remove()">✕</button></td>
+    </tr>`).join('');
+  document.querySelectorAll('.ed-input').forEach(autoResize);
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = el.scrollHeight + 'px';
+}
+
+function addEdRow(type) {
+  if (type === 'identity') {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td><textarea class="ed-input key" rows="1" onInput="autoResize(this)" placeholder="Dimensión"></textarea></td><td><textarea class="ed-input" rows="2" onInput="autoResize(this)" placeholder="Definición"></textarea></td><td><button class="ed-del" onclick="this.closest('tr').remove()">✕</button></td>`;
+    document.getElementById('ed-identity-rows').appendChild(tr);
+  } else {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td><textarea class="ed-input key" rows="1" onInput="autoResize(this)" placeholder="Pilar"></textarea></td><td><textarea class="ed-input" rows="1" onInput="autoResize(this)" placeholder="Longitud"></textarea></td><td><textarea class="ed-input" rows="2" onInput="autoResize(this)" placeholder="Descripción"></textarea></td><td><button class="ed-del" onclick="this.closest('tr').remove()">✕</button></td>`;
+    document.getElementById('ed-pilares-rows').appendChild(tr);
+  }
+}
+
+function escRaw(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ── NAVIGATION ──
 function showSection(name, btn) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById('section-'+name).classList.add('active');
@@ -582,41 +800,15 @@ function showSection(name, btn) {
   if (btn) btn.classList.add('active');
 }
 
-function saveApiKeys() {
-  const k = (document.getElementById('apiKeyInput').value || document.getElementById('configGroqKey')?.value || '').trim();
-  const t = (document.getElementById('tavilyInput').value || document.getElementById('configTavilyKey')?.value || '').trim();
-  if (k) { apiKey = k; localStorage.setItem('gq_api_key', k); }
-  if (t) { tavilyKey = t; localStorage.setItem('gq_tavily_key', t); }
-  if (document.getElementById('configGroqKey')) document.getElementById('configGroqKey').value = apiKey;
-  if (document.getElementById('configTavilyKey')) document.getElementById('configTavilyKey').value = tavilyKey;
-  updateStatus();
-}
-
-function updateStatus() {
-  const ok = apiKey && tavilyKey;
-  const half = apiKey && !tavilyKey;
-  document.getElementById('statusDot').className = 'status-dot'+(ok?' ok':'');
-  document.getElementById('statusText').textContent = ok ? 'Agente Activo' : half ? 'Sin Tavily' : 'Sin API Keys';
-}
-
-function updateSearchCounter() {
-  const el = document.getElementById('searchCounter');
-  el.textContent = `🔍 ${searchCount} búsquedas`;
-  el.className = 'search-counter' + (searchCount > 800 ? ' warn' : '');
-}
-
-function incrementSearch(n=1) {
-  searchCount += n; localStorage.setItem('gq_search_count', searchCount.toString()); updateSearchCounter();
-}
-
 function toggleAcc(h) { h.classList.toggle('open'); h.nextElementSibling.classList.toggle('open'); }
 
+// ── TABS ──
 function updateTabs() {
   const pilar = document.getElementById('pilarSelect').value;
   currentPilar = pilar;
   const tabsEl = document.getElementById('outputTabs');
   if (pilar === 'blog') {
-    tabsEl.innerHTML = `<button class="output-tab active" data-tab="blog" onclick="switchTab('blog',this)">Artículo</button><button class="output-tab" data-tab="img" onclick="switchTab('img',this)">Brief Visual</button>`;
+    tabsEl.innerHTML = `<button class="output-tab active" data-tab="blog" onclick="switchTab('blog',this)">Artículo</button><button class="output-tab" data-tab="wa" onclick="switchTab('wa',this)">WhatsApp</button><button class="output-tab" data-tab="img" onclick="switchTab('img',this)">Brief Visual</button>`;
     currentTab = 'blog';
   } else if (pilar === 'tiktok') {
     tabsEl.innerHTML = `<button class="output-tab active" data-tab="img" onclick="switchTab('img',this)">Brief Carrusel</button>`;
@@ -631,16 +823,16 @@ function switchTab(tab, el) {
   currentTab = tab;
   document.querySelectorAll('.output-tab').forEach(t => t.classList.remove('active'));
   if (el) el.classList.add('active');
-  if (currentPost.ig || currentPost.blog) renderPost();
+  if (currentPost.ig || currentPost.blog || currentPost.img) renderPost();
 }
 
 function renderPost() {
-  const pilar = document.getElementById('pilarSelect').value;
+  const pilar = currentPilar;
   let content = currentTab==='ig'?currentPost.ig:currentTab==='wa'?currentPost.wa:currentTab==='blog'?currentPost.blog:currentPost.img;
   const maxLen = PILAR_LENGTHS[pilar]||2200;
-  const len = content.length;
-  const isOver = currentTab==='ig' && len > maxLen;
-  const isGood = currentTab==='ig' && len >= maxLen*0.85;
+  const len = (content||'').length;
+  const isOver = (currentTab==='ig') && len > maxLen;
+  const isGood = (currentTab==='ig') && len >= maxLen*0.85;
   document.getElementById('outputArea').innerHTML = `
     <div class="post-preview">
       <button class="copy-btn" onclick="copyCurrentPost()">Copiar</button>
@@ -649,370 +841,488 @@ function renderPost() {
     ${(currentTab==='ig'||currentTab==='blog')?`<div class="char-count ${isOver?'over':isGood?'good':''}">${len.toLocaleString('es-CL')} chars${isOver?' — excede límite':isGood?' — longitud ideal':' — bajo para este pilar'}</div>`:''}`;
 }
 
-function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');}
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'); }
 
-const PILAR_LABELS = {
-  tip:'Tip del Aventurero (ENTRE 2000 y 2200 chars — explicación completa + ejemplo práctico + aplicación real. NO hacer uno más corto)',
-  restock:'Restock & Novedades (400-550 chars, corto y directo)',
-  torneo:'Torneos & Eventos (700-900 chars)',
-  lore:'Lore & Historia (1300-1500 chars, narrativo)',
-  comunidad:'Comunidad (500-650 chars, cálido, foco en calendario)',
-  blog:'Noticias Quest — MÍNIMO 4000 caracteres. Artículo completo con secciones, datos reales de las búsquedas web, entretenido y consultable.',
-  tiktok:'TikTok carrusel visual — brief SLIDE A SLIDE: Slide 1 portada con gancho → slides de contenido (una carta/combo por slide) → slide final CTA gamequest.cl'
-};
-
+// ── TAVILY SEARCH ──
 async function tavilySearch(query) {
-  const res = await fetch('https://api.tavily.com/search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({api_key:tavilyKey,query,search_depth:'basic',max_results:5,include_answer:true})});
+  const res = await fetch('https://api.tavily.com/search', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({api_key:tavilyKey, query, search_depth:'basic', max_results:5, include_answer:true})
+  });
   const data = await res.json();
   if (data.error) throw new Error('Tavily: '+data.error);
-  incrementSearch();
+  incrementSearch(); // Count each individual API call
   const summary = data.answer||'';
   const results = (data.results||[]).slice(0,4).map(r=>`[${r.title}]: ${(r.content||'').slice(0,400)}`).join('\n');
-  return {summary,results,sources:(data.results||[]).slice(0,3).map(r=>({query,title:r.title,url:r.url}))};
+  const sources = (data.results||[]).slice(0,3).map(r=>({query,title:r.title,url:r.url}));
+  return {summary, results, sources};
 }
 
-function setStep(n,state){const el=document.getElementById('step-'+n);if(el)el.className='load-step '+state;}
+function setStep(n,state){ const el=document.getElementById('step-'+n); if(el) el.className='load-step '+state; }
 
+// ── GENERATE POST (Agentic loop) ──
 async function generatePost() {
-  if (!apiKey) {alert('Ingresa tu API Key de Groq.');return;}
+  if (!apiKey) { alert('Ingresa tu API Key de Groq.'); return; }
   const btn = document.getElementById('genBtn');
-  setLoad(btn,true);
-  document.getElementById('genActions').style.display='none';
-  document.getElementById('sourcesArea').innerHTML='';
-  lastSources=[];
+  setLoad(btn, true);
+  document.getElementById('genActions').style.display = 'none';
+  document.getElementById('sourcesArea').innerHTML = '';
+  lastSources = [];
   currentPilar = document.getElementById('pilarSelect').value;
   const game = document.getElementById('gameSelect').value;
   const ctx = document.getElementById('contextInput').value;
   const nets = [...document.querySelectorAll('#networkTags .tag.active')].map(t=>t.dataset.net).join(', ');
   const aud = [...document.querySelectorAll('#audienceTags .tag.active')].map(t=>t.dataset.aud).join(', ');
-  const maxTok = currentPilar==='blog'?5000:2500;
+  // Blog needs more tokens
+  const maxTok = currentPilar==='blog' ? 6000 : 2800;
 
-  const steps=['Analizando qué buscar...','Buscando en internet...','Procesando resultados...','Redactando post...'];
-  document.getElementById('outputArea').innerHTML=`<div class="loading-state"><div class="load-ring"></div><div class="load-steps">${steps.map((s,i)=>`<div class="load-step ${i===0?'active':''}" id="step-${i}">${s}</div>`).join('')}</div></div>`;
+  const steps = ['Analizando qué buscar...','Buscando en internet...','Procesando resultados...','Redactando post...'];
+  document.getElementById('outputArea').innerHTML = `<div class="loading-state"><div class="load-ring"></div><div class="load-steps">${steps.map((s,i)=>`<div class="load-step ${i===0?'active':''}" id="step-${i}">${s}</div>`).join('')}</div></div>`;
 
   try {
-    const userMsg=`Pilar: ${PILAR_LABELS[currentPilar]}\nJuego: ${game}\nRedes: ${nets}\nAudiencia: ${aud}\nContexto: ${ctx||'Elige un tema actual y relevante. Busca qué está trending en la comunidad TCG ahora mismo.'}\n\nUSA search_web para buscar información actualizada antes de redactar. El post debe reflejar información real y actual.`;
-    const messages=[{role:'user',content:userMsg}];
-    let iterations=0;
-
+    const userMsg = `Pilar: ${PILAR_LABELS[currentPilar]}\nJuego: ${game}\nRedes: ${nets}\nAudiencia: ${aud}\nContexto: ${ctx||'Elige un tema actual y relevante. Busca qué está trending en la comunidad TCG ahora mismo.'}\n\nIMPORTANTE: USA la herramienta search_web para buscar información actualizada ANTES de redactar. El post debe reflejar información real y actual, no genérica.`;
+    const messages = [{role:'user', content:userMsg}];
+    let iterations = 0;
     setStep(1,'active');
 
-    while(iterations<5){
+    while (iterations < 6) {
       iterations++;
-      const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'system',content:SYSTEM},...messages],tools:TOOL_DEF,tool_choice:'auto',temperature:0.88,max_tokens:maxTok})});
-      const data=await res.json();
-      if(data.error)throw new Error(data.error.message);
-      const choice=data.choices[0];
-      const msg=choice.message;
+      const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},
+        body:JSON.stringify({
+          model:'llama-3.3-70b-versatile',
+          messages:[{role:'system',content:buildSystem()}, ...messages],
+          tools:TOOL_DEF,
+          tool_choice:'auto',
+          temperature:0.88,
+          max_tokens:maxTok
+        })
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error.message);
+      const choice = data.choices[0];
+      const msg = choice.message;
       messages.push(msg);
 
-      if(choice.finish_reason==='tool_calls'&&msg.tool_calls?.length){
-        for(const tc of msg.tool_calls){
-          const args=JSON.parse(tc.function.arguments);
-          let sd={summary:'',results:'Sin resultados',sources:[]};
-          if(tavilyKey){try{sd=await tavilySearch(args.query);lastSources.push(...sd.sources);}catch(e){sd.results='Error: '+e.message;}}
-          else{sd.results='Tavily no configurado — usa conocimiento interno.';}
-          messages.push({role:'tool',tool_call_id:tc.id,content:`Búsqueda: "${args.query}"\nResumen: ${sd.summary}\n\nResultados:\n${sd.results}`});
+      if (choice.finish_reason === 'tool_calls' && msg.tool_calls?.length) {
+        setStep(1,'active');
+        for (const tc of msg.tool_calls) {
+          let args;
+          try { args = JSON.parse(tc.function.arguments); } catch { args = {query:'Magic TCG news',reason:'search'}; }
+          let sd = {summary:'',results:'Sin resultados',sources:[]};
+          if (tavilyKey) {
+            try { sd = await tavilySearch(args.query); lastSources.push(...sd.sources); }
+            catch(e) { sd.results = 'Error búsqueda: '+e.message; }
+          } else {
+            sd.results = 'Tavily no configurado — usa conocimiento interno.';
+          }
+          messages.push({role:'tool', tool_call_id:tc.id, content:`Búsqueda: "${args.query}"\nResumen: ${sd.summary}\n\nResultados:\n${sd.results}`});
         }
-        setStep(2,'done');setStep(3,'active');
+        setStep(2,'done'); setStep(3,'active');
         continue;
       }
 
+      // Final response
       setStep(3,'done');
-      const raw=msg.content||'';
+      const raw = (msg.content||'').trim();
       let p;
-      try{p=JSON.parse(raw.replace(/```json|```/g,'').trim());}
-      catch{p={titulo:ctx||'Post generado',ig_post:raw,wa_post:'',image_brief:'Ver post principal.',blog_post:'',char_count_ig:raw.length};}
+      try {
+        // Strip any markdown fences
+        const clean = raw.replace(/^```json\s*/,'').replace(/^```\s*/,'').replace(/\s*```$/,'').trim();
+        p = JSON.parse(clean);
+      } catch(e) {
+        // If JSON parse fails, wrap raw content
+        p = {titulo:ctx||'Post generado', ig_post:raw, wa_post:'', image_brief:'Ver post principal.', blog_post:'', char_count_ig:raw.length};
+      }
 
-      currentPost={ig:p.ig_post||'',wa:p.wa_post||'',img:p.image_brief||'',blog:p.blog_post||''};
+      currentPost = {
+        ig: p.ig_post||'',
+        wa: p.wa_post||'',
+        img: p.image_brief||'',
+        blog: p.blog_post||''
+      };
       currentTitle = p.titulo || ctx || 'Post sin título';
+
+      // For blog pilar, if blog_post is empty but ig_post has content, move it
+      if (currentPilar === 'blog' && !currentPost.blog && currentPost.ig) {
+        currentPost.blog = currentPost.ig;
+        currentPost.ig = '';
+      }
+
       renderPost();
-      document.getElementById('genActions').style.display='flex';
+      document.getElementById('genActions').style.display = 'flex';
 
-      // Guardar en historial
-      addToHistory({
-        titulo: currentTitle,
-        pilar: currentPilar,
-        ig: currentPost.ig,
-        wa: currentPost.wa,
-        img: currentPost.img,
-        blog: currentPost.blog,
-        ts: Date.now()
-      });
+      // Save to history
+      addToHistory({titulo:currentTitle, pilar:currentPilar, ig:currentPost.ig, wa:currentPost.wa, img:currentPost.img, blog:currentPost.blog, ts:Date.now()});
 
-      if(lastSources.length){
-        let srcHtml=`<div class="sources-box"><div class="sources-title">🔍 ${lastSources.length} fuente${lastSources.length>1?'s':''} consultada${lastSources.length>1?'s':''}</div>`;
-        lastSources.forEach(s=>{srcHtml+=`<div class="source-item"><span class="source-query">${s.query.slice(0,35)}</span><span class="source-result"><a href="${s.url}" target="_blank" style="color:#1a56db;text-decoration:none;">${s.title}</a></span></div>`;});
-        srcHtml+=`</div>`;
-        document.getElementById('sourcesArea').innerHTML=srcHtml;
-      } else if(tavilyKey){
-        document.getElementById('sourcesArea').innerHTML=`<div class="sources-box"><div class="sources-title">ℹ El agente usó conocimiento interno para este tema</div></div>`;
+      // Show sources
+      if (lastSources.length) {
+        let srcHtml = `<div class="sources-box"><div class="sources-title">🔍 ${lastSources.length} fuente${lastSources.length>1?'s':''} consultada${lastSources.length>1?'s':''} (${searchCount} llamadas Tavily totales este mes)</div>`;
+        lastSources.forEach(s => {
+          srcHtml += `<div class="source-item"><span class="source-query">${(s.query||'').slice(0,35)}</span><span class="source-result"><a href="${s.url}" target="_blank" style="color:#1a56db;text-decoration:none;">${s.title}</a></span></div>`;
+        });
+        srcHtml += `</div>`;
+        document.getElementById('sourcesArea').innerHTML = srcHtml;
+      } else if (tavilyKey) {
+        document.getElementById('sourcesArea').innerHTML = `<div class="sources-box"><div class="sources-title">ℹ El agente usó conocimiento interno para este tema</div></div>`;
       }
       break;
     }
-  } catch(e){
-    document.getElementById('outputArea').innerHTML=`<div class="post-preview"><div class="post-placeholder" style="color:#c62828;">Error: ${e.message}<br><br>Verifica tus API Keys en Configuración.</div></div>`;
+  } catch(e) {
+    document.getElementById('outputArea').innerHTML = `<div class="post-preview"><div class="post-placeholder" style="color:#c62828;">Error: ${e.message}<br><br>Verifica tus API Keys en Configuración.</div></div>`;
   }
-  setLoad(btn,false);
+  setLoad(btn, false);
 }
 
-// HISTORIAL
-function addToHistory(entry){
-  history.unshift(entry);
-  if(history.length>10)history=history.slice(0,10);
-  localStorage.setItem('gq_history',JSON.stringify(history));
+// ── HISTORY ──
+function addToHistory(entry) {
+  postHistory.unshift(entry);
+  if (postHistory.length > 10) postHistory = postHistory.slice(0,10);
+  localStorage.setItem('gq_history', JSON.stringify(postHistory));
   renderHistory();
 }
 
-function renderHistory(){
-  const el=document.getElementById('historyList');
-  if(!el)return;
-  if(!history.length){el.innerHTML='<div style="color:#bbb;font-size:13px;">Aún no hay posts generados.</div>';return;}
-  const pc=PILAR_COLORS;
-  el.innerHTML='<div class="history-list">'+history.map((h,i)=>{
-    const d=new Date(h.ts);
-    const dateStr=`${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+function renderHistory() {
+  const el = document.getElementById('historyList');
+  if (!el) return;
+  if (!postHistory.length) { el.innerHTML = '<div style="color:#bbb;font-size:13px;padding:8px 0;">Aún no hay posts generados.</div>'; return; }
+  el.innerHTML = postHistory.map((h,i) => {
+    const d = new Date(h.ts);
+    const ds = `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
     return `<div class="hist-item" onclick="openHistModal(${i})">
       <div class="hist-meta">
-        <span class="hist-pilar cal-evt ${pc[h.pilar]||'e-comunidad'}" style="font-size:9px;">${h.pilar}</span>
+        <span class="cal-evt ${PILAR_COLORS[h.pilar]||'e-comunidad'}" style="font-size:9px;flex-shrink:0;">${h.pilar||'post'}</span>
         <span class="hist-title">${h.titulo||'Sin título'}</span>
       </div>
-      <span class="hist-date">${dateStr}</span>
+      <span class="hist-date">${ds}</span>
     </div>`;
-  }).join('')+'</div>';
+  }).join('');
 }
 
-function openHistModal(idx){
-  editingHistIdx=idx;
-  const h=history[idx];
-  document.getElementById('histModalTitle').textContent=h.titulo||'Sin título';
-  const d=new Date(h.ts);
-  document.getElementById('histModalMeta').textContent=`${['tip','restock','torneo','lore','comunidad','blog','tiktok'].includes(h.pilar)?h.pilar:'post'} · ${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
-
-  // Tabs según pilar
-  const tabsEl=document.getElementById('histModalTabs');
-  let tabs=[], activeTab='ig';
-  if(h.pilar==='blog'){tabs=[['blog','Artículo'],['img','Brief Visual']];activeTab='blog';}
-  else if(h.pilar==='tiktok'){tabs=[['img','Brief Carrusel']];activeTab='img';}
-  else{tabs=[['ig','IG / FB'],['wa','WhatsApp'],['img','Brief Visual']];}
-  tabsEl.innerHTML=tabs.map(([key,label],i)=>`<button class="modal-tab ${i===0?'active':''}" onclick="switchModalTab('${key}',this,'${idx}')">${label}</button>`).join('');
-  setModalContent(h,activeTab);
+function openHistModal(idx) {
+  editingHistIdx = idx;
+  const h = postHistory[idx];
+  document.getElementById('histModalTitle').textContent = h.titulo||'Sin título';
+  const d = new Date(h.ts);
+  document.getElementById('histModalMeta').textContent = `${h.pilar||'post'} · ${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+  const tabsEl = document.getElementById('histModalTabs');
+  let tabs = [], activeTab = 'ig';
+  if (h.pilar==='blog') { tabs=[['blog','Artículo'],['wa','WhatsApp'],['img','Brief Visual']]; activeTab='blog'; }
+  else if (h.pilar==='tiktok') { tabs=[['img','Brief Carrusel']]; activeTab='img'; }
+  else { tabs=[['ig','IG / FB'],['wa','WhatsApp'],['img','Brief Visual']]; }
+  tabsEl.innerHTML = tabs.map(([key,label],i)=>`<button class="modal-tab ${i===0?'active':''}" onclick="switchModalTab('${key}',this,${idx})">${label}</button>`).join('');
+  setModalContent(h, activeTab);
   document.getElementById('histModal').classList.remove('hidden');
 }
 
-function switchModalTab(tab,el,idx){
+function switchModalTab(tab, el, idx) {
   document.querySelectorAll('.modal-tab').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
-  setModalContent(history[parseInt(idx)],tab);
+  setModalContent(postHistory[parseInt(idx)], tab);
 }
 
-function setModalContent(h,tab){
-  const content=tab==='ig'?h.ig:tab==='wa'?h.wa:tab==='blog'?h.blog:h.img;
-  const ta=document.getElementById('histModalText');
-  ta.value=content||'';
-  document.getElementById('histModalChar').textContent=(content||'').length+' chars';
-  ta.dataset.tab=tab;
+function setModalContent(h, tab) {
+  const content = tab==='ig'?h.ig:tab==='wa'?h.wa:tab==='blog'?h.blog:h.img;
+  const ta = document.getElementById('histModalText');
+  ta.value = content||'';
+  ta.dataset.tab = tab;
+  document.getElementById('histModalChar').textContent = (content||'').length + ' chars';
 }
 
-function copyModalText(){
-  const t=document.getElementById('histModalText').value;
-  navigator.clipboard.writeText(t).then(()=>{
+function copyModalText() {
+  navigator.clipboard.writeText(document.getElementById('histModalText').value).then(()=>{
     const b=document.querySelector('.modal-footer .btn-primary');
     if(b){b.textContent='¡Copiado!';setTimeout(()=>b.textContent='Copiar',1500);}
   });
 }
 
-function saveEditedPost(){
-  if(editingHistIdx<0)return;
-  const h=history[editingHistIdx];
-  const ta=document.getElementById('histModalText');
-  const tab=ta.dataset.tab;
-  const newH={...h,ts:Date.now(),titulo:h.titulo+' (editado)'};
-  newH[tab==='ig'?'ig':tab==='wa'?'wa':tab==='blog'?'blog':'img']=ta.value;
-  history.unshift(newH);
-  if(history.length>10)history=history.slice(0,10);
-  localStorage.setItem('gq_history',JSON.stringify(history));
+function saveEditedPost() {
+  if (editingHistIdx < 0) return;
+  const h = postHistory[editingHistIdx];
+  const ta = document.getElementById('histModalText');
+  const tab = ta.dataset.tab;
+  const newH = {...h, ts:Date.now(), titulo:(h.titulo||'Sin título')+' (editado)'};
+  const keyMap = {ig:'ig',wa:'wa',blog:'blog',img:'img'};
+  newH[keyMap[tab]||'ig'] = ta.value;
+  postHistory.unshift(newH);
+  if (postHistory.length > 10) postHistory = postHistory.slice(0,10);
+  localStorage.setItem('gq_history', JSON.stringify(postHistory));
   renderHistory();
-  const b=document.querySelector('.modal-footer .btn-gold');
+  const b = document.querySelector('.modal-footer .btn-gold');
   if(b){b.textContent='✅ Guardado';setTimeout(()=>b.textContent='Guardar como nuevo',1500);}
 }
 
-function closeHistModal(){document.getElementById('histModal').classList.add('hidden');}
+function closeHistModal() { document.getElementById('histModal').classList.add('hidden'); }
 
-// CALENDARIO
-function openSaveCalModal(){
-  if(!currentPost.ig&&!currentPost.blog){alert('Genera un post primero.');return;}
-  document.getElementById('calSaveTitle').value=currentTitle||'';
-  const today=new Date();
-  document.getElementById('calSaveDate').value=today.toISOString().split('T')[0];
-  document.getElementById('calModalTitle').textContent='Guardar en calendario';
+// ── CALENDAR ──
+function openSaveCalModal(title, pilar) {
+  if (!title && !currentPost.ig && !currentPost.blog) { alert('Genera un post primero.'); return; }
+  document.getElementById('calSaveTitle').value = title || currentTitle || '';
+  document.getElementById('calSavePilar').value = pilar || currentPilar || 'tip';
+  document.getElementById('calSaveDate').value = new Date().toISOString().split('T')[0];
+  document.getElementById('calModalTitle').textContent = 'Guardar en calendario';
   document.getElementById('calAddModal').classList.remove('hidden');
 }
 
-function confirmSaveCalendar(){
-  const title=document.getElementById('calSaveTitle').value.trim()||currentTitle||'Sin título';
-  const dateVal=document.getElementById('calSaveDate').value;
-  if(!dateVal)return;
-  const d=new Date(dateVal+'T12:00:00');
-  const key=`${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
-  if(!savedPosts[key])savedPosts[key]=[];
-  savedPosts[key].push({type:currentPilar,preview:title,ig:currentPost.ig,wa:currentPost.wa,img:currentPost.img,blog:currentPost.blog});
-  localStorage.setItem('gq_posts',JSON.stringify(savedPosts));
+function confirmSaveCalendar() {
+  const title = document.getElementById('calSaveTitle').value.trim() || 'Sin título';
+  const pilar = document.getElementById('calSavePilar').value;
+  const dateVal = document.getElementById('calSaveDate').value;
+  if (!dateVal) return;
+  const d = new Date(dateVal+'T12:00:00');
+  const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+  if (!savedPosts[key]) savedPosts[key] = [];
+  savedPosts[key].push({type:pilar, preview:title, ig:currentPost.ig, wa:currentPost.wa, img:currentPost.img, blog:currentPost.blog});
+  localStorage.setItem('gq_posts', JSON.stringify(savedPosts));
   document.getElementById('calAddModal').classList.add('hidden');
-  if(calYear===d.getFullYear()&&calMonth===d.getMonth())renderCalendar();
+  if (calYear===d.getFullYear()&&calMonth===d.getMonth()) renderCalendar();
 }
 
-function openCalEvtModal(key,idx){
-  const evt=savedPosts[key]?.[idx];
-  if(!evt)return;
-  editingEvt={key,idx};
-  document.getElementById('calEvtTitle').value=evt.preview||'';
-  const parts=key.split('-');
-  const d=new Date(parseInt(parts[0]),parseInt(parts[1]),parseInt(parts[2]));
-  document.getElementById('calEvtDate').value=d.toISOString().split('T')[0];
+function openAddOnDay(key) {
+  const parts = key.split('-');
+  const d = new Date(parseInt(parts[0]),parseInt(parts[1]),parseInt(parts[2]));
+  document.getElementById('calSaveTitle').value = '';
+  document.getElementById('calSavePilar').value = 'tip';
+  document.getElementById('calSaveDate').value = d.toISOString().split('T')[0];
+  document.getElementById('calModalTitle').textContent = `Agregar al ${d.getDate()} de ${MONTHS[d.getMonth()]}`;
+  document.getElementById('calAddModal').classList.remove('hidden');
+}
+
+function openCalEvtModal(key, idx) {
+  const evt = savedPosts[key]?.[idx];
+  if (!evt) return;
+  editingEvt = {key, idx};
+  document.getElementById('calEvtTitle').value = evt.preview||'';
+  const parts = key.split('-');
+  const d = new Date(parseInt(parts[0]),parseInt(parts[1]),parseInt(parts[2]));
+  document.getElementById('calEvtDate').value = d.toISOString().split('T')[0];
   document.getElementById('calEvtModal').classList.remove('hidden');
 }
 
-function confirmMoveEvent(){
-  if(!editingEvt)return;
-  const {key,idx}=editingEvt;
-  const evt=savedPosts[key]?.[idx];
-  if(!evt)return;
-  const newTitle=document.getElementById('calEvtTitle').value.trim();
-  const newDateVal=document.getElementById('calEvtDate').value;
-  if(!newDateVal)return;
-  const nd=new Date(newDateVal+'T12:00:00');
-  const newKey=`${nd.getFullYear()}-${nd.getMonth()}-${nd.getDate()}`;
-  // Actualizar título
-  evt.preview=newTitle||evt.preview;
-  // Mover si cambió la fecha
-  if(newKey!==key){
+function confirmMoveEvent() {
+  if (!editingEvt) return;
+  const {key, idx} = editingEvt;
+  const evt = savedPosts[key]?.[idx];
+  if (!evt) return;
+  const newTitle = document.getElementById('calEvtTitle').value.trim();
+  const newDateVal = document.getElementById('calEvtDate').value;
+  if (!newDateVal) return;
+  const nd = new Date(newDateVal+'T12:00:00');
+  const newKey = `${nd.getFullYear()}-${nd.getMonth()}-${nd.getDate()}`;
+  evt.preview = newTitle || evt.preview;
+  if (newKey !== key) {
     savedPosts[key].splice(idx,1);
-    if(!savedPosts[key].length)delete savedPosts[key];
-    if(!savedPosts[newKey])savedPosts[newKey]=[];
+    if (!savedPosts[key].length) delete savedPosts[key];
+    if (!savedPosts[newKey]) savedPosts[newKey] = [];
     savedPosts[newKey].push(evt);
   }
-  localStorage.setItem('gq_posts',JSON.stringify(savedPosts));
+  localStorage.setItem('gq_posts', JSON.stringify(savedPosts));
   document.getElementById('calEvtModal').classList.add('hidden');
   renderCalendar();
 }
 
-function confirmDeleteEvent(){
-  if(!editingEvt)return;
-  const {key,idx}=editingEvt;
-  if(savedPosts[key]){
+function confirmDeleteEvent() {
+  if (!editingEvt) return;
+  const {key, idx} = editingEvt;
+  if (savedPosts[key]) {
     savedPosts[key].splice(idx,1);
-    if(!savedPosts[key].length)delete savedPosts[key];
-    localStorage.setItem('gq_posts',JSON.stringify(savedPosts));
+    if (!savedPosts[key].length) delete savedPosts[key];
+    localStorage.setItem('gq_posts', JSON.stringify(savedPosts));
   }
   document.getElementById('calEvtModal').classList.add('hidden');
   renderCalendar();
 }
 
-function renderCalendar(){
-  document.getElementById('calMonthLabel').textContent=`${MONTHS[calMonth]} ${calYear}`;
-  const grid=document.getElementById('calGrid');
-  const fd=new Date(calYear,calMonth,1).getDay();
-  const startDow=fd===0?6:fd-1;
-  const days=new Date(calYear,calMonth+1,0).getDate();
-  const today=new Date();
-  const sched={0:{type:'lore',label:'Lore'},1:{type:'restock',label:'Restock'},2:{type:'tip',label:'Tip'},3:{type:'restock',label:'Novedades'},4:{type:'comunidad',label:'Comunidad'}};
-  let html='<div class="cal-day empty"></div>'.repeat(startDow);
-  for(let d=1;d<=days;d++){
-    const dow=(()=>{let x=new Date(calYear,calMonth,d).getDay();return x===0?6:x-1;})();
-    const isToday=today.getFullYear()===calYear&&today.getMonth()===calMonth&&today.getDate()===d;
-    const key=`${calYear}-${calMonth}-${d}`;
-    const saved=savedPosts[key]||[];
-    let evts='';
-    if(sched[dow])evts+=`<div class="cal-evt" style="background:#f5f5f5;color:#ccc;cursor:default;"><span>${sched[dow].label}</span></div>`;
-    saved.forEach((s,i)=>{evts+=`<div class="cal-evt e-${s.type}" onclick="openCalEvtModal('${key}',${i})"><span style="overflow:hidden;text-overflow:ellipsis;flex:1;">${s.preview.slice(0,16)}</span><span class="cal-evt-del" onclick="event.stopPropagation();quickDeleteEvt('${key}',${i})">✕</span></div>`;});
-    evts+=`<button class="cal-add-btn" onclick="openAddOnDay('${key}')">+</button>`;
-    html+=`<div class="cal-day${isToday?' today':''}"><div class="cal-day-num">${d}</div>${evts}</div>`;
-  }
-  grid.innerHTML=html;
-}
-
-function quickDeleteEvt(key,idx){
-  if(!savedPosts[key])return;
+function quickDeleteEvt(key, idx) {
+  if (!savedPosts[key]) return;
   savedPosts[key].splice(idx,1);
-  if(!savedPosts[key].length)delete savedPosts[key];
-  localStorage.setItem('gq_posts',JSON.stringify(savedPosts));
+  if (!savedPosts[key].length) delete savedPosts[key];
+  localStorage.setItem('gq_posts', JSON.stringify(savedPosts));
   renderCalendar();
 }
 
-function openAddOnDay(key){
-  const parts=key.split('-');
-  const d=new Date(parseInt(parts[0]),parseInt(parts[1]),parseInt(parts[2]));
-  document.getElementById('calSaveTitle').value='';
-  document.getElementById('calSaveDate').value=d.toISOString().split('T')[0];
-  document.getElementById('calModalTitle').textContent=`Agregar al ${d.getDate()} de ${MONTHS[d.getMonth()]}`;
-  document.getElementById('calAddModal').classList.remove('hidden');
+function renderCalendar() {
+  document.getElementById('calMonthLabel').textContent = `${MONTHS[calMonth]} ${calYear}`;
+  const grid = document.getElementById('calGrid');
+  const fd = new Date(calYear,calMonth,1).getDay();
+  const startDow = fd===0?6:fd-1;
+  const days = new Date(calYear,calMonth+1,0).getDate();
+  const today = new Date();
+  const sched = {0:{type:'lore',label:'Lore'},1:{type:'restock',label:'Restock'},2:{type:'tip',label:'Tip'},3:{type:'restock',label:'Novedades'},4:{type:'comunidad',label:'Comunidad'}};
+  let html = '<div class="cal-day empty"></div>'.repeat(startDow);
+  for (let d=1; d<=days; d++) {
+    const dow = (()=>{ let x=new Date(calYear,calMonth,d).getDay(); return x===0?6:x-1; })();
+    const isToday = today.getFullYear()===calYear&&today.getMonth()===calMonth&&today.getDate()===d;
+    const key = `${calYear}-${calMonth}-${d}`;
+    const saved = savedPosts[key]||[];
+    let evts = '';
+    if (sched[dow]) evts += `<div class="cal-evt" style="background:#f5f5f5;color:#ccc;cursor:default;"><span>${sched[dow].label}</span></div>`;
+    saved.forEach((s,i) => {
+      evts += `<div class="cal-evt e-${s.type}" onclick="openCalEvtModal('${key}',${i})"><span style="overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0;">${(s.preview||'').slice(0,14)}</span><span class="cal-evt-del" onclick="event.stopPropagation();quickDeleteEvt('${key}',${i})">✕</span></div>`;
+    });
+    evts += `<button class="cal-add-btn" onclick="openAddOnDay('${key}')">+</button>`;
+    html += `<div class="cal-day${isToday?' today':''}"><div class="cal-day-num">${d}</div>${evts}</div>`;
+  }
+  grid.innerHTML = html;
 }
 
-function prevMonth(){if(--calMonth<0){calMonth=11;calYear--;}renderCalendar();}
-function nextMonth(){if(++calMonth>11){calMonth=0;calYear++;}renderCalendar();}
+function prevMonth() { if(--calMonth<0){calMonth=11;calYear--;} renderCalendar(); }
+function nextMonth() { if(++calMonth>11){calMonth=0;calYear++;} renderCalendar(); }
 
-// BULK
-async function generateBulk(){
-  if(!apiKey){alert('Ingresa tu API Key primero.');return;}
-  const btn=document.getElementById('bulkBtn');
-  setLoad(btn,true);
-  const month=document.getElementById('bulkMonth').value;
-  const ctx=document.getElementById('bulkContext').value;
-  document.getElementById('bulkOutput').innerHTML=`<div class="loading-state"><div class="load-ring"></div><div class="load-txt">Generando plan mensual con búsqueda web...</div></div>`;
+// ── BULK GENERATION ──
+// Split into multiple calls to avoid token limits
+async function generateBulk() {
+  if (!apiKey) { alert('Ingresa tu API Key primero.'); return; }
+  const btn = document.getElementById('bulkBtn');
+  setLoad(btn, true);
+  const month = document.getElementById('bulkMonth').value;
+  const ctx = document.getElementById('bulkContext').value;
+  const out = document.getElementById('bulkOutput');
+  out.innerHTML = `<div class="loading-state"><div class="load-ring"></div><div class="load-txt">Buscando info del mes y generando plan...</div></div>`;
 
-  let webContext='';
-  if(tavilyKey){
-    try{
-      const s1=await tavilySearch(`Magic The Gathering novedades ${month} 2025 nuevos sets`);
-      const s2=await tavilySearch(`MTG Commander baneos meta ${month} 2025`);
-      webContext=`Información web actual:\n${s1.summary}\n${s1.results}\n\n${s2.summary}\n${s2.results}`;
-    }catch(e){webContext='';}
+  // Step 1: Web context
+  let webCtx = '';
+  if (tavilyKey) {
+    try {
+      const s1 = await tavilySearch(`Magic The Gathering ${month} 2025 nuevos sets lanzamientos`);
+      const s2 = await tavilySearch(`MTG Commander meta baneos ${month} 2025`);
+      webCtx = `Info web actual:\n${s1.summary}\n${s1.results}\n\n${s2.summary}\n${s2.results}`;
+    } catch(e) { webCtx = ''; }
   }
 
-  const bulkPrompt=`${SYSTEM}\n\nPlan completo para ${month} de GameQuest.\n${ctx?'Novedades: '+ctx:''}\n${webContext}\n\nRITMO OBLIGATORIO — 20 posts, 4 semanas:\nLun=Lore(1400chars) | Mar=Restock(500chars) | Mié=Tip(2100chars) | Jue=Novedades(500chars) | Vie=Comunidad(600chars)\n\nTemas DISTINTOS entre sí. Usa información web si disponible.\n\nJSON sin markdown:\n{"mes":"${month}","posts":[{"semana":1,"dia":"Lunes 5","pilar":"lore","titulo":"título","ig_post":"copy completo","wa_post":"WhatsApp comunitario","image_brief":"brief visual con formato decidido"}]}`;
-  const blogPrompt=`${SYSTEM}\n\nDos artículos de Noticias Quest para ${month}.\n${ctx?'Contexto: '+ctx:''}\n${webContext}\n\nCada artículo MÍNIMO 4000 caracteres. Secciones, datos reales, entretenido.\n\nJSON:\n{"blog_posts":[{"semana":1,"titulo":"título","contenido":"artículo completo extenso"}]}`;
+  // Step 2: Generate weeks 1+2
+  const sys = buildSystem();
+  const week12Prompt = `${sys}\n\nPlan de contenido de GameQuest para ${month} — SEMANAS 1 Y 2 (días 1-14).\n${ctx?'Novedades confirmadas: '+ctx:''}\n${webCtx}\n\nRITMO: Lun=Lore | Mar=Restock | Mié=Tip | Jue=Lanzamiento o Novedad | Vie=Comunidad\n\nGenera exactamente 10 posts (5 por semana). Cada post debe tener su propia plataforma: IG/FB + WhatsApp + TikTok (brief carrusel) + Blog si aplica. Temas distintos entre sí.\n\nSolo responde con JSON, sin texto extra:\n{"posts":[{"semana":1,"dia":"Lunes 5","pilar":"lore","titulo":"título concreto","ig_fb":"copy IG/FB con longitud correcta","whatsapp":"mensaje comunitario","tiktok_brief":"brief carrusel slide a slide","chars_ig":0}]}`;
 
-  try{
-    const [r1,r2]=await Promise.all([
-      fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'user',content:bulkPrompt}],temperature:0.85,max_tokens:8000})}),
-      fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'user',content:blogPrompt}],temperature:0.85,max_tokens:5000})})
+  const week34Prompt = `${sys}\n\nPlan de contenido de GameQuest para ${month} — SEMANAS 3 Y 4 (días 15-30).\n${ctx?'Novedades confirmadas: '+ctx:''}\n${webCtx}\n\nRITMO: Lun=Lore | Mar=Restock | Mié=Tip | Jue=Lanzamiento o Novedad | Vie=Comunidad\n\nGenera exactamente 10 posts (5 por semana). Temas completamente distintos a las semanas 1-2. Cada post: IG/FB + WhatsApp + TikTok brief.\n\nSolo responde con JSON:\n{"posts":[{"semana":3,"dia":"Lunes 19","pilar":"tip","titulo":"título concreto","ig_fb":"copy IG/FB","whatsapp":"mensaje comunitario","tiktok_brief":"brief carrusel","chars_ig":0}]}`;
+
+  const blogPrompt = `${sys}\n\nDos artículos de Noticias Quest para ${month} de GameQuest.\n${ctx?'Contexto: '+ctx:''}\n${webCtx}\n\nCada artículo MÍNIMO 4000 caracteres. Con secciones, datos reales, entretenido y consultable.\n\nSolo responde con JSON:\n{"blog_posts":[{"semana":1,"titulo":"título del artículo","contenido":"artículo completo extenso aquí"}]}`;
+
+  try {
+    // Run all 3 calls in parallel for speed
+    const [r1, r2, r3] = await Promise.all([
+      fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'user',content:week12Prompt}],temperature:0.82,max_tokens:7000})}),
+      fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'user',content:week34Prompt}],temperature:0.82,max_tokens:7000})}),
+      fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'user',content:blogPrompt}],temperature:0.8,max_tokens:6000})})
     ]);
-    const [d1,d2]=await Promise.all([r1.json(),r2.json()]);
-    if(d1.error)throw new Error(d1.error.message);
-    let plan,blogPlan;
-    try{plan=JSON.parse(d1.choices[0].message.content.replace(/```json|```/g,'').trim());}catch{plan=null;}
-    try{blogPlan=JSON.parse(d2.choices[0].message.content.replace(/```json|```/g,'').trim());}catch{blogPlan=null;}
 
-    const posts=plan?.posts||[];
-    const blogs=blogPlan?.blog_posts||[];
-    const pc=PILAR_COLORS;
-    let html=`<div class="alert alert-ok">✅ ${posts.length} posts + ${blogs.length} artículos para ${month}${webContext?' · Con búsqueda web':''}</div>`;
-    posts.forEach((p,i)=>{
-      const chars=(p.ig_post||'').length;
-      html+=`<div class="bulk-post"><div class="bulk-post-header"><div class="bulk-post-meta"><span class="cal-evt ${pc[p.pilar]||'e-comunidad'}" style="font-size:9px;">${p.pilar}</span><span class="bulk-post-day">${p.dia}</span><span style="font-size:12px;color:#aaa;font-weight:600;">${p.titulo}</span><span style="font-size:10px;color:#ccc;">${chars}c</span></div><button class="btn btn-ghost" style="padding:4px 10px;font-size:10px;" onclick="copyEl('bp-${i}')">Copiar</button></div><div class="bulk-body" id="bp-${i}" onclick="toggleBulk(this)">${esc(p.ig_post||'')}</div><div class="bulk-hint" onclick="toggleBulk(this.previousElementSibling)">▼ Expandir</div></div>`;
-    });
-    if(blogs.length){
-      html+=`<div style="font-family:'Inter Tight',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#aaa;margin:18px 0 10px;">📰 Noticias Quest</div>`;
-      blogs.forEach((b,i)=>{
-        html+=`<div class="bulk-post"><div class="bulk-post-header"><div class="bulk-post-meta"><span class="cal-evt e-blog" style="font-size:9px;">blog</span><span class="bulk-post-day">Semana ${b.semana}</span><span style="font-size:12px;color:#aaa;font-weight:600;">${b.titulo}</span></div><button class="btn btn-ghost" style="padding:4px 10px;font-size:10px;" onclick="copyEl('bl-${i}')">Copiar</button></div><div class="bulk-body" id="bl-${i}" onclick="toggleBulk(this)">${esc(b.contenido||'')}</div><div class="bulk-hint" onclick="toggleBulk(this.previousElementSibling)">▼ Expandir · ${(b.contenido||'').length} chars</div></div>`;
+    const [d1, d2, d3] = await Promise.all([r1.json(), r2.json(), r3.json()]);
+    if (d1.error) throw new Error(d1.error.message);
+    if (d2.error) throw new Error(d2.error.message);
+
+    let plan1, plan2, blogPlan;
+    try { plan1 = JSON.parse(d1.choices[0].message.content.replace(/```json|```/g,'').trim()); } catch { plan1={posts:[]}; }
+    try { plan2 = JSON.parse(d2.choices[0].message.content.replace(/```json|```/g,'').trim()); } catch { plan2={posts:[]}; }
+    try { blogPlan = JSON.parse(d3.choices[0].message.content.replace(/```json|```/g,'').trim()); } catch { blogPlan={blog_posts:[]}; }
+
+    const allPosts = [...(plan1.posts||[]), ...(plan2.posts||[])];
+    const blogs = blogPlan.blog_posts||[];
+
+    let html = `<div class="alert alert-ok">✅ ${allPosts.length} posts generados (${allPosts.length} días) + ${blogs.length} artículos de Noticias Quest para ${month}${webCtx?' · Con búsqueda web':''}</div>`;
+
+    if (allPosts.length) {
+      allPosts.forEach((p,i) => {
+        const chars = (p.ig_fb||'').length;
+        const pilarClass = PILAR_COLORS[p.pilar]||'e-comunidad';
+        html += `<div class="bulk-post">
+          <div class="bulk-post-header">
+            <div class="bulk-post-meta">
+              <span class="cal-evt ${pilarClass}" style="font-size:9px;">${p.pilar||'post'}</span>
+              <span class="bulk-post-day">${p.dia||''}</span>
+              <span style="font-size:12px;color:#aaa;font-weight:600;">${p.titulo||''}</span>
+              <span style="font-size:10px;color:#ccc;">${chars}c IG</span>
+            </div>
+            <div style="display:flex;gap:5px;flex-wrap:wrap;">
+              <button class="btn btn-ghost" style="padding:3px 8px;font-size:10px;" onclick="copyBulkPost(${i})">Copiar IG</button>
+              <button class="btn btn-gold" style="padding:3px 8px;font-size:10px;" onclick="openSaveCalModal('${(p.titulo||'').replace(/'/g,'').slice(0,40)}','${p.pilar||'tip'}')">+ Cal</button>
+              <button class="btn btn-ghost" style="padding:3px 8px;font-size:10px;" onclick="toggleBulkEdit(${i})">Editar</button>
+            </div>
+          </div>
+          <!-- IG/FB -->
+          <div style="font-size:10px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;">IG / FB</div>
+          <div class="bulk-body" id="bp-ig-${i}" onclick="toggleBulk(this)">${esc(p.ig_fb||'')}</div>
+          <div class="bulk-hint" onclick="toggleBulk(document.getElementById('bp-ig-${i}'))">▼ expandir</div>
+          <!-- WhatsApp -->
+          <div style="font-size:10px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:.07em;margin-top:8px;margin-bottom:3px;">WhatsApp</div>
+          <div class="bulk-body" id="bp-wa-${i}" onclick="toggleBulk(this)">${esc(p.whatsapp||'')}</div>
+          <div class="bulk-hint" onclick="toggleBulk(document.getElementById('bp-wa-${i}'))">▼ expandir</div>
+          <!-- TikTok Brief -->
+          ${p.tiktok_brief?`<div style="font-size:10px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:.07em;margin-top:8px;margin-bottom:3px;">TikTok Brief</div><div class="bulk-body" id="bp-tk-${i}" onclick="toggleBulk(this)">${esc(p.tiktok_brief)}</div><div class="bulk-hint" onclick="toggleBulk(document.getElementById('bp-tk-${i}'))">▼ expandir</div>`:''}
+          <!-- Edit area -->
+          <textarea class="bulk-edit" id="bp-edit-${i}" placeholder="Editar IG/FB aquí...">${(p.ig_fb||'').replace(/</g,'&lt;')}</textarea>
+          <div id="bp-edit-actions-${i}" style="display:none;" class="brow">
+            <button class="btn btn-green" style="padding:4px 10px;font-size:10px;" onclick="saveBulkEdit(${i})">Guardar edición</button>
+            <button class="btn btn-ghost" style="padding:4px 10px;font-size:10px;" onclick="toggleBulkEdit(${i})">Cancelar</button>
+          </div>
+        </div>`;
       });
     }
-    document.getElementById('bulkOutput').innerHTML=html||`<div class="alert alert-err">No se pudo generar. Intenta de nuevo.</div>`;
-  }catch(e){
-    document.getElementById('bulkOutput').innerHTML=`<div class="alert alert-err">Error: ${e.message}</div>`;
+
+    if (blogs.length) {
+      html += `<div style="font-family:'Inter Tight',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#aaa;margin:16px 0 8px;">📰 Noticias Quest</div>`;
+      blogs.forEach((b,i) => {
+        html += `<div class="bulk-post">
+          <div class="bulk-post-header">
+            <div class="bulk-post-meta">
+              <span class="cal-evt e-blog" style="font-size:9px;">blog</span>
+              <span class="bulk-post-day">Semana ${b.semana||i+1}</span>
+              <span style="font-size:12px;color:#aaa;font-weight:600;">${b.titulo||''}</span>
+              <span style="font-size:10px;color:#ccc;">${(b.contenido||'').length}c</span>
+            </div>
+            <div style="display:flex;gap:5px;">
+              <button class="btn btn-ghost" style="padding:3px 8px;font-size:10px;" onclick="copyEl('bl-${i}')">Copiar</button>
+              <button class="btn btn-gold" style="padding:3px 8px;font-size:10px;" onclick="openSaveCalModal('${(b.titulo||'').replace(/'/g,'').slice(0,40)}','blog')">+ Cal</button>
+            </div>
+          </div>
+          <div class="bulk-body" id="bl-${i}" onclick="toggleBulk(this)">${esc(b.contenido||'')}</div>
+          <div class="bulk-hint" onclick="toggleBulk(document.getElementById('bl-${i}'))">▼ expandir · ${(b.contenido||'').length} chars</div>
+        </div>`;
+      });
+    }
+
+    out.innerHTML = html || `<div class="alert alert-err">No se pudo generar el plan. Intenta de nuevo.</div>`;
+
+  } catch(e) {
+    out.innerHTML = `<div class="alert alert-err">Error: ${e.message}</div>`;
   }
-  setLoad(btn,false);
+  setLoad(btn, false);
 }
 
-function toggleBulk(el){el.classList.toggle('expanded');}
-
-function copyCurrentPost(){
-  const t=currentTab==='ig'?currentPost.ig:currentTab==='wa'?currentPost.wa:currentTab==='blog'?currentPost.blog:currentPost.img;
-  navigator.clipboard.writeText(t).then(()=>{const b=document.querySelector('.copy-btn');if(b){b.textContent='¡Copiado!';setTimeout(()=>b.textContent='Copiar',1500);}});
+// Bulk post helpers
+let bulkPostsData = [];
+function copyBulkPost(i) {
+  const el = document.getElementById(`bp-ig-${i}`);
+  if (el) navigator.clipboard.writeText(el.innerText);
 }
-function copyEl(id){const el=document.getElementById(id);if(el)navigator.clipboard.writeText(el.innerText);}
-function setLoad(btn,on){btn.disabled=on;btn.classList.toggle('loading',on);}
+function toggleBulkEdit(i) {
+  const edit = document.getElementById(`bp-edit-${i}`);
+  const actions = document.getElementById(`bp-edit-actions-${i}`);
+  if (!edit) return;
+  const isVisible = edit.classList.contains('visible');
+  edit.classList.toggle('visible', !isVisible);
+  if (actions) actions.style.display = isVisible ? 'none' : 'flex';
+}
+function saveBulkEdit(i) {
+  const edit = document.getElementById(`bp-edit-${i}`);
+  const display = document.getElementById(`bp-ig-${i}`);
+  if (!edit || !display) return;
+  display.innerHTML = esc(edit.value);
+  toggleBulkEdit(i);
+  const b = document.querySelector(`#bp-edit-actions-${i} .btn-green`);
+  if(b){b.textContent='✅ Guardado';setTimeout(()=>b.textContent='Guardar edición',1500);}
+}
+function toggleBulk(el) { if(el) el.classList.toggle('expanded'); }
+function copyEl(id) { const el=document.getElementById(id); if(el) navigator.clipboard.writeText(el.innerText); }
+function copyCurrentPost() {
+  const t = currentTab==='ig'?currentPost.ig:currentTab==='wa'?currentPost.wa:currentTab==='blog'?currentPost.blog:currentPost.img;
+  navigator.clipboard.writeText(t||'').then(()=>{
+    const b=document.querySelector('.copy-btn');
+    if(b){b.textContent='¡Copiado!';setTimeout(()=>b.textContent='Copiar',1500);}
+  });
+}
+function setLoad(btn, on) { if(!btn)return; btn.disabled=on; btn.classList.toggle('loading',on); }
 </script>
 </body>
 </html>
