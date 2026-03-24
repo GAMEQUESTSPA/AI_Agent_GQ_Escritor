@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GameQuest — Agente de Marketing</title>
+<!-- Motor: Google Gemini API -->
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -238,7 +239,7 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
   <div class="header">
     <div>
       <div class="header-title">GameQuest — Agente MKT</div>
-      <div class="header-sub">Redactor TCG · Powered by Claude</div>
+      <div class="header-sub">Redactor TCG · Powered by Gemini</div>
     </div>
     <div class="header-right">
       <div class="header-status">
@@ -246,7 +247,7 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
         <span id="statusText">Sin API Key</span>
       </div>
       <div class="api-input-wrap">
-        <input class="api-input" type="password" id="apiKeyInput" placeholder="sk-ant-api03-..." />
+        <input class="api-input" type="password" id="apiKeyInput" placeholder="AIza..." />
         <button class="btn btn-primary" onclick="saveApiKey()">Activar</button>
       </div>
     </div>
@@ -513,17 +514,17 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
     <div class="config-grid">
       <div class="panel">
         <div class="panel-header">
-          <div class="panel-title">API de Anthropic</div>
+          <div class="panel-title">API de Google Gemini</div>
           <span class="panel-badge">Requerido</span>
         </div>
-        <p style="font-size:13px;color:#777;margin-bottom:14px;line-height:1.6;">Crea tu API Key en <strong style="color:#1a1a1a">console.anthropic.com</strong>. Se cobra por uso, no hay suscripción fija.</p>
+        <p style="font-size:13px;color:#777;margin-bottom:14px;line-height:1.6;">Consigue tu API Key gratis en <strong style="color:#1a1a1a">aistudio.google.com</strong>. Gemini tiene tier gratuito generoso — para este uso el costo es $0.</p>
         <div class="form-group">
           <label class="form-label">API Key</label>
-          <input type="password" class="cfg-input" id="configApiKey" placeholder="sk-ant-api03-..." />
+          <input type="password" class="cfg-input" id="configApiKey" placeholder="AIza..." />
         </div>
         <button class="btn btn-primary btn-full" onclick="saveApiKey()">Guardar y Activar</button>
         <div class="cost-row">
-          <div class="cost-item"><span>30 posts/mes</span><strong style="color:#e65100">~$2–3 USD</strong></div>
+          <div class="cost-item"><span>Uso mensual</span><strong style="color:#2e7d32">Gratis</strong></div>
           <div class="cost-item"><span>Hosting</span><strong style="color:#2e7d32">$0</strong></div>
         </div>
       </div>
@@ -650,15 +651,15 @@ async function generatePost() {
   const aud = [...document.querySelectorAll('#audienceTags .tag.active')].map(t=>t.dataset.aud).join(', ');
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const prompt = `${SYSTEM}\n\nPilar: ${pilarMap[pilar]}\nJuego: ${game}\nRedes: ${nets}\nAudiencia: ${aud}\n${ctx?'Contexto: '+ctx:'Elige un tema relevante para este pilar.'}`;
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
       method:'POST',
-      headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1500,system:SYSTEM,
-        messages:[{role:'user',content:`Pilar: ${pilarMap[pilar]}\nJuego: ${game}\nRedes: ${nets}\nAudiencia: ${aud}\n${ctx?'Contexto: '+ctx:'Elige un tema relevante para este pilar.'}`}]})
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:0.9,maxOutputTokens:1500}})
     });
     const data = await res.json();
     if (data.error) throw new Error(data.error.message);
-    const raw = data.content[0].text;
+    const raw = data.candidates[0].content.parts[0].text;
     let p;
     try { p = JSON.parse(raw.replace(/```json|```/g,'').trim()); }
     catch { p = {ig_post:raw,wa_post:raw,image_brief:'No disponible',char_count_ig:raw.length}; }
@@ -672,7 +673,7 @@ async function generatePost() {
     localStorage.setItem('gq_posts', JSON.stringify(savedPosts));
     if (calYear===now.getFullYear()&&calMonth===now.getMonth()) renderCalendar();
   } catch(e) {
-    document.getElementById('outputArea').innerHTML = `<div class="post-preview"><div class="post-placeholder" style="color:#c62828;">Error: ${e.message}<br><br>Verifica que tu API Key sea válida.</div></div>`;
+    document.getElementById('outputArea').innerHTML = `<div class="post-preview"><div class="post-placeholder" style="color:#c62828;">Error: ${e.message}<br><br>Verifica que tu API Key de Gemini sea válida.</div></div>`;
   }
   setLoad(btn, false);
 }
@@ -686,15 +687,15 @@ async function generateBulk() {
   document.getElementById('bulkOutput').innerHTML = `<div class="loading-state"><div class="load-ring"></div><div class="load-txt">Generando plan mensual... ~40 seg</div></div>`;
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const prompt = `${SYSTEM}\n\nPlan completo de contenido para ${month} de GameQuest.\n${ctx?'Novedades: '+ctx:''}\n\nRitmo: Lun=Lore, Mar=Restock, Mié=Tip, Jue=Novedades, Vie=Comunidad. Blog: semanas 1 y 3.\n\nResponde SOLO con JSON:\n{"mes":"${month}","posts":[{"semana":1,"dia":"Lunes 1","pilar":"lore","titulo":"título","ig_post":"copy completo","wa_post":"versión WA","image_brief":"brief visual"}],"blog_posts":[{"semana":1,"titulo":"título","intro":"intro 2 párrafos"}]}`;
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
       method:'POST',
-      headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:8000,system:SYSTEM,
-        messages:[{role:'user',content:`Plan completo de contenido para ${month} de GameQuest.\n${ctx?'Novedades: '+ctx:''}\n\nRitmo: Lun=Lore, Mar=Restock, Mié=Tip, Jue=Novedades, Vie=Comunidad. Blog: semanas 1 y 3.\n\nResponde SOLO con JSON:\n{"mes":"${month}","posts":[{"semana":1,"dia":"Lunes 1","pilar":"lore","titulo":"título","ig_post":"copy completo","wa_post":"versión WA","image_brief":"brief visual"}],"blog_posts":[{"semana":1,"titulo":"título","intro":"intro 2 párrafos"}]}`}]})
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:0.8,maxOutputTokens:8000}})
     });
     const data = await res.json();
     if (data.error) throw new Error(data.error.message);
-    const raw = data.content[0].text;
+    const raw = data.candidates[0].content.parts[0].text;
     let plan;
     try { plan = JSON.parse(raw.replace(/```json|```/g,'').trim()); } catch { plan=null; }
 
