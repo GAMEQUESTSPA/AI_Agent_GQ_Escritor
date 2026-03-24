@@ -10,8 +10,6 @@
 body { font-family: 'Inter', sans-serif; background: #f2f2f2; color: #1a1a1a; min-height: 100vh; }
 h1,h2,h3,h4 { font-family: 'Inter Tight', sans-serif; font-weight: 800; letter-spacing: -.01em; }
 .wrap { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
-
-/* ── Header ── */
 .header { background: #1a1a1a; border-radius: 14px; padding: 20px 28px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 .header-title { font-size: 18px; font-weight: 900; text-transform: uppercase; letter-spacing: .04em; color: #fff; }
 .header-sub { font-size: 10px; color: rgba(255,255,255,.45); font-weight: 600; text-transform: uppercase; letter-spacing: .1em; margin-top: 1px; }
@@ -20,43 +18,29 @@ h1,h2,h3,h4 { font-family: 'Inter Tight', sans-serif; font-weight: 800; letter-s
 .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #f44336; }
 .status-dot.ok { background: #4caf50; box-shadow: 0 0 6px #4caf50; }
 .api-input-wrap { display: flex; align-items: center; gap: 8px; }
-.api-input { background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.15); border-radius: 8px; color: #fff; padding: 7px 12px; font-family: monospace; font-size: 12px; width: 210px; outline: none; transition: border-color .15s; }
+.api-input { background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.15); border-radius: 8px; color: #fff; padding: 7px 12px; font-family: monospace; font-size: 12px; width: 180px; outline: none; transition: border-color .15s; }
 .api-input:focus { border-color: #CC3333; }
 .api-input::placeholder { color: rgba(255,255,255,.3); }
-
-/* ── Nav ── */
 .shortcuts { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
 .shortcut-btn { flex: 1; min-width: 130px; padding: 12px 16px; border-radius: 10px; background: #fff; border: 1.5px solid #e8e8e8; font-family: 'Inter Tight', sans-serif; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: #555; cursor: pointer; transition: all .15s; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.04); }
 .shortcut-btn:hover { border-color: #CC3333; color: #CC3333; background: #fff5f5; }
 .shortcut-btn.active { background: #CC3333; color: #fff; border-color: #CC3333; box-shadow: 0 4px 12px rgba(204,51,51,.25); }
-
-/* ── Sections ── */
 .section { display: none; }
 .section.active { display: block; }
-
-/* ── Panel ── */
 .panel { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 14px; padding: 22px 24px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
 .panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #f0f0f0; }
 .panel-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #1a1a1a; }
 .panel-badge { font-size: 10px; font-weight: 700; color: #bbb; text-transform: uppercase; letter-spacing: .08em; }
-
-/* ── Generator grid ── */
 .gen-grid { display: grid; grid-template-columns: 320px 1fr; gap: 16px; align-items: start; }
-
-/* ── Form ── */
 .form-group { margin-bottom: 14px; }
 .form-label { display: block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #aaa; margin-bottom: 6px; }
 .cfg-input { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 7px; color: #1a1a1a; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; padding: 8px 11px; width: 100%; transition: border-color .15s; outline: none; appearance: none; }
 .cfg-input:focus { border-color: #CC3333; }
 textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-height: 1.5; }
-
-/* ── Tags ── */
 .tag-group { display: flex; flex-wrap: wrap; gap: 7px; }
 .tag { font-size: 11px; font-weight: 800; padding: 5px 12px; border-radius: 20px; border: 1.5px solid #e8e8e8; color: #888; cursor: pointer; transition: all .15s; text-transform: uppercase; letter-spacing: .05em; font-family: 'Inter Tight', sans-serif; }
 .tag:hover { border-color: #CC3333; color: #CC3333; }
 .tag.active { background: #CC3333; color: #fff; border-color: #CC3333; }
-
-/* ── Buttons ── */
 .btn { display: inline-flex; align-items: center; gap: 7px; padding: 10px 18px; border-radius: 8px; font-family: 'Inter Tight', sans-serif; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; cursor: pointer; border: none; transition: all .15s; }
 .btn-primary { background: #CC3333; color: #fff; box-shadow: 0 4px 12px rgba(204,51,51,.2); }
 .btn-primary:hover:not(:disabled) { background: #aa2222; transform: translateY(-1px); }
@@ -73,8 +57,6 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
 .btn-ghost .spin, .btn-gold .spin { border-color: rgba(0,0,0,.12); border-top-color: #555; }
 .btn.loading .spin { display: block; } .btn.loading .btn-ico { display: none; }
 @keyframes spin { to { transform: rotate(360deg); } }
-
-/* ── Output ── */
 .output-tabs { display: flex; gap: 7px; flex-wrap: wrap; }
 .output-tab { font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 5px 13px; border-radius: 20px; border: 1.5px solid #e8e8e8; cursor: pointer; color: #aaa; background: transparent; transition: all .15s; }
 .output-tab:hover { border-color: #CC3333; color: #CC3333; }
@@ -83,20 +65,27 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
 .post-placeholder { color: #bbb; font-size: 13px; line-height: 1.65; }
 .char-count { font-size: 10px; color: #bbb; font-weight: 700; letter-spacing: .05em; text-align: right; margin-top: 6px; text-transform: uppercase; }
 .char-count.over { color: #CC3333; }
+.char-count.good { color: #2e7d32; }
 .copy-btn { position: absolute; top: 10px; right: 10px; background: #fff; border: 1.5px solid #e8e8e8; border-radius: 6px; color: #888; padding: 4px 10px; font-size: 10px; cursor: pointer; font-family: 'Inter Tight', sans-serif; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; transition: all .15s; }
 .copy-btn:hover { border-color: #CC3333; color: #CC3333; }
 .loading-state { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 180px; gap: 12px; }
 .load-ring { width: 32px; height: 32px; border: 3px solid #e8e8e8; border-top-color: #CC3333; border-radius: 50%; animation: spin .7s linear infinite; }
 .load-txt { font-size: 11px; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: .08em; }
-
-/* ── Alerts ── */
+.load-steps { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; width: 100%; max-width: 320px; }
+.load-step { font-size: 12px; color: #aaa; padding: 6px 12px; background: #f9f9f9; border-radius: 6px; border-left: 3px solid #e8e8e8; transition: all .3s; }
+.load-step.active { color: #CC3333; border-left-color: #CC3333; background: #fff5f5; font-weight: 600; }
+.load-step.done { color: #2e7d32; border-left-color: #2e7d32; background: #f1f8f1; }
 .alert { padding: 11px 15px; border-radius: 8px; font-size: 13px; font-weight: 600; margin-bottom: 14px; border: 1.5px solid; }
 .alert-warn { background: #fff8e1; border-color: #ffe082; color: #e65100; }
 .alert-info { background: #e8f0fe; border-color: #afc6f6; color: #1a56db; }
 .alert-ok   { background: #e8f5e9; border-color: #a5d6a7; color: #2e7d32; }
 .alert-err  { background: #fdecea; border-color: #f5c6cb; color: #c62828; }
-
-/* ── Accordion ── */
+.sources-box { background: #fafafa; border: 1.5px solid #e8e8e8; border-radius: 10px; padding: 14px 16px; margin-top: 12px; }
+.sources-title { font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #aaa; margin-bottom: 10px; }
+.source-item { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; border-bottom: 1px solid #f0f0f0; font-size: 12px; }
+.source-item:last-child { border-bottom: none; }
+.source-query { font-weight: 700; color: #555; min-width: 100px; }
+.source-result { color: #888; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .accordion { margin-bottom: 10px; }
 .accordion-header { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 12px; padding: 15px 20px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; transition: all .15s; user-select: none; box-shadow: 0 2px 6px rgba(0,0,0,.04); }
 .accordion-header:hover { border-color: #CC3333; }
@@ -106,22 +95,16 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
 .accordion-header.open .accordion-arrow { transform: rotate(180deg); }
 .accordion-body { background: #fff; border: 1.5px solid #e8e8e8; border-top: none; border-radius: 0 0 12px 12px; padding: 20px; display: none; box-shadow: 0 4px 12px rgba(0,0,0,.04); }
 .accordion-body.open { display: block; }
-
-/* ── Table ── */
 .tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
 .tbl th { font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #aaa; text-align: left; padding: 8px 12px; border-bottom: 1.5px solid #e8e8e8; }
 .tbl td { padding: 9px 12px; border-bottom: 1px solid #f4f4f4; color: #555; vertical-align: top; line-height: 1.55; }
 .tbl tr:last-child td { border-bottom: none; }
 .tbl td:first-child { color: #1a1a1a; font-weight: 700; white-space: nowrap; }
-
-/* ── Chips ── */
 .chip { display: inline-block; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px; margin: 2px; font-family: 'Inter Tight', sans-serif; letter-spacing: .04em; }
 .chip-do   { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
 .chip-dont { background: #fdecea; color: #c62828; border: 1px solid #f5c6cb; }
 .chip-warn { background: #fff8e1; color: #e65100; border: 1px solid #ffe082; }
 .chip-info { background: #e8f0fe; color: #1a56db; border: 1px solid #afc6f6; }
-
-/* ── Calendar ── */
 .month-nav { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
 .month-nav span { font-family: 'Inter Tight', sans-serif; font-size: 16px; font-weight: 800; min-width: 160px; text-align: center; }
 .cal-head { display: grid; grid-template-columns: repeat(7,1fr); gap: 6px; margin-bottom: 4px; }
@@ -134,45 +117,36 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
 .cal-day-num { font-family: 'Inter Tight', sans-serif; font-size: 13px; font-weight: 800; color: #ccc; margin-bottom: 4px; }
 .cal-day.today .cal-day-num { color: #CC3333; }
 .cal-evt { font-size: 9px; font-weight: 800; padding: 2px 5px; border-radius: 3px; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Inter Tight', sans-serif; text-transform: uppercase; letter-spacing: .04em; }
-.e-tip       { background: #e8f0fe; color: #1a56db; }
-.e-restock   { background: #fff8e1; color: #e65100; }
-.e-torneo    { background: #fdecea; color: #c62828; }
-.e-lore      { background: #e8f5e9; color: #2e7d32; }
+.e-tip { background: #e8f0fe; color: #1a56db; }
+.e-restock { background: #fff8e1; color: #e65100; }
+.e-torneo { background: #fdecea; color: #c62828; }
+.e-lore { background: #e8f5e9; color: #2e7d32; }
 .e-comunidad { background: #f3e8ff; color: #7c3aed; }
-.e-blog      { background: #f0f0f0; color: #333; }
+.e-blog { background: #f0f0f0; color: #333; }
 .legend { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
 .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; color: #888; font-family: 'Inter Tight', sans-serif; text-transform: uppercase; letter-spacing: .05em; }
 .legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
-
-/* ── Bulk posts ── */
 .bulk-post { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 10px; padding: 16px; margin-bottom: 10px; box-shadow: 0 2px 6px rgba(0,0,0,.04); }
 .bulk-post-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
 .bulk-post-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .bulk-post-day { font-family: 'Inter Tight', sans-serif; font-size: 13px; font-weight: 800; }
-.bulk-body { font-size: 13px; color: #555; line-height: 1.65; max-height: 90px; overflow: hidden; cursor: pointer; transition: max-height .3s ease; white-space: pre-wrap; }
+.bulk-body { font-size: 13px; color: #555; line-height: 1.65; max-height: 90px; overflow: hidden; cursor: pointer; white-space: pre-wrap; }
 .bulk-body.expanded { max-height: 3000px; }
 .bulk-hint { font-size: 10px; color: #ccc; font-weight: 700; letter-spacing: .05em; margin-top: 6px; text-transform: uppercase; cursor: pointer; }
-
-/* ── Config ── */
 .config-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .cost-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; padding-top: 14px; border-top: 1px solid #f0f0f0; }
 .cost-item span { font-size: 10px; font-weight: 700; color: #bbb; text-transform: uppercase; letter-spacing: .06em; display: block; margin-bottom: 3px; }
 .cost-item strong { font-family: 'Inter Tight', sans-serif; font-size: 16px; font-weight: 900; }
-
-@media (max-width: 780px) {
-  .gen-grid, .config-grid { grid-template-columns: 1fr; }
-  .shortcuts .shortcut-btn { min-width: calc(50% - 5px); }
-}
+@media (max-width: 780px) { .gen-grid, .config-grid { grid-template-columns: 1fr; } .shortcuts .shortcut-btn { min-width: calc(50% - 5px); } }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <!-- HEADER -->
   <div class="header">
     <div>
       <div class="header-title">GameQuest — Agente MKT</div>
-      <div class="header-sub">Redactor TCG · Powered by Groq / LLaMA 3.3</div>
+      <div class="header-sub">Agente IA con búsqueda web · Groq + Tavily</div>
     </div>
     <div class="header-right">
       <div class="header-status">
@@ -180,13 +154,13 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
         <span id="statusText">Sin API Key</span>
       </div>
       <div class="api-input-wrap">
-        <input class="api-input" type="password" id="apiKeyInput" placeholder="gsk_..." />
-        <button class="btn btn-primary" onclick="saveApiKey()">Activar</button>
+        <input class="api-input" type="password" id="apiKeyInput" placeholder="gsk_..." title="Groq API Key" />
+        <input class="api-input" type="password" id="tavilyInput" placeholder="tvly-..." title="Tavily API Key" />
+        <button class="btn btn-primary" onclick="saveApiKeys()">Activar</button>
       </div>
     </div>
   </div>
 
-  <!-- NAV -->
   <div class="shortcuts">
     <button class="shortcut-btn active" onclick="showSection('generator',this)">✦ Generar Post</button>
     <button class="shortcut-btn" onclick="showSection('bulk',this)">⚔ Mes Completo</button>
@@ -195,15 +169,12 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
     <button class="shortcut-btn" onclick="showSection('config',this)">◎ Configuración</button>
   </div>
 
-  <!-- ══ GENERATOR ══ -->
+  <!-- GENERATOR -->
   <div class="section active" id="section-generator">
     <div class="gen-grid">
       <div>
         <div class="panel">
-          <div class="panel-header">
-            <div class="panel-title">Parámetros del Post</div>
-          </div>
-
+          <div class="panel-header"><div class="panel-title">Parámetros del Post</div></div>
           <div class="form-group">
             <label class="form-label">Pilar Temático</label>
             <select class="cfg-input" id="pilarSelect" onchange="updateTabs()">
@@ -216,7 +187,6 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
               <option value="tiktok">🎬 TikTok (carrusel visual)</option>
             </select>
           </div>
-
           <div class="form-group">
             <label class="form-label">Juego</label>
             <select class="cfg-input" id="gameSelect">
@@ -226,18 +196,16 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
               <option value="general">TCG General</option>
             </select>
           </div>
-
-          <div class="form-group" id="networkGroup">
+          <div class="form-group">
             <label class="form-label">Red Social</label>
             <div class="tag-group" id="networkTags">
               <span class="tag active" data-net="instagram">Instagram</span>
               <span class="tag active" data-net="facebook">Facebook</span>
               <span class="tag" data-net="whatsapp">WhatsApp</span>
               <span class="tag" data-net="tiktok">TikTok</span>
-              <span class="tag" data-net="blog">Blog / Quest News</span>
+              <span class="tag" data-net="blog">Blog</span>
             </div>
           </div>
-
           <div class="form-group">
             <label class="form-label">Audiencia</label>
             <div class="tag-group" id="audienceTags">
@@ -247,12 +215,10 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
               <span class="tag" data-aud="coleccionista">Coleccionistas</span>
             </div>
           </div>
-
           <div class="form-group">
-            <label class="form-label">Tema / Contexto (opcional)</label>
-            <textarea class="cfg-input" id="contextInput" placeholder="Ej: Tip sobre Mana Curve en Commander, qué es y cómo optimizarla en mazos mid-range..."></textarea>
+            <label class="form-label">Tema / Contexto</label>
+            <textarea class="cfg-input" id="contextInput" placeholder="Ej: Secrets of Strixhaven, baneos de esta semana, nuevo comandante del set Tarkir..."></textarea>
           </div>
-
           <button class="btn btn-primary btn-full" onclick="generatePost()" id="genBtn">
             <span class="btn-ico">✦</span><span class="spin"></span> Invocar Redactor
           </button>
@@ -269,13 +235,12 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
               <button class="output-tab" data-tab="img" onclick="switchTab('img',this)">Brief Visual</button>
             </div>
           </div>
-
           <div id="outputArea">
             <div class="post-preview">
-              <div class="post-placeholder">El post aparecerá aquí después de invocar al Redactor.<br><br>Ingresa tu API Key de Groq en la barra superior para activar el agente.</div>
+              <div class="post-placeholder">El post aparecerá aquí después de invocar al Redactor.<br><br>El agente buscará en internet automáticamente antes de redactar. Ingresa tu API Key de Groq y Tavily para activarlo.</div>
             </div>
           </div>
-
+          <div id="sourcesArea"></div>
           <div class="brow" id="genActions" style="display:none;">
             <button class="btn btn-ghost" onclick="copyCurrentPost()">Copiar texto</button>
             <button class="btn btn-gold" onclick="saveToCalendar()">+ Guardar en calendario</button>
@@ -286,13 +251,11 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
     </div>
   </div>
 
-  <!-- ══ MES COMPLETO ══ -->
+  <!-- MES COMPLETO -->
   <div class="section" id="section-bulk">
-    <div class="alert alert-warn">⚠ Esta función genera el plan completo del mes (~20 posts). Puede demorar hasta 60 segundos por el volumen de contenido.</div>
+    <div class="alert alert-warn">⚠ Genera el plan completo del mes (~20 posts + 2 blogs). El agente busca en internet para cada post. Puede demorar 60-90 segundos.</div>
     <div class="panel" style="max-width:520px;">
-      <div class="panel-header">
-        <div class="panel-title">Plan de Contenido Mensual</div>
-      </div>
+      <div class="panel-header"><div class="panel-title">Plan de Contenido Mensual</div></div>
       <div class="form-group">
         <label class="form-label">Mes a planificar</label>
         <select class="cfg-input" id="bulkMonth">
@@ -303,8 +266,8 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
         </select>
       </div>
       <div class="form-group">
-        <label class="form-label">Novedades del mes (lanzamientos, torneos, restocks, eventos)</label>
-        <textarea class="cfg-input" id="bulkContext" placeholder="Ej: Sale set Tarkir Dragonstorm el 11. Torneo Bracket 3 el día 20. Restock de singles Duskmourn la primera semana..."></textarea>
+        <label class="form-label">Novedades del mes</label>
+        <textarea class="cfg-input" id="bulkContext" placeholder="Ej: Sale Tarkir Dragonstorm el 11. Torneo Bracket 3 el día 20. Restock de Duskmourn la primera semana..."></textarea>
       </div>
       <button class="btn btn-primary btn-full" onclick="generateBulk()" id="bulkBtn">
         <span class="btn-ico">⚔</span><span class="spin"></span> Generar Plan Mensual
@@ -313,7 +276,7 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
     <div id="bulkOutput"></div>
   </div>
 
-  <!-- ══ CALENDARIO ══ -->
+  <!-- CALENDARIO -->
   <div class="section" id="section-calendar">
     <div class="month-nav">
       <button class="btn btn-ghost" onclick="prevMonth()">← Anterior</button>
@@ -339,9 +302,8 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
     </div>
   </div>
 
-  <!-- ══ LÍNEA EDITORIAL ══ -->
+  <!-- EDITORIAL -->
   <div class="section" id="section-editorial">
-
     <div class="accordion">
       <div class="accordion-header open" onclick="toggleAcc(this)">
         <div class="accordion-title">✦ Identidad de Marca</div>
@@ -352,9 +314,8 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
           <thead><tr><th>Dimensión</th><th>Definición</th></tr></thead>
           <tbody>
             <tr><td>Quiénes somos</td><td>Jugadores que quisieron hacer del TCG una forma de vida. Montamos una tienda para eso. Somos parte de la comunidad, no estamos por encima de ella.</td></tr>
-            <tr><td>Humildad genuina</td><td>No somos "los expertos". Cuando usamos términos técnicos es porque así se habla en la mesa, no para impresionar. Voz de par, no de profesor. Frases como "a nosotros también nos pasó", "como todos sabemos", "si eres nuevo en esto".</td></tr>
+            <tr><td>Humildad genuina</td><td>No somos "los expertos". Cuando usamos términos técnicos es porque así se habla en la mesa, no para impresionar. Voz de par, no de profesor.</td></tr>
             <tr><td>Firma de apertura</td><td>🔥 Saludos Aventureros 🔥 — siempre, sin excepción.</td></tr>
-            <tr><td>Cierre CTA</td><td>Siempre terminar con referencia o link a gamequest.cl</td></tr>
             <tr><td>Tratamiento</td><td>Tuteo en todo momento. Nunca ustedear.</td></tr>
             <tr><td>Tono</td><td>Cercano, apasionado, honesto. Como un amigo que sabe mucho pero no lo presume.</td></tr>
             <tr><td>Escritura en capas</td><td>Cada post funciona para expertos Y para nuevos. Los avanzados validan, los nuevos aprenden. Sin patronear.</td></tr>
@@ -362,131 +323,57 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
         </table>
       </div>
     </div>
-
     <div class="accordion">
       <div class="accordion-header" onclick="toggleAcc(this)">
-        <div class="accordion-title">◉ Vocabulario y Reglas de Voz</div>
+        <div class="accordion-title">⚔ Pilares y Longitudes</div>
         <div class="accordion-arrow">▼</div>
       </div>
       <div class="accordion-body">
         <table class="tbl">
-          <thead><tr><th>Regla</th><th>Ejemplos</th></tr></thead>
+          <thead><tr><th>Pilar</th><th>Día</th><th>Longitud IG/FB</th><th>Descripción</th></tr></thead>
           <tbody>
-            <tr>
-              <td>Usar siempre</td>
-              <td>
-                <span class="chip chip-do">cartitas</span>
-                <span class="chip chip-do">Aventureros</span>
-                <span class="chip chip-do">mazos</span>
-                <span class="chip chip-do">EDH / Commander</span>
-                <span class="chip chip-do">Game Changers</span>
-                <span class="chip chip-do">Bracket 3</span>
-                <span class="chip chip-do">Stack / La Pila</span>
-                <span class="chip chip-do">singles</span>
-                <span class="chip chip-do">precons</span>
-              </td>
-            </tr>
-            <tr>
-              <td>Jamás escribir</td>
-              <td>
-                <span class="chip chip-dont">nos complace anunciar</span>
-                <span class="chip chip-dont">en el dinámico mundo de</span>
-                <span class="chip chip-dont">soluciones</span>
-                <span class="chip chip-dont">potenciar sinergias</span>
-                <span class="chip chip-dont">innovador</span>
-                <span class="chip chip-dont">es un placer</span>
-                <span class="chip chip-dont">de primer nivel</span>
-                <span class="chip chip-dont">somos expertos</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAcc(this)">
-        <div class="accordion-title">⚔ Pilares y Frecuencia Semanal</div>
-        <div class="accordion-arrow">▼</div>
-      </div>
-      <div class="accordion-body">
-        <table class="tbl">
-          <thead><tr><th>Pilar</th><th>Día</th><th>Canal</th><th>Longitud aprox.</th><th>Descripción</th></tr></thead>
-          <tbody>
-            <tr><td>🧠 Tip del Aventurero</td><td>Miércoles</td><td>IG, FB, WA, TikTok</td><td>~2.200 chars</td><td>Mecánicas, estrategias, reglas. Técnico pero accesible.</td></tr>
-            <tr><td>📖 Lore & Historia</td><td>Lunes</td><td>IG, FB</td><td>~1.500 chars</td><td>Historia de cartas, sets, personajes del universo MTG.</td></tr>
-            <tr><td>📦 Restock & Novedades</td><td>Mar / Jue</td><td>IG, FB, WA</td><td>~500 chars</td><td>Singles nuevos, precons, novedades de catálogo.</td></tr>
-            <tr><td>⚔ Torneos & Eventos</td><td>Según agenda</td><td>IG, FB, WA</td><td>~800 chars</td><td>Convocatoria, resultados y estadísticas de torneos GQ.</td></tr>
-            <tr><td>🤝 Comunidad</td><td>Viernes</td><td>IG, FB, WA</td><td>~600 chars</td><td>Calendario de actividades, colaboraciones con aliadas.</td></tr>
-            <tr><td>📰 Quest News</td><td>2x mes</td><td>Blog</td><td>Extenso (sin límite)</td><td>Meta, baneos, spoilers, jugadores destacados, novedades GQ.</td></tr>
-            <tr><td>🎬 TikTok</td><td>Miércoles</td><td>TikTok</td><td>Brief visual</td><td>Carrusel: "Combo de la semana" o "Comandante semanal + sinergias".</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAcc(this)">
-        <div class="accordion-title">◈ Estrategia por Juego</div>
-        <div class="accordion-arrow">▼</div>
-      </div>
-      <div class="accordion-body">
-        <table class="tbl">
-          <thead><tr><th>Juego</th><th>Estado</th><th>Volumen</th><th>Estrategia</th></tr></thead>
-          <tbody>
-            <tr><td>Magic: The Gathering</td><td><span class="chip chip-do">Core</span></td><td>70% del contenido</td><td>Tips, torneos, singles, lore — todo el espectro.</td></tr>
-            <tr><td>Pokémon</td><td><span class="chip chip-warn">Próximamente</span></td><td>Anticipación</td><td>Calentar audiencia. Contenido "pronto llegamos".</td></tr>
-            <tr><td>Neuroscape</td><td><span class="chip chip-info">Construyendo</span></td><td>Educativo</td><td>Presentar el juego, construir audiencia antes del stock.</td></tr>
-            <tr><td>One Piece / Riftbound</td><td><span class="chip chip-dont">Sin proveedor</span></td><td>Ocasional</td><td>Solo cuando haya stock real. No generar expectativa vacía.</td></tr>
+            <tr><td>🧠 Tip del Aventurero</td><td>Miércoles</td><td>~2.200 chars</td><td>Mecánicas, estrategias, reglas. Desarrollo completo con ejemplo práctico.</td></tr>
+            <tr><td>📖 Lore & Historia</td><td>Lunes</td><td>~1.500 chars</td><td>Historia de cartas, sets, personajes MTG. Narrativo.</td></tr>
+            <tr><td>📦 Restock & Novedades</td><td>Mar / Jue</td><td>~500 chars</td><td>Singles nuevos, precons. Corto y directo.</td></tr>
+            <tr><td>⚔ Torneos & Eventos</td><td>Según agenda</td><td>~800 chars</td><td>Convocatoria, resultados, estadísticas.</td></tr>
+            <tr><td>🤝 Comunidad</td><td>Viernes</td><td>~600 chars</td><td>Calendario de actividades, colaboraciones.</td></tr>
+            <tr><td>📰 Quest News</td><td>2x mes</td><td>Sin límite</td><td>Meta, baneos, spoilers, torneos regionales, novedades GQ.</td></tr>
+            <tr><td>🎬 TikTok</td><td>Miércoles</td><td>Brief visual</td><td>Carrusel: Combo de la semana o Comandante semanal.</td></tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
 
-  <!-- ══ CONFIGURACIÓN ══ -->
+  <!-- CONFIG -->
   <div class="section" id="section-config">
-    <div class="alert alert-info">◈ Sesión 1 activa. Google Calendar y Meta se conectan en fases 2 y 3.</div>
+    <div class="alert alert-info">◈ El agente usa Groq (LLaMA 3.3) para redactar y Tavily para buscar en internet. Ambas APIs son gratuitas.</div>
     <div class="config-grid">
       <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">API de Groq</div>
-          <span class="panel-badge">Requerido</span>
-        </div>
-        <p style="font-size:13px;color:#777;margin-bottom:14px;line-height:1.6;">Consigue tu API Key gratis en <strong style="color:#1a1a1a">console.groq.com</strong>. Sin tarjeta, sin billing. 100% gratuito.</p>
-        <div class="form-group">
-          <label class="form-label">API Key</label>
-          <input type="password" class="cfg-input" id="configApiKey" placeholder="gsk_..." />
-        </div>
-        <button class="btn btn-primary btn-full" onclick="saveApiKey()">Guardar y Activar</button>
+        <div class="panel-header"><div class="panel-title">API de Groq</div><span class="panel-badge">Motor de redacción</span></div>
+        <p style="font-size:13px;color:#777;margin-bottom:14px;line-height:1.6;">Consigue tu key gratis en <strong style="color:#1a1a1a">console.groq.com</strong>. Sin tarjeta.</p>
+        <div class="form-group"><label class="form-label">API Key Groq</label><input type="password" class="cfg-input" id="configGroqKey" placeholder="gsk_..." /></div>
+        <button class="btn btn-primary btn-full" onclick="saveApiKeys()">Guardar y Activar</button>
+      </div>
+      <div class="panel">
+        <div class="panel-header"><div class="panel-title">API de Tavily</div><span class="panel-badge">Motor de búsqueda</span></div>
+        <p style="font-size:13px;color:#777;margin-bottom:14px;line-height:1.6;">Consigue tu key gratis en <strong style="color:#1a1a1a">tavily.com</strong>. 1.000 búsquedas/mes gratuitas.</p>
+        <div class="form-group"><label class="form-label">API Key Tavily</label><input type="password" class="cfg-input" id="configTavilyKey" placeholder="tvly-..." /></div>
+        <button class="btn btn-primary btn-full" onclick="saveApiKeys()">Guardar y Activar</button>
         <div class="cost-row">
-          <div class="cost-item"><span>Uso mensual</span><strong style="color:#2e7d32">Gratis</strong></div>
+          <div class="cost-item"><span>Búsquedas/mes</span><strong style="color:#2e7d32">1.000 gratis</strong></div>
           <div class="cost-item"><span>Hosting</span><strong style="color:#2e7d32">$0</strong></div>
         </div>
       </div>
       <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">Google Calendar</div>
-          <span class="panel-badge">Fase 2</span>
-        </div>
-        <p style="font-size:13px;color:#777;margin-bottom:14px;line-height:1.6;">Conecta tu Google Calendar para que el agente cree eventos y alertas automáticamente al guardar cada post.</p>
+        <div class="panel-header"><div class="panel-title">Google Calendar</div><span class="panel-badge">Fase 2</span></div>
+        <p style="font-size:13px;color:#777;margin-bottom:14px;line-height:1.6;">Alertas automáticas al guardar cada post en el calendario.</p>
         <button class="btn btn-ghost btn-full" disabled>Conectar Google Calendar →</button>
       </div>
       <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">Meta Business</div>
-          <span class="panel-badge">Fase 3</span>
-        </div>
-        <p style="font-size:13px;color:#777;margin-bottom:14px;line-height:1.6;">Programación directa en Instagram y Facebook. Requiere Meta Developer App (gratuito pero burocrático).</p>
+        <div class="panel-header"><div class="panel-title">Meta Business</div><span class="panel-badge">Fase 3</span></div>
+        <p style="font-size:13px;color:#777;margin-bottom:14px;line-height:1.6;">Programación directa en Instagram y Facebook.</p>
         <button class="btn btn-ghost btn-full" disabled>Conectar Meta →</button>
-      </div>
-      <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">GitHub Pages</div>
-          <span class="panel-badge">Hosting gratuito</span>
-        </div>
-        <p style="font-size:13px;color:#777;margin-bottom:14px;line-height:1.6;">Tu agente vive en <strong style="color:#1a1a1a">gamequestspa.github.io/AI_Agent_GQ_Escritor</strong> — gratis, siempre disponible.</p>
-        <button class="btn btn-dark btn-full" onclick="window.open('https://github.com/gamequestspa/AI_Agent_GQ_Escritor','_blank')">Ver repositorio →</button>
       </div>
     </div>
   </div>
@@ -495,50 +382,68 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
 
 <script>
 let apiKey = localStorage.getItem('gq_api_key') || '';
+let tavilyKey = localStorage.getItem('gq_tavily_key') || '';
 let calYear, calMonth;
 let savedPosts = JSON.parse(localStorage.getItem('gq_posts') || '{}');
 let currentPost = {ig:'', wa:'', img:'', blog:''};
 let currentTab = 'ig';
+let lastSources = [];
 const MONTHS = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 
-// ── SYSTEM PROMPT — Biblia Editorial GameQuest ──
-const SYSTEM = `Eres el Redactor Oficial de GameQuest, una tienda TCG chilena fundada y dirigida por jugadores que quisieron hacer del TCG una forma de vida. No somos expertos que aleccionan — somos pares. Somos parte de la comunidad, no estamos por encima de ella.
+const SYSTEM = `Eres el Redactor Oficial de GameQuest, una tienda TCG chilena fundada y dirigida por jugadores que quisieron hacer del TCG una forma de vida. No somos expertos que aleccionan — somos pares dentro de la comunidad.
 
 VOZ OBLIGATORIA:
 - Cercana, apasionada, honesta. Como un amigo que sabe mucho pero no lo presume.
-- Humildad genuina: nunca decir "somos expertos". Frases como "a nosotros también nos pasó", "como todos sabemos", "si eres nuevo en esto".
+- Humildad genuina: nunca "somos expertos". Usar frases como "a nosotros también nos pasó", "como todos sabemos", "si eres nuevo en esto".
 - Los términos técnicos se usan porque así se habla en la mesa, no para impresionar.
-- Escritura en capas: los avanzados validan, los nuevos aprenden. Sin patronear.
+- Escritura en capas: expertos validan, nuevos aprenden. Sin patronear.
 
-REGLAS SIEMPRE:
-1. Abrir con: 🔥 Saludos Aventureros 🔥
-2. Cerrar con CTA a gamequest.cl
+REGLAS INAMOVIBLES:
+1. Abrir SIEMPRE con: 🔥 Saludos Aventureros 🔥
+2. Cerrar SIEMPRE con CTA a gamequest.cl
 3. Tutear siempre. Jamás ustedear.
-4. Usar terminología TCG natural: EDH, Commander, singles, precons, Game Changers, Bracket 3, Stack/La Pila, mana curve, etc.
+4. Terminología TCG natural: EDH, Commander, singles, precons, Game Changers, Bracket 3, Stack/La Pila, mana curve, etc.
 
-NUNCA ESCRIBIR: "nos complace anunciar", "en el dinámico mundo de", "soluciones", "potenciar sinergias", "innovador", "es un placer", "de primer nivel", "somos expertos", ni nada corporativo o que suene a IA.
+NUNCA ESCRIBIR: "nos complace anunciar", "en el dinámico mundo de", "soluciones", "potenciar sinergias", "innovador", "es un placer", "de primer nivel", "somos expertos", ni nada corporativo o que suene a IA generada.
 
-LONGITUDES EXACTAS POR PILAR:
-- Tip del Aventurero: ~2200 caracteres. Desarrollo completo con explicación, ejemplo práctico y conclusión.
-- Lore & Historia: ~1500 caracteres. Narrativo, con contexto del personaje/carta/set.
-- Restock & Novedades: ~500 caracteres. Corto, directo, con urgencia natural.
-- Torneos & Eventos: ~800 caracteres. Datos concretos, ambiente, convocatoria clara.
-- Comunidad: ~600 caracteres. Cálido, inclusivo, enfocado en el calendario de actividades.
-- Quest News / Blog: Extenso, mínimo 1500 palabras. Artículo completo con intro, desarrollo, secciones y conclusión.
-- TikTok: Brief visual para carrusel. Formato "Combo de la semana" o "Comandante semanal + sinergias". Sin texto largo.
+LONGITUDES ESTRICTAS — ESTO ES CRÍTICO:
+- Tip del Aventurero: MÍNIMO 2000 caracteres, MÁXIMO 2200. Con explicación completa, ejemplo práctico, aplicación real.
+- Lore & Historia: entre 1300 y 1500 caracteres. Narrativo, con contexto.
+- Restock & Novedades: entre 400 y 550 caracteres. Corto, urgente, directo.
+- Torneos & Eventos: entre 700 y 900 caracteres. Datos concretos.
+- Comunidad: entre 500 y 650 caracteres. Cálido, con foco en calendario.
+- Quest News / Blog: mínimo 1200 palabras. Artículo completo con secciones.
+- TikTok: Brief visual conciso para carrusel. No es texto largo.
 
-JUEGOS: Magic → core 70%. Pokémon → solo anticipación ocasional. Neuroscape → educativo. One Piece/Riftbound → solo con stock real confirmado.
+JUEGOS: Magic → core 70%. Pokémon → solo anticipación. Neuroscape → educativo. One Piece/Riftbound → solo con stock confirmado.
 
-RESPONDE SOLO con este JSON exacto, sin markdown ni texto extra:
-{"ig_post":"texto IG/FB con longitud correcta para el pilar","wa_post":"versión corta y directa para WhatsApp","image_brief":"descripción visual concreta para diseñador: composición, elementos, colores, estilo","blog_post":"solo para pilar blog: artículo completo extenso. Para otros pilares dejar vacío.","char_count_ig":numero_entero}`;
+RESPONDE SOLO con este JSON exacto, sin markdown:
+{"ig_post":"texto IG/FB completo respetando longitud del pilar","wa_post":"versión corta WhatsApp max 300 chars","image_brief":"descripción visual para diseñador: composición, elementos, colores","blog_post":"solo para blog: artículo completo. Para otros dejar vacío string.","char_count_ig":numero_entero}`;
 
-// Longitudes objetivo por pilar
-const PILAR_LENGTHS = {tip:2200, lore:1500, restock:500, torneo:800, comunidad:600, blog:99999, tiktok:300};
+const PILAR_LENGTHS = {tip:2200, lore:1500, restock:550, torneo:900, comunidad:650, blog:99999, tiktok:400};
+
+const TOOL_DEFINITION = [{
+  type: 'function',
+  function: {
+    name: 'search_web',
+    description: 'Busca información actualizada en internet sobre Magic TCG, sets, cartas, baneos, torneos, meta, spoilers, o cualquier tema necesario para redactar contenido preciso y actual para GameQuest.',
+    parameters: {
+      type: 'object',
+      properties: {
+        query: { type: 'string', description: 'La consulta de búsqueda en español o inglés según lo que sea más efectivo para encontrar información TCG relevante.' },
+        reason: { type: 'string', description: 'Por qué necesitas esta búsqueda para el post.' }
+      },
+      required: ['query', 'reason']
+    }
+  }
+}];
 
 window.onload = () => {
   const now = new Date();
   calYear = now.getFullYear(); calMonth = now.getMonth();
-  if (apiKey) { document.getElementById('apiKeyInput').value = apiKey; updateStatus(true); }
+  if (apiKey) document.getElementById('apiKeyInput').value = apiKey;
+  if (tavilyKey) document.getElementById('tavilyInput').value = tavilyKey;
+  updateStatus();
   renderCalendar();
   document.querySelectorAll('.tag').forEach(t => t.addEventListener('click', () => t.classList.toggle('active')));
 };
@@ -550,39 +455,36 @@ function showSection(name, btn) {
   if (btn) btn.classList.add('active');
 }
 
-function saveApiKey() {
-  const k = (document.getElementById('apiKeyInput').value || document.getElementById('configApiKey')?.value || '').trim();
-  if (!k) return;
-  apiKey = k; localStorage.setItem('gq_api_key', k);
-  if (document.getElementById('configApiKey')) document.getElementById('configApiKey').value = k;
-  updateStatus(true);
+function saveApiKeys() {
+  const k = (document.getElementById('apiKeyInput').value || document.getElementById('configGroqKey')?.value || '').trim();
+  const t = (document.getElementById('tavilyInput').value || document.getElementById('configTavilyKey')?.value || '').trim();
+  if (k) { apiKey = k; localStorage.setItem('gq_api_key', k); }
+  if (t) { tavilyKey = t; localStorage.setItem('gq_tavily_key', t); }
+  if (document.getElementById('configGroqKey')) document.getElementById('configGroqKey').value = apiKey;
+  if (document.getElementById('configTavilyKey')) document.getElementById('configTavilyKey').value = tavilyKey;
+  updateStatus();
 }
 
-function updateStatus(ok) {
-  document.getElementById('statusDot').className = 'status-dot'+(ok?' ok':'');
-  document.getElementById('statusText').textContent = ok ? 'Agente Activo' : 'Sin API Key';
+function updateStatus() {
+  const ok = apiKey && tavilyKey;
+  const halfOk = apiKey && !tavilyKey;
+  document.getElementById('statusDot').className = 'status-dot' + (ok ? ' ok' : '');
+  document.getElementById('statusText').textContent = ok ? 'Agente Activo' : halfOk ? 'Sin Tavily' : 'Sin API Keys';
 }
 
 function toggleAcc(h) { h.classList.toggle('open'); h.nextElementSibling.classList.toggle('open'); }
 
-// Actualiza tabs según pilar seleccionado
 function updateTabs() {
   const pilar = document.getElementById('pilarSelect').value;
   const tabsEl = document.getElementById('outputTabs');
   if (pilar === 'blog') {
-    tabsEl.innerHTML = `
-      <button class="output-tab active" data-tab="blog" onclick="switchTab('blog',this)">Artículo Blog</button>
-      <button class="output-tab" data-tab="img" onclick="switchTab('img',this)">Brief Visual</button>`;
+    tabsEl.innerHTML = `<button class="output-tab active" data-tab="blog" onclick="switchTab('blog',this)">Artículo Blog</button><button class="output-tab" data-tab="img" onclick="switchTab('img',this)">Brief Visual</button>`;
     currentTab = 'blog';
   } else if (pilar === 'tiktok') {
-    tabsEl.innerHTML = `
-      <button class="output-tab active" data-tab="img" onclick="switchTab('img',this)">Brief Carrusel</button>`;
+    tabsEl.innerHTML = `<button class="output-tab active" data-tab="img" onclick="switchTab('img',this)">Brief Carrusel</button>`;
     currentTab = 'img';
   } else {
-    tabsEl.innerHTML = `
-      <button class="output-tab active" data-tab="ig" onclick="switchTab('ig',this)">IG / FB</button>
-      <button class="output-tab" data-tab="wa" onclick="switchTab('wa',this)">WhatsApp</button>
-      <button class="output-tab" data-tab="img" onclick="switchTab('img',this)">Brief Visual</button>`;
+    tabsEl.innerHTML = `<button class="output-tab active" data-tab="ig" onclick="switchTab('ig',this)">IG / FB</button><button class="output-tab" data-tab="wa" onclick="switchTab('wa',this)">WhatsApp</button><button class="output-tab" data-tab="img" onclick="switchTab('img',this)">Brief Visual</button>`;
     currentTab = 'ig';
   }
 }
@@ -595,160 +497,241 @@ function switchTab(tab, el) {
 }
 
 function renderPost() {
-  let content = '';
-  if (currentTab === 'ig') content = currentPost.ig;
-  else if (currentTab === 'wa') content = currentPost.wa;
-  else if (currentTab === 'blog') content = currentPost.blog;
-  else content = currentPost.img;
-
+  let content = currentTab==='ig' ? currentPost.ig : currentTab==='wa' ? currentPost.wa : currentTab==='blog' ? currentPost.blog : currentPost.img;
   const pilar = document.getElementById('pilarSelect').value;
   const maxLen = PILAR_LENGTHS[pilar] || 2200;
   const len = content.length;
-  const isOver = currentTab === 'ig' && len > maxLen;
-
+  const isOver = currentTab==='ig' && len > maxLen;
+  const isGood = currentTab==='ig' && len >= maxLen * 0.85;
   document.getElementById('outputArea').innerHTML = `
     <div class="post-preview">
       <button class="copy-btn" onclick="copyCurrentPost()">Copiar</button>
       ${esc(content)}
     </div>
-    ${(currentTab === 'ig' || currentTab === 'blog') ? `<div class="char-count ${isOver?'over':''}">${len.toLocaleString('es-CL')} caracteres${isOver?' — excede el límite de '+maxLen:''}</div>` : ''}`;
+    ${(currentTab==='ig'||currentTab==='blog') ? `<div class="char-count ${isOver?'over':isGood?'good':''}">${len.toLocaleString('es-CL')} caracteres${isOver?' — excede límite':isGood?' — longitud ideal':' — corto para este pilar'}</div>` : ''}`;
 }
 
 function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'); }
 
-const PILAR_MAP = {
-  tip: 'Tip del Aventurero — mecánica o estrategia TCG educativa. DEBE tener ~2200 caracteres con explicación completa, ejemplo práctico y conclusión aplicable.',
-  restock: 'Restock & Novedades — singles, precons o catálogo nuevo. Post corto ~500 caracteres, directo y con urgencia natural.',
-  torneo: 'Torneos & Eventos — convocatoria o resultados de torneo GQ. ~800 caracteres con datos concretos.',
-  lore: 'Lore & Historia — historia de una carta, set o personaje MTG. ~1500 caracteres narrativos con contexto.',
-  comunidad: 'Comunidad — calendario de actividades, colaboraciones con tiendas aliadas. ~600 caracteres cálido e inclusivo.',
-  blog: 'Quest News / Blog — artículo completo mínimo 1500 palabras. Con intro, secciones desarrolladas y conclusión. Puede cubrir: meta actual, baneos/desbaneos, spoilers, jugadores destacados, torneos regionales, novedades de gamequest.cl.',
-  tiktok: 'TikTok carrusel visual — NO es texto largo. Genera brief para diseñador: formato "Combo de la semana" (carta principal + 3-4 cartas sinérgicas con descripción de cada una) o "Comandante semanal" (comandante + 5 mejores cartas para su mazo). Estilo limpio, visual, fácil de consumir.'
-};
+// ── TAVILY SEARCH ──
+async function tavilySearch(query) {
+  const res = await fetch('https://api.tavily.com/search', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      api_key: tavilyKey,
+      query: query,
+      search_depth: 'basic',
+      max_results: 5,
+      include_answer: true
+    })
+  });
+  const data = await res.json();
+  if (data.error) throw new Error('Tavily: ' + data.error);
+  const summary = data.answer || '';
+  const results = (data.results || []).slice(0,3).map(r => `[${r.title}]: ${r.content?.slice(0,300)}`).join('\n');
+  return { summary, results, sources: (data.results||[]).slice(0,3).map(r=>({query, title:r.title, url:r.url})) };
+}
 
+function setStep(steps, idx, state) {
+  steps.forEach((s,i) => {
+    const el = document.getElementById('step-'+i);
+    if (!el) return;
+    if (i < idx) el.className = 'load-step done';
+    else if (i === idx) el.className = 'load-step ' + state;
+    else el.className = 'load-step';
+  });
+}
+
+// ── AGENTIC GENERATE POST ──
 async function generatePost() {
-  if (!apiKey) { alert('Ingresa tu API Key en la barra superior.'); return; }
+  if (!apiKey) { alert('Ingresa tu API Key de Groq.'); return; }
   const btn = document.getElementById('genBtn');
   setLoad(btn, true);
   document.getElementById('genActions').style.display = 'none';
-  document.getElementById('outputArea').innerHTML = `<div class="loading-state"><div class="load-ring"></div><div class="load-txt">Redactando post...</div></div>`;
+  document.getElementById('sourcesArea').innerHTML = '';
+  lastSources = [];
 
   const pilar = document.getElementById('pilarSelect').value;
   const game = document.getElementById('gameSelect').value;
   const ctx = document.getElementById('contextInput').value;
   const nets = [...document.querySelectorAll('#networkTags .tag.active')].map(t=>t.dataset.net).join(', ');
   const aud = [...document.querySelectorAll('#audienceTags .tag.active')].map(t=>t.dataset.aud).join(', ');
-  const maxTok = pilar === 'blog' ? 4000 : 1800;
+
+  const PILAR_LABELS = {tip:'Tip del Aventurero (MÍNIMO 2000 chars, máx 2200, con explicación completa + ejemplo práctico)',restock:'Restock & Novedades (400-550 chars, corto y directo)',torneo:'Torneos & Eventos (700-900 chars)',lore:'Lore & Historia (1300-1500 chars, narrativo)',comunidad:'Comunidad (500-650 chars, cálido)',blog:'Quest News / Blog (mínimo 1200 palabras, artículo completo con secciones)',tiktok:'TikTok carrusel visual — brief para diseñador, formato Combo o Comandante semanal'};
+
+  const steps = ['Analizando qué buscar...', 'Buscando en internet...', 'Procesando resultados...', 'Redactando post...'];
+  document.getElementById('outputArea').innerHTML = `
+    <div class="loading-state">
+      <div class="load-ring"></div>
+      <div class="load-steps">
+        ${steps.map((s,i)=>`<div class="load-step ${i===0?'active':''}" id="step-${i}">${s}</div>`).join('')}
+      </div>
+    </div>`;
 
   try {
-    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},
-      body:JSON.stringify({
-        model:'llama-3.3-70b-versatile',
-        messages:[
-          {role:'system', content:SYSTEM},
-          {role:'user', content:`Pilar: ${PILAR_MAP[pilar]}\nJuego: ${game}\nRedes: ${nets}\nAudiencia: ${aud}\n${ctx?'Contexto específico: '+ctx:'Elige un tema variado y relevante para este pilar. No uses temas genéricos.'}`}
-        ],
-        temperature:0.92, max_tokens:maxTok
-      })
-    });
-    const data = await res.json();
-    if (data.error) throw new Error(data.error.message);
-    const raw = data.choices[0].message.content;
-    let p;
-    try { p = JSON.parse(raw.replace(/```json|```/g,'').trim()); }
-    catch { p = {ig_post:raw, wa_post:'', image_brief:'No disponible', blog_post:'', char_count_ig:raw.length}; }
-    currentPost = {
-      ig: p.ig_post||'',
-      wa: p.wa_post||'',
-      img: p.image_brief||'',
-      blog: p.blog_post||''
-    };
-    renderPost();
-    document.getElementById('genActions').style.display = 'flex';
-    // FIX: NO guardar en calendario automáticamente — solo al hacer clic en "Guardar"
+    const userMsg = `Pilar: ${PILAR_LABELS[pilar]}\nJuego: ${game}\nRedes: ${nets}\nAudiencia: ${aud}\nContexto: ${ctx||'Elige un tema actual y relevante para GameQuest. Busca qué está trending en la comunidad TCG ahora mismo.'}\n\nUSA la herramienta search_web para buscar información actualizada antes de redactar. El post debe reflejar información real y actual, no genérica.`;
+
+    const messages = [{role:'user', content: userMsg}];
+    let searchResults = [];
+    let iterations = 0;
+    const maxIter = 4;
+
+    setStep(steps, 1, 'active');
+
+    // Agentic loop — el modelo decide cuándo y qué buscar
+    while (iterations < maxIter) {
+      iterations++;
+      const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json','Authorization':'Bearer '+apiKey},
+        body: JSON.stringify({
+          model: 'llama-3.3-70b-versatile',
+          messages: [{role:'system', content:SYSTEM}, ...messages],
+          tools: TOOL_DEFINITION,
+          tool_choice: 'auto',
+          temperature: 0.88,
+          max_tokens: pilar==='blog' ? 4000 : 2500
+        })
+      });
+
+      const data = await res.json();
+      if (data.error) throw new Error(data.error.message);
+      const choice = data.choices[0];
+      const msg = choice.message;
+      messages.push(msg);
+
+      // Si el modelo quiere buscar
+      if (choice.finish_reason === 'tool_calls' && msg.tool_calls?.length) {
+        setStep(steps, 1, 'active');
+        for (const tc of msg.tool_calls) {
+          const args = JSON.parse(tc.function.arguments);
+          let searchData = {summary:'', results:'Sin resultados', sources:[]};
+
+          if (tavilyKey) {
+            try {
+              searchData = await tavilySearch(args.query);
+              lastSources.push(...searchData.sources);
+            } catch(e) {
+              searchData.results = 'Error en búsqueda: ' + e.message;
+            }
+          } else {
+            searchData.results = 'Tavily no configurado — responde con conocimiento interno.';
+          }
+
+          searchResults.push({query: args.query, result: searchData.results, summary: searchData.summary});
+          messages.push({
+            role: 'tool',
+            tool_call_id: tc.id,
+            content: `Búsqueda: "${args.query}"\nResumen: ${searchData.summary}\n\nResultados:\n${searchData.results}`
+          });
+        }
+        setStep(steps, 2, 'done');
+        setStep(steps, 3, 'active');
+        continue;
+      }
+
+      // El modelo terminó — procesar respuesta final
+      setStep(steps, 3, 'done');
+      const raw = msg.content || '';
+      let p;
+      try { p = JSON.parse(raw.replace(/```json|```/g,'').trim()); }
+      catch { p = {ig_post:raw, wa_post:'', image_brief:'Ver post principal.', blog_post:'', char_count_ig:raw.length}; }
+
+      currentPost = {ig:p.ig_post||'', wa:p.wa_post||'', img:p.image_brief||'', blog:p.blog_post||''};
+      renderPost();
+      document.getElementById('genActions').style.display = 'flex';
+
+      // Mostrar fuentes consultadas
+      if (lastSources.length) {
+        let srcHtml = `<div class="sources-box"><div class="sources-title">🔍 Fuentes consultadas por el agente</div>`;
+        lastSources.forEach(s => {
+          srcHtml += `<div class="source-item"><span class="source-query">${s.query.slice(0,40)}</span><span class="source-result"><a href="${s.url}" target="_blank" style="color:#1a56db;text-decoration:none;">${s.title}</a></span></div>`;
+        });
+        srcHtml += `</div>`;
+        document.getElementById('sourcesArea').innerHTML = srcHtml;
+      } else if (tavilyKey) {
+        document.getElementById('sourcesArea').innerHTML = `<div class="sources-box"><div class="sources-title">ℹ El agente usó conocimiento interno para este tema</div></div>`;
+      }
+      break;
+    }
+
   } catch(e) {
-    document.getElementById('outputArea').innerHTML = `<div class="post-preview"><div class="post-placeholder" style="color:#c62828;">Error: ${e.message}<br><br>Verifica que tu API Key de Groq sea válida en console.groq.com</div></div>`;
+    document.getElementById('outputArea').innerHTML = `<div class="post-preview"><div class="post-placeholder" style="color:#c62828;">Error: ${e.message}<br><br>Verifica tus API Keys en Configuración.</div></div>`;
   }
   setLoad(btn, false);
 }
 
+// ── BULK GENERATION ──
 async function generateBulk() {
   if (!apiKey) { alert('Ingresa tu API Key primero.'); return; }
   const btn = document.getElementById('bulkBtn');
   setLoad(btn, true);
   const month = document.getElementById('bulkMonth').value;
   const ctx = document.getElementById('bulkContext').value;
-  document.getElementById('bulkOutput').innerHTML = `<div class="loading-state"><div class="load-ring"></div><div class="load-txt">Generando plan mensual completo... ~60 seg</div></div>`;
+  document.getElementById('bulkOutput').innerHTML = `<div class="loading-state"><div class="load-ring"></div><div class="load-txt">Generando plan mensual con búsqueda web... ~60-90 seg</div></div>`;
 
-  // Generamos en dos partes para no superar el límite de tokens
+  // Para el bulk, hacemos una búsqueda inicial de contexto del mes y luego generamos
+  let webContext = '';
+  if (tavilyKey) {
+    try {
+      const s1 = await tavilySearch(`Magic The Gathering novedades ${month} 2025 nuevos sets`);
+      const s2 = await tavilySearch(`MTG Commander baneos meta ${month} 2025`);
+      webContext = `Información actual encontrada en internet:\n${s1.summary}\n${s1.results}\n\n${s2.summary}\n${s2.results}`;
+    } catch(e) { webContext = ''; }
+  }
+
   const bulkPrompt = `${SYSTEM}
 
-Genera el plan completo de contenido para ${month} de GameQuest.
-${ctx ? 'Novedades del mes: ' + ctx : ''}
+Genera el plan completo para ${month} de GameQuest.
+${ctx ? 'Novedades confirmadas: ' + ctx : ''}
+${webContext ? '\n' + webContext : ''}
 
-RITMO SEMANAL OBLIGATORIO (4 semanas completas = ~20 posts):
-- Lunes: Lore & Historia (~1500 chars)
-- Martes: Restock & Novedades (~500 chars)
-- Miércoles: Tip del Aventurero (~2200 chars)
-- Jueves: Novedades/Restock (~500 chars)
-- Viernes: Comunidad (~600 chars)
+RITMO SEMANAL OBLIGATORIO — genera exactamente 20 posts, 4 semanas completas:
+Lunes: Lore (~1400 chars) | Martes: Restock (~500 chars) | Miércoles: Tip (~2100 chars) | Jueves: Novedades (~500 chars) | Viernes: Comunidad (~600 chars)
 
-IMPORTANTE: Genera los 20 posts con temas DISTINTOS entre sí. Cada post debe tener contenido único y variado. No repitas temas.
+CRÍTICO: Cada post debe tener tema DISTINTO. No repitas. Usa la información web si está disponible.
 
-Responde SOLO con este JSON (sin markdown):
-{
-  "mes": "${month}",
-  "posts": [
-    {"semana":1,"dia":"Lunes 5","pilar":"lore","titulo":"título concreto","ig_post":"copy completo con longitud correcta","wa_post":"versión corta WhatsApp","image_brief":"brief visual para diseñador"}
-  ]
-}`;
+Responde SOLO con JSON exacto sin markdown:
+{"mes":"${month}","posts":[{"semana":1,"dia":"Lunes 5","pilar":"lore","titulo":"título concreto","ig_post":"copy completo con longitud correcta","wa_post":"versión WhatsApp max 250 chars","image_brief":"brief para diseñador"}]}`;
 
   const blogPrompt = `${SYSTEM}
 
-Genera 2 artículos completos de Quest News / Blog para el mes de ${month} de GameQuest.
-${ctx ? 'Contexto del mes: ' + ctx : ''}
+Genera 2 artículos Quest News para ${month} de GameQuest.
+${ctx ? 'Contexto: ' + ctx : ''}
+${webContext ? '\n' + webContext : ''}
 
-Cada artículo debe ser extenso (mínimo 800 palabras), con intro, secciones y conclusión. Temas distintos entre sí.
+Cada artículo: mínimo 800 palabras, con secciones, intro y conclusión. Temas distintos.
 
-Responde SOLO con este JSON (sin markdown):
-{
-  "blog_posts": [
-    {"semana":1,"titulo":"título del artículo","contenido":"artículo completo extenso"}
-  ]
-}`;
+Responde SOLO con JSON:
+{"blog_posts":[{"semana":1,"titulo":"título","contenido":"artículo completo"}]}`;
 
   try {
-    // Llamada 1: posts de RRSS
-    const res1 = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},
-      body:JSON.stringify({model:'llama-3.3-70b-versatile', messages:[{role:'user',content:bulkPrompt}], temperature:0.85, max_tokens:8000})
-    });
-    const d1 = await res1.json();
-    if (d1.error) throw new Error(d1.error.message);
-    let plan;
-    try { plan = JSON.parse(d1.choices[0].message.content.replace(/```json|```/g,'').trim()); } catch { plan = null; }
+    const [r1, r2] = await Promise.all([
+      fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},
+        body:JSON.stringify({model:'llama-3.3-70b-versatile', messages:[{role:'user',content:bulkPrompt}], temperature:0.85, max_tokens:8000})
+      }),
+      fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},
+        body:JSON.stringify({model:'llama-3.3-70b-versatile', messages:[{role:'user',content:blogPrompt}], temperature:0.85, max_tokens:4000})
+      })
+    ]);
 
-    // Llamada 2: blog posts
-    const res2 = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},
-      body:JSON.stringify({model:'llama-3.3-70b-versatile', messages:[{role:'user',content:blogPrompt}], temperature:0.85, max_tokens:4000})
-    });
-    const d2 = await res2.json();
-    let blogPlan;
-    try { blogPlan = JSON.parse(d2.choices[0].message.content.replace(/```json|```/g,'').trim()); } catch { blogPlan = null; }
+    const [d1, d2] = await Promise.all([r1.json(), r2.json()]);
+    if (d1.error) throw new Error(d1.error.message);
+
+    let plan, blogPlan;
+    try { plan = JSON.parse(d1.choices[0].message.content.replace(/```json|```/g,'').trim()); } catch { plan=null; }
+    try { blogPlan = JSON.parse(d2.choices[0].message.content.replace(/```json|```/g,'').trim()); } catch { blogPlan=null; }
 
     const posts = plan?.posts || [];
     const blogs = blogPlan?.blog_posts || [];
     const pc = {tip:'e-tip',restock:'e-restock',torneo:'e-torneo',lore:'e-lore',comunidad:'e-comunidad',blog:'e-blog'};
 
-    let html = `<div class="alert alert-ok">✅ ${posts.length} posts de RRSS + ${blogs.length} artículos de blog generados para ${month}</div>`;
+    let html = `<div class="alert alert-ok">✅ ${posts.length} posts de RRSS + ${blogs.length} artículos de blog para ${month}${webContext?' · Con contexto web actualizado':''}</div>`;
 
     if (posts.length) {
-      html += `<div style="font-family:'Inter Tight',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#aaa;margin:0 0 10px;">Posts de Redes Sociales</div>`;
       posts.forEach((p,i) => {
         const chars = (p.ig_post||'').length;
         html += `<div class="bulk-post">
@@ -756,40 +739,36 @@ Responde SOLO con este JSON (sin markdown):
             <div class="bulk-post-meta">
               <span class="cal-evt ${pc[p.pilar]||'e-comunidad'}">${p.pilar}</span>
               <span class="bulk-post-day">${p.dia}</span>
-              <span style="font-size:12px;color:#aaa;font-weight:600">${p.titulo}</span>
-              <span style="font-size:10px;color:#ccc;font-weight:700">${chars} chars</span>
+              <span style="font-size:12px;color:#aaa;font-weight:600;">${p.titulo}</span>
+              <span style="font-size:10px;color:#ccc;font-weight:700;">${chars} chars</span>
             </div>
             <button class="btn btn-ghost" style="padding:5px 12px;font-size:10px;" onclick="copyEl('bp-${i}')">Copiar</button>
           </div>
           <div class="bulk-body" id="bp-${i}" onclick="toggleBulk(this)">${esc(p.ig_post||'')}</div>
-          <div class="bulk-hint" onclick="toggleBulk(this.previousElementSibling)">▼ Clic para expandir · WhatsApp: ${esc((p.wa_post||'').slice(0,60))}...</div>
+          <div class="bulk-hint" onclick="toggleBulk(this.previousElementSibling)">▼ Expandir · WA: ${esc((p.wa_post||'').slice(0,50))}...</div>
         </div>`;
       });
     }
 
     if (blogs.length) {
-      html += `<div style="font-family:'Inter Tight',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#aaa;margin:20px 0 10px;">Quest News / Blog</div>`;
+      html += `<div style="font-family:'Inter Tight',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#aaa;margin:20px 0 10px;">📰 Quest News / Blog</div>`;
       blogs.forEach((b,i) => {
         html += `<div class="bulk-post">
           <div class="bulk-post-header">
             <div class="bulk-post-meta">
               <span class="cal-evt e-blog">Blog</span>
               <span class="bulk-post-day">Semana ${b.semana}</span>
-              <span style="font-size:12px;color:#aaa;font-weight:600">${b.titulo}</span>
+              <span style="font-size:12px;color:#aaa;font-weight:600;">${b.titulo}</span>
             </div>
             <button class="btn btn-ghost" style="padding:5px 12px;font-size:10px;" onclick="copyEl('bl-${i}')">Copiar</button>
           </div>
           <div class="bulk-body" id="bl-${i}" onclick="toggleBulk(this)">${esc(b.contenido||'')}</div>
-          <div class="bulk-hint" onclick="toggleBulk(this.previousElementSibling)">▼ Clic para expandir · ${(b.contenido||'').length} chars</div>
+          <div class="bulk-hint" onclick="toggleBulk(this.previousElementSibling)">▼ Expandir · ${(b.contenido||'').length} chars</div>
         </div>`;
       });
     }
 
-    if (!posts.length && !blogs.length) {
-      html = `<div class="alert alert-err">No se pudo parsear el plan. Intenta de nuevo.</div>`;
-    }
-
-    document.getElementById('bulkOutput').innerHTML = html;
+    document.getElementById('bulkOutput').innerHTML = html || `<div class="alert alert-err">No se pudo generar el plan. Intenta de nuevo.</div>`;
 
   } catch(e) {
     document.getElementById('bulkOutput').innerHTML = `<div class="alert alert-err">Error: ${e.message}</div>`;
@@ -799,7 +778,6 @@ Responde SOLO con este JSON (sin markdown):
 
 function toggleBulk(el) { el.classList.toggle('expanded'); }
 
-// CALENDARIO — solo muestra posts guardados explícitamente
 function renderCalendar() {
   document.getElementById('calMonthLabel').textContent = `${MONTHS[calMonth]} ${calYear}`;
   const grid = document.getElementById('calGrid');
@@ -807,7 +785,6 @@ function renderCalendar() {
   const startDow = fd===0?6:fd-1;
   const days = new Date(calYear,calMonth+1,0).getDate();
   const today = new Date();
-  // Ritmo editorial visual (referencia, no posts guardados)
   const sched = {0:{type:'lore',label:'Lore'},1:{type:'restock',label:'Restock'},2:{type:'tip',label:'Tip'},3:{type:'restock',label:'Novedades'},4:{type:'comunidad',label:'Comunidad'}};
   let html = '<div class="cal-day empty"></div>'.repeat(startDow);
   for (let d=1; d<=days; d++) {
@@ -816,9 +793,7 @@ function renderCalendar() {
     const key = `${calYear}-${calMonth}-${d}`;
     const saved = savedPosts[key]||[];
     let evts = '';
-    // Ritmo de referencia (gris claro)
-    if (sched[dow]) evts += `<div class="cal-evt" style="background:#f4f4f4;color:#bbb;">${sched[dow].label}</div>`;
-    // Solo posts explícitamente guardados aparecen en color
+    if (sched[dow]) evts += `<div class="cal-evt" style="background:#f4f4f4;color:#ccc;">${sched[dow].label}</div>`;
     saved.forEach(s => evts += `<div class="cal-evt e-${s.type}" title="${s.preview}">★ ${s.preview.slice(0,12)}</div>`);
     html += `<div class="cal-day${isToday?' today':''}"><div class="cal-day-num">${d}</div>${evts}</div>`;
   }
@@ -827,7 +802,6 @@ function renderCalendar() {
 function prevMonth() { if(--calMonth<0){calMonth=11;calYear--;} renderCalendar(); }
 function nextMonth() { if(++calMonth>11){calMonth=0;calYear++;} renderCalendar(); }
 
-// GUARDAR EN CALENDARIO — solo cuando el usuario hace clic explícitamente
 function saveToCalendar() {
   const pilar = document.getElementById('pilarSelect').value;
   const preview = (currentPost.ig || currentPost.blog || '').slice(0,50);
@@ -839,7 +813,7 @@ function saveToCalendar() {
   localStorage.setItem('gq_posts', JSON.stringify(savedPosts));
   if (calYear===now.getFullYear()&&calMonth===now.getMonth()) renderCalendar();
   const btn = document.querySelector('.btn-gold');
-  if (btn) { btn.textContent = '✅ Guardado'; setTimeout(()=>btn.textContent='+ Guardar en calendario', 1500); }
+  if (btn) { btn.textContent='✅ Guardado'; setTimeout(()=>btn.textContent='+ Guardar en calendario',1500); }
 }
 
 function copyCurrentPost() {
@@ -849,10 +823,7 @@ function copyCurrentPost() {
     if(b){b.textContent='¡Copiado!';setTimeout(()=>b.textContent='Copiar',1500);}
   });
 }
-function copyEl(id) {
-  const el=document.getElementById(id);
-  if(el) navigator.clipboard.writeText(el.innerText).then(()=>{});
-}
+function copyEl(id) { const el=document.getElementById(id); if(el) navigator.clipboard.writeText(el.innerText); }
 function setLoad(btn, on) { btn.disabled=on; btn.classList.toggle('loading',on); }
 </script>
 </body>
