@@ -652,10 +652,13 @@ async function generatePost() {
 
   try {
     const prompt = `${SYSTEM}\n\nPilar: ${pilarMap[pilar]}\nJuego: ${game}\nRedes: ${nets}\nAudiencia: ${aud}\n${ctx?'Contexto: '+ctx:'Elige un tema relevante para este pilar.'}`;
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:0.9,maxOutputTokens:1500}})
+      body:JSON.stringify({
+        contents:[{role:'user',parts:[{text:prompt}]}],
+        generationConfig:{temperature:0.9,maxOutputTokens:1500,responseMimeType:'text/plain'}
+      })
     });
     const data = await res.json();
     if (data.error) throw new Error(data.error.message);
@@ -688,10 +691,13 @@ async function generateBulk() {
 
   try {
     const prompt = `${SYSTEM}\n\nPlan completo de contenido para ${month} de GameQuest.\n${ctx?'Novedades: '+ctx:''}\n\nRitmo: Lun=Lore, Mar=Restock, Mié=Tip, Jue=Novedades, Vie=Comunidad. Blog: semanas 1 y 3.\n\nResponde SOLO con JSON:\n{"mes":"${month}","posts":[{"semana":1,"dia":"Lunes 1","pilar":"lore","titulo":"título","ig_post":"copy completo","wa_post":"versión WA","image_brief":"brief visual"}],"blog_posts":[{"semana":1,"titulo":"título","intro":"intro 2 párrafos"}]}`;
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:0.8,maxOutputTokens:8000}})
+      body:JSON.stringify({
+        contents:[{role:'user',parts:[{text:prompt}]}],
+        generationConfig:{temperature:0.8,maxOutputTokens:8000,responseMimeType:'text/plain'}
+      })
     });
     const data = await res.json();
     if (data.error) throw new Error(data.error.message);
