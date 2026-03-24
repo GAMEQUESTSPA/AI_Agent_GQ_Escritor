@@ -137,10 +137,10 @@ textarea.cfg-input { resize: vertical; min-height: 76px; font-size: 13px; line-h
 .ed-table th { font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #aaa; text-align: left; padding: 7px 10px; border-bottom: 1.5px solid #e8e8e8; }
 .ed-table td { padding: 6px 4px; border-bottom: 1px solid #f4f4f4; vertical-align: top; }
 .ed-table tr:last-child td { border-bottom: none; }
-.ed-input { width: 100%; border: 1.5px solid transparent; border-radius: 6px; padding: 5px 8px; font-family: 'Inter', sans-serif; font-size: 13px; color: #1a1a1a; background: transparent; outline: none; transition: all .15s; resize: none; overflow: hidden; }
-.ed-input:hover { border-color: #e8e8e8; background: #fafafa; }
-.ed-input:focus { border-color: #CC3333; background: #fff; }
-.ed-input.key { font-weight: 700; color: #1a1a1a; min-width: 120px; }
+.ed-input { width: 100%; border: 1.5px solid transparent; border-radius: 6px; padding: 5px 8px; font-family: 'Inter', sans-serif; font-size: 13px; color: #1a1a1a !important; background: #fff; outline: none; transition: all .15s; resize: none; overflow: hidden; }
+.ed-input:hover { border-color: #e8e8e8; background: #fafafa; color: #1a1a1a !important; }
+.ed-input:focus { border-color: #CC3333; background: #fff; color: #1a1a1a !important; }
+.ed-input.key { font-weight: 700; color: #1a1a1a !important; min-width: 120px; }
 .ed-del { background: none; border: none; color: #ddd; cursor: pointer; font-size: 14px; padding: 4px 6px; border-radius: 4px; transition: all .15s; }
 .ed-del:hover { color: #c62828; background: #fdecea; }
 .chip { display: inline-block; font-size: 10px; font-weight: 800; padding: 2px 7px; border-radius: 4px; margin: 2px; font-family: 'Inter Tight', sans-serif; letter-spacing: .04em; }
@@ -251,6 +251,7 @@ textarea.cfg-input { resize: vertical; min-height: 76px; font-size: 13px; line-h
             <option value="torneo">⚔️ Torneos & Eventos</option>
             <option value="comunidad">🤝 Comunidad</option>
             <option value="blog">📰 Noticias Quest</option>
+              <option value="blog_ranking">📊 NQ — Ranking de Cartas</option>
             <option value="tiktok">🎬 TikTok (carrusel)</option>
           </select>
         </div>
@@ -520,8 +521,20 @@ let editingEvt = null;
 let editorialData = null;
 
 const MONTHS = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-const PILAR_COLORS = {tip:'e-tip',lore:'e-lore',restock:'e-restock',lanzamiento:'e-lanzamiento',torneo:'e-torneo',comunidad:'e-comunidad',blog:'e-blog',tiktok:'e-tiktok'};
-const PILAR_LENGTHS = {tip:2200,lore:2200,restock:550,lanzamiento:1400,torneo:900,comunidad:650,blog:99999,tiktok:400};
+const PILAR_COLORS = {tip:'e-tip',lore:'e-lore',restock:'e-restock',lanzamiento:'e-lanzamiento',torneo:'e-torneo',comunidad:'e-comunidad',blog:'e-blog',blog_ranking:'e-blog',tiktok:'e-tiktok'};
+const PILAR_LENGTHS = {tip:2200,lore:2200,restock:550,lanzamiento:1400,torneo:900,comunidad:650,blog:99999,blog_ranking:99999,tiktok:400};
+
+const PILAR_LABELS = {
+  tip: 'Tip del Aventurero — escribe ENTRE 2000 y 2200 caracteres EXACTOS en ig_post. Explicación completa de mecánica + ejemplo práctico detallado + cómo aplicarlo. NO puedes escribir menos de 2000 chars bajo ninguna circunstancia.',
+  lore: 'Lore & Historia — escribe ENTRE 1800 y 2200 caracteres EXACTOS en ig_post. Historia narrativa extensa, con contexto del lore, personajes, eventos del universo MTG. NO menos de 1800 chars.',
+  restock: 'Restock — escribe entre 400 y 550 caracteres en ig_post. Corto, directo, singles o precons llegaron. Nada más.',
+  lanzamiento: 'Nuevo Lanzamiento — escribe entre 1200 y 1400 caracteres en ig_post. Set nuevo: fechas prerelease, eventos WPN, mecánicas nuevas, cartas destacadas, cómo participar.',
+  torneo: 'Torneos & Eventos — escribe entre 700 y 900 caracteres en ig_post. Datos concretos: fecha, lugar, premios, formato, cómo inscribirse.',
+  comunidad: 'Comunidad — escribe entre 500 y 650 caracteres en ig_post. Cálido, foco en calendario de actividades y colaboraciones.',
+  blog: 'Noticias Quest — escribe MÍNIMO 4000 caracteres en blog_post (NO en ig_post). Artículo completo con intro, múltiples secciones desarrolladas con datos reales, entretenido. Puede ser: análisis del meta actual, ranking de mejores cartas por categoría (ej: top 10 cartas de robo en negro para Commander), reporte de torneos, novedades de sets, baneos y su impacto. El campo blog_post debe estar lleno y extenso.',
+  tiktok: 'TikTok carrusel visual — en image_brief describe slide a slide: Slide 1 portada+gancho+logo GQ → slides de contenido (carta o combo por slide) → slide final CTA. Deja ig_post vacío.',
+  blog_ranking: 'Noticias Quest — Ranking de Cartas. Escribe en blog_post un artículo de MÍNIMO 4000 caracteres con formato ranking: Top 10 (o más) cartas de una categoría específica (ej: mejores removals en blanco, mejores aceleradoras de maná en verde, mejores robadores en negro, etc). Para cada carta: nombre, por qué es buena, en qué mazos va, cuánto cuesta aproximado. Busca en Scryfall o Draftsim para obtener nombres reales de cartas. El artículo debe ser consultable y compartible.'
+};
 
 const DEFAULT_EDITORIAL = {
   identity: [
@@ -589,16 +602,6 @@ RESPONDE SOLO con este JSON exacto, sin markdown ni texto extra:
 {"titulo":"título corto max 60 chars","ig_post":"texto IG/FB con longitud correcta del pilar","wa_post":"mensaje WhatsApp comunitario con preguntas y dinámica","image_brief":"brief visual con formato decidido y descripción slide a slide","blog_post":"SOLO para Noticias Quest: artículo completo extenso mínimo 4000 chars. Para todos los demás pilares: string vacío exactamente así: ","char_count_ig":0}`;
 }
 
-const PILAR_LABELS = {
-  tip:'Tip del Aventurero — ENTRE 2000 y 2200 chars. Explicación completa de mecánica TCG + ejemplo práctico + aplicación real. NO hacer uno más corto bajo ningún concepto.',
-  lore:'Lore & Historia — ENTRE 1800 y 2200 chars. Historia narrativa extensa de carta, set o personaje MTG con contexto del lore.',
-  restock:'Restock — 400 a 550 chars exactos. Corto y directo. Singles o precons llegaron al catálogo. Nada más.',
-  lanzamiento:'Nuevo Lanzamiento — 1200 a 1400 chars. Set nuevo, prerelease, fechas WPN, qué trae el set, cómo participar. Informativo.',
-  torneo:'Torneos & Eventos — 700 a 900 chars. Datos concretos, fechas, lugar, premios, cómo inscribirse.',
-  comunidad:'Comunidad — 500 a 650 chars. Cálido, foco en calendario de actividades y colaboraciones.',
-  blog:'Noticias Quest — MÍNIMO 4000 caracteres OBLIGATORIO. Artículo completo con intro, múltiples secciones desarrolladas con datos reales obtenidos de las búsquedas web, entretenido y dinámico. La gente debe querer guardarlo y volver a consultarlo.',
-  tiktok:'TikTok carrusel visual — brief SLIDE A SLIDE detallado: Slide 1 (portada con gancho + logo GQ) → slides de contenido (una carta/combo/dato por slide con descripción visual) → slide final (CTA gamequest.cl). Describir elementos visuales de cada slide.'
-};
 
 const TOOL_DEF = [{type:'function',function:{name:'search_web',description:'Busca información actualizada en internet sobre Magic TCG, sets, cartas, baneos, torneos, meta, spoilers, jugadores, novedades.',parameters:{type:'object',properties:{query:{type:'string'},reason:{type:'string'}},required:['query','reason']}}}];
 
@@ -846,7 +849,7 @@ function updateTabs() {
   const pilar = document.getElementById('pilarSelect').value;
   currentPilar = pilar;
   const tabsEl = document.getElementById('outputTabs');
-  if (pilar === 'blog') {
+  if (pilar === 'blog' || pilar === 'blog_ranking') {
     tabsEl.innerHTML = `<button class="output-tab active" data-tab="blog" onclick="switchTab('blog',this)">Artículo</button><button class="output-tab" data-tab="wa" onclick="switchTab('wa',this)">WhatsApp</button><button class="output-tab" data-tab="img" onclick="switchTab('img',this)">Brief Visual</button>`;
     currentTab = 'blog';
   } else if (pilar === 'tiktok') {
@@ -945,9 +948,15 @@ async function generatePost() {
 // Core agentic function — reusable for both single and bulk
 async function runAgentPost(pilar, ctx, game, nets, aud, maxTok, extraContext) {
   const sources = [];
-  const messages = [{role:'user', content:
-    `Pilar: ${PILAR_LABELS[pilar]||pilar}\nJuego: ${game||'magic'}\nRedes: ${nets||'IG/FB'}\nAudiencia: ${aud||'competitivo, casual, nuevo'}\nContexto: ${ctx||'Elige un tema actual y relevante basándote en lo que está trending en la comunidad TCG ahora mismo.'}\n${extraContext||''}\n\nIMPORTANTE: Usa search_web para buscar información actualizada ANTES de redactar. El post debe ser completo, con la longitud correcta para el pilar, y reflejar información real y actual.`
-  }];
+  const pilarLabel = (typeof PILAR_LABELS !== 'undefined' && PILAR_LABELS[pilar]) ? PILAR_LABELS[pilar] : pilar;
+  const isBlog = pilar === 'blog' || pilar === 'blog_ranking';
+
+  // For blog, use a dedicated system prompt that forces long content
+  const blogExtra = isBlog ? `\n\nCRÍTICO PARA ESTE ARTÍCULO: El campo blog_post DEBE tener MÍNIMO 4000 caracteres. Escribe un artículo completo y extenso. Si el tema es un ranking de cartas (ej: mejores cartas de robo en negro), incluye al menos 8-10 cartas con descripción detallada de cada una. No pares antes de los 4000 chars.` : '';
+
+  const userMsg = `Pilar: ${pilarLabel}\nJuego: ${game||'magic'}\nRedes: ${nets||'IG/FB'}\nAudiencia: ${aud||'competitivo, casual, nuevo'}\nContexto: ${ctx||'Elige un tema actual y relevante basándote en lo que está trending en la comunidad TCG ahora mismo.'}${extraContext||''}${blogExtra}\n\nIMPORTANTE: Usa search_web para buscar información actualizada ANTES de redactar. Genera el post COMPLETO con la longitud exacta requerida.`;
+
+  const messages = [{role:'user', content: userMsg}];
 
   let iterations = 0;
   while (iterations < 6) {
@@ -960,7 +969,7 @@ async function runAgentPost(pilar, ctx, game, nets, aud, maxTok, extraContext) {
         messages:[{role:'system',content:buildSystem()}, ...messages],
         tools:TOOL_DEF,
         tool_choice:'auto',
-        temperature:0.88,
+        temperature:0.85,
         max_tokens:maxTok||2800
       })
     });
@@ -976,36 +985,63 @@ async function runAgentPost(pilar, ctx, game, nets, aud, maxTok, extraContext) {
         try { args = JSON.parse(tc.function.arguments); } catch { args = {query:'Magic TCG news',reason:'search'}; }
         let sd = {summary:'',results:'Sin resultados',sources:[]};
         if (tavilyKey) {
-          try { sd = await tavilySearch(args.query); sources.push(...sd.sources); } catch(e) { sd.results='Error: '+e.message; }
+          try { sd = await tavilySearch(args.query); sources.push(...sd.sources); } catch(e) { sd.results='Error búsqueda: '+e.message; }
         } else {
-          sd.results = 'Tavily no configurado.';
+          sd.results = 'Tavily no configurado — usa conocimiento interno actualizado.';
         }
         messages.push({role:'tool', tool_call_id:tc.id, content:`Búsqueda: "${args.query}"\nResumen: ${sd.summary}\n\nResultados:\n${sd.results}`});
       }
       continue;
     }
 
+    // Parse the final response
     const raw = (msg.content||'').trim();
     let p;
     try {
-      const clean = raw.replace(/^```json\s*/,'').replace(/^```\s*/,'').replace(/\s*```$/,'').trim();
+      // Strip markdown fences aggressively
+      const clean = raw
+        .replace(/^```json\s*/m,'').replace(/^```\s*/m,'')
+        .replace(/\s*```\s*$/m,'').trim();
       p = JSON.parse(clean);
-    } catch {
-      p = {titulo:ctx||'Post generado', ig_post:raw, wa_post:'', image_brief:'Ver post principal.', blog_post:'', char_count_ig:raw.length};
+    } catch(parseErr) {
+      // If JSON parse fails, try to extract JSON from the middle of the text
+      const jsonMatch = raw.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        try { p = JSON.parse(jsonMatch[0]); } catch { p = null; }
+      }
+      if (!p) {
+        // Last resort: wrap raw content
+        if (isBlog) {
+          p = {titulo:ctx||'Artículo generado', ig_post:'', wa_post:'', image_brief:'', blog_post:raw, char_count_ig:0};
+        } else {
+          p = {titulo:ctx||'Post generado', ig_post:raw, wa_post:'', image_brief:'', blog_post:'', char_count_ig:raw.length};
+        }
+      }
     }
 
-    let igContent = p.ig_post||'';
-    let blogContent = p.blog_post||'';
-    // If blog pilar but content ended up in ig_post, move it
-    if (pilar === 'blog' && !blogContent && igContent) { blogContent = igContent; igContent = ''; }
+    let igContent = p.ig_post || '';
+    let blogContent = p.blog_post || '';
+    let waContent = p.wa_post || '';
+    let imgContent = p.image_brief || '';
+
+    // Fix: blog content might land in ig_post
+    if (isBlog && !blogContent && igContent && igContent.length > 500) {
+      blogContent = igContent;
+      igContent = '';
+    }
+    // Fix: if blog_post is very short, it probably got truncated — keep what we have
+    if (isBlog && blogContent.length < 200 && igContent.length > 200) {
+      blogContent = igContent;
+      igContent = '';
+    }
 
     return {
       titulo: p.titulo || ctx || 'Post generado',
-      post: {ig:igContent, wa:p.wa_post||'', img:p.image_brief||'', blog:blogContent},
+      post: {ig:igContent, wa:waContent, img:imgContent, blog:blogContent},
       sources
     };
   }
-  throw new Error('El agente no pudo generar el post después de varios intentos.');
+  throw new Error('El agente no pudo generar el post.');
 }
 
 // ── HISTORY ──
@@ -1236,17 +1272,24 @@ Eres el planificador de contenido de GameQuest para ${month}.
 ${ctx ? 'Novedades confirmadas del mes: ' + ctx : ''}
 ${webCtx}
 
-Analiza el mes y crea el plan de contenido MÁS INTELIGENTE posible. No sigas un ritmo fijo — usa tu criterio:
-- Si hay lanzamiento de set, crea múltiples posts sobre él (spoilers, prerelease, análisis)
-- Si hay torneo, dedica posts a convocatoria + hype + resultados
-- Varía los pilares según lo que tenga más sentido para el mes
-- Incluye restock cuando aplique, lore cuando hay personajes interesantes del mes
-- Propón exactamente 20 posts para el mes + 2 artículos de Noticias Quest
+Analiza el mes COMPLETO (los 30 días, independiente de la fecha de hoy) y crea el plan de contenido MÁS INTELIGENTE posible.
 
-Para cada post propón: pilar, título específico, semana, día de la semana sugerido.
+REGLAS DEL PLAN:
+- Genera EXACTAMENTE 20 posts distribuidos en 4 semanas completas (días 1-30)
+- NO sigas un ritmo fijo — usa tu criterio editorial
+- Si hay lanzamiento de set: múltiples posts (spoilers, prerelease, análisis de cartas)
+- Si hay torneo: convocatoria + hype previo + resultados
+- Varía los pilares: lore, tip, restock, lanzamiento, comunidad, tiktok
+- Incluye al menos 1 post de TikTok (carrusel visual) por semana
+- PARA LOS 2 ARTÍCULOS DE BLOG (Noticias Quest), propón temas extensos como:
+  * Rankings de cartas: "Top 10 mejores cartas de robo en negro para Commander"
+  * Análisis del meta: "El meta actual de Commander después del último baneo"
+  * Guías: "Cómo construir tu primer mazo de Commander con menos de $50"
+  * Reporte de torneo con análisis de mazos
+  * Novedades del set con análisis carta por carta
 
-Responde SOLO con JSON:
-{"plan":[{"idx":1,"pilar":"lore","titulo":"título específico y concreto del post","semana":1,"dia_semana":"Lunes","contexto_adicional":"qué buscar o en qué enfocarse al redactar este post"}],"blogs":[{"idx":21,"titulo":"título del artículo","semana":1,"contexto_adicional":"enfoque del artículo"}]}`;
+Responde SOLO con JSON sin texto extra:
+{"plan":[{"idx":1,"pilar":"lore","titulo":"título específico y concreto del post","semana":1,"dia_semana":"Lunes","contexto_adicional":"qué buscar o en qué enfocarse para este post específico"}],"blogs":[{"idx":21,"titulo":"título concreto del artículo","semana":1,"contexto_adicional":"enfoque detallado: qué buscar, qué cartas mencionar, qué ángulo tomar"}]}`;
 
   let plan = [], blogs = [];
   try {
@@ -1307,7 +1350,7 @@ Responde SOLO con JSON:
         'blog',
         item.titulo + (item.contexto_adicional ? '. ' + item.contexto_adicional : ''),
         'magic', 'blog', 'todos',
-        6000,
+        8000,
         webCtx ? `\nContexto del mes ${month}: ${webCtx.slice(0,800)}` : ''
       );
       bulkGeneratedPosts.push({
