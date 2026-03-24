@@ -557,7 +557,7 @@ ${identityStr}
 
 REGLAS INAMOVIBLES:
 1. Abrir SIEMPRE con: 🔥 Saludos Aventureros 🔥
-2. Cerrar SIEMPRE con CTA a gamequest.cl
+2. CTA a gamequest.cl: incluirlo SOLO cuando el contenido lo amerita. SIEMPRE en: Restock, Nuevo Lanzamiento, Torneos. OPCIONAL en: Tip (si hay producto relacionado), Lore (solo si hay cartas en stock), Comunidad (si hay evento próximo). NUNCA forzarlo en posts donde suene forzado o raro.
 3. Tutear siempre. Jamás ustedear.
 4. Español latinoamericano neutro. NUNCA usar: vosotros, habéis, vuestro, compartid, ni ninguna forma peninsular.
 5. "Meta" siempre para referirse al metagame. Nunca "metagame".
@@ -757,19 +757,41 @@ function renderEditorial() {
   const tbody1 = document.getElementById('ed-identity-rows');
   const tbody2 = document.getElementById('ed-pilares-rows');
   if (!tbody1 || !tbody2) return;
-  tbody1.innerHTML = ed.identity.map((r,i) => `
-    <tr>
-      <td><textarea class="ed-input key" rows="1" onInput="autoResize(this)">${escRaw(r.key)}</textarea></td>
-      <td><textarea class="ed-input" rows="2" onInput="autoResize(this)">${escRaw(r.val)}</textarea></td>
-      <td><button class="ed-del" onclick="this.closest('tr').remove()">✕</button></td>
-    </tr>`).join('');
-  tbody2.innerHTML = ed.pilares.map((r,i) => `
-    <tr>
-      <td><textarea class="ed-input key" rows="1" onInput="autoResize(this)">${escRaw(r.key)}</textarea></td>
-      <td><textarea class="ed-input" rows="1" onInput="autoResize(this)">${escRaw(r.len||'')}</textarea></td>
-      <td><textarea class="ed-input" rows="2" onInput="autoResize(this)">${escRaw(r.val)}</textarea></td>
-      <td><button class="ed-del" onclick="this.closest('tr').remove()">✕</button></td>
-    </tr>`).join('');
+
+  function makeTA(cls, rows, val) {
+    const ta = document.createElement('textarea');
+    ta.className = cls; ta.rows = rows; ta.value = val || '';
+    ta.addEventListener('input', () => autoResize(ta));
+    return ta;
+  }
+  function makeDelBtn() {
+    const b = document.createElement('button');
+    b.className = 'ed-del'; b.textContent = '✕';
+    b.onclick = () => b.closest('tr').remove();
+    return b;
+  }
+
+  tbody1.innerHTML = '';
+  (ed.identity || []).forEach(r => {
+    const tr = document.createElement('tr');
+    ['','',''].forEach(() => tr.appendChild(document.createElement('td')));
+    tr.cells[0].appendChild(makeTA('ed-input key', 1, r.key));
+    tr.cells[1].appendChild(makeTA('ed-input', 2, r.val));
+    tr.cells[2].appendChild(makeDelBtn());
+    tbody1.appendChild(tr);
+  });
+
+  tbody2.innerHTML = '';
+  (ed.pilares || []).forEach(r => {
+    const tr = document.createElement('tr');
+    ['','','',''].forEach(() => tr.appendChild(document.createElement('td')));
+    tr.cells[0].appendChild(makeTA('ed-input key', 1, r.key));
+    tr.cells[1].appendChild(makeTA('ed-input', 1, r.len));
+    tr.cells[2].appendChild(makeTA('ed-input', 2, r.val));
+    tr.cells[3].appendChild(makeDelBtn());
+    tbody2.appendChild(tr);
+  });
+
   document.querySelectorAll('.ed-input').forEach(autoResize);
 }
 
@@ -779,18 +801,35 @@ function autoResize(el) {
 }
 
 function addEdRow(type) {
+  function makeTA(cls, rows, ph) {
+    const ta = document.createElement('textarea');
+    ta.className = cls; ta.rows = rows; ta.placeholder = ph || '';
+    ta.addEventListener('input', () => autoResize(ta));
+    return ta;
+  }
+  function makeDelBtn() {
+    const b = document.createElement('button');
+    b.className = 'ed-del'; b.textContent = '✕';
+    b.onclick = () => b.closest('tr').remove();
+    return b;
+  }
   if (type === 'identity') {
     const tr = document.createElement('tr');
-    tr.innerHTML = `<td><textarea class="ed-input key" rows="1" onInput="autoResize(this)" placeholder="Dimensión"></textarea></td><td><textarea class="ed-input" rows="2" onInput="autoResize(this)" placeholder="Definición"></textarea></td><td><button class="ed-del" onclick="this.closest('tr').remove()">✕</button></td>`;
+    ['','',''].forEach(() => tr.appendChild(document.createElement('td')));
+    tr.cells[0].appendChild(makeTA('ed-input key', 1, 'Dimensión'));
+    tr.cells[1].appendChild(makeTA('ed-input', 2, 'Definición'));
+    tr.cells[2].appendChild(makeDelBtn());
     document.getElementById('ed-identity-rows').appendChild(tr);
   } else {
     const tr = document.createElement('tr');
-    tr.innerHTML = `<td><textarea class="ed-input key" rows="1" onInput="autoResize(this)" placeholder="Pilar"></textarea></td><td><textarea class="ed-input" rows="1" onInput="autoResize(this)" placeholder="Longitud"></textarea></td><td><textarea class="ed-input" rows="2" onInput="autoResize(this)" placeholder="Descripción"></textarea></td><td><button class="ed-del" onclick="this.closest('tr').remove()">✕</button></td>`;
+    ['','','',''].forEach(() => tr.appendChild(document.createElement('td')));
+    tr.cells[0].appendChild(makeTA('ed-input key', 1, 'Pilar'));
+    tr.cells[1].appendChild(makeTA('ed-input', 1, 'Longitud'));
+    tr.cells[2].appendChild(makeTA('ed-input', 2, 'Descripción'));
+    tr.cells[3].appendChild(makeDelBtn());
     document.getElementById('ed-pilares-rows').appendChild(tr);
   }
 }
-
-function escRaw(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 // ── NAVIGATION ──
 function showSection(name, btn) {
@@ -852,7 +891,7 @@ async function tavilySearch(query) {
   });
   const data = await res.json();
   if (data.error) throw new Error('Tavily: '+data.error);
-  incrementSearch(); // Count each individual API call
+  incrementSearch();
   const summary = data.answer||'';
   const results = (data.results||[]).slice(0,4).map(r=>`[${r.title}]: ${(r.content||'').slice(0,400)}`).join('\n');
   const sources = (data.results||[]).slice(0,3).map(r=>({query,title:r.title,url:r.url}));
@@ -861,7 +900,7 @@ async function tavilySearch(query) {
 
 function setStep(n,state){ const el=document.getElementById('step-'+n); if(el) el.className='load-step '+state; }
 
-// ── GENERATE POST (Agentic loop) ──
+// ── GENERATE SINGLE POST (Agentic loop) ──
 async function generatePost() {
   if (!apiKey) { alert('Ingresa tu API Key de Groq.'); return; }
   const btn = document.getElementById('genBtn');
@@ -874,106 +913,99 @@ async function generatePost() {
   const ctx = document.getElementById('contextInput').value;
   const nets = [...document.querySelectorAll('#networkTags .tag.active')].map(t=>t.dataset.net).join(', ');
   const aud = [...document.querySelectorAll('#audienceTags .tag.active')].map(t=>t.dataset.aud).join(', ');
-  // Blog needs more tokens
   const maxTok = currentPilar==='blog' ? 6000 : 2800;
 
   const steps = ['Analizando qué buscar...','Buscando en internet...','Procesando resultados...','Redactando post...'];
   document.getElementById('outputArea').innerHTML = `<div class="loading-state"><div class="load-ring"></div><div class="load-steps">${steps.map((s,i)=>`<div class="load-step ${i===0?'active':''}" id="step-${i}">${s}</div>`).join('')}</div></div>`;
 
   try {
-    const userMsg = `Pilar: ${PILAR_LABELS[currentPilar]}\nJuego: ${game}\nRedes: ${nets}\nAudiencia: ${aud}\nContexto: ${ctx||'Elige un tema actual y relevante. Busca qué está trending en la comunidad TCG ahora mismo.'}\n\nIMPORTANTE: USA la herramienta search_web para buscar información actualizada ANTES de redactar. El post debe reflejar información real y actual, no genérica.`;
-    const messages = [{role:'user', content:userMsg}];
-    let iterations = 0;
-    setStep(1,'active');
-
-    while (iterations < 6) {
-      iterations++;
-      const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-        method:'POST',
-        headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},
-        body:JSON.stringify({
-          model:'llama-3.3-70b-versatile',
-          messages:[{role:'system',content:buildSystem()}, ...messages],
-          tools:TOOL_DEF,
-          tool_choice:'auto',
-          temperature:0.88,
-          max_tokens:maxTok
-        })
+    const result = await runAgentPost(currentPilar, ctx, game, nets, aud, maxTok);
+    currentPost = result.post;
+    currentTitle = result.titulo;
+    lastSources = result.sources || [];
+    renderPost();
+    document.getElementById('genActions').style.display = 'flex';
+    addToHistory({titulo:currentTitle, pilar:currentPilar, ig:currentPost.ig, wa:currentPost.wa, img:currentPost.img, blog:currentPost.blog, ts:Date.now()});
+    if (lastSources.length) {
+      let srcHtml = `<div class="sources-box"><div class="sources-title">🔍 ${lastSources.length} fuente${lastSources.length>1?'s':''} consultada${lastSources.length>1?'s':''} (${searchCount} llamadas Tavily totales este mes)</div>`;
+      lastSources.forEach(s => {
+        srcHtml += `<div class="source-item"><span class="source-query">${(s.query||'').slice(0,35)}</span><span class="source-result"><a href="${s.url}" target="_blank" style="color:#1a56db;text-decoration:none;">${s.title}</a></span></div>`;
       });
-      const data = await res.json();
-      if (data.error) throw new Error(data.error.message);
-      const choice = data.choices[0];
-      const msg = choice.message;
-      messages.push(msg);
-
-      if (choice.finish_reason === 'tool_calls' && msg.tool_calls?.length) {
-        setStep(1,'active');
-        for (const tc of msg.tool_calls) {
-          let args;
-          try { args = JSON.parse(tc.function.arguments); } catch { args = {query:'Magic TCG news',reason:'search'}; }
-          let sd = {summary:'',results:'Sin resultados',sources:[]};
-          if (tavilyKey) {
-            try { sd = await tavilySearch(args.query); lastSources.push(...sd.sources); }
-            catch(e) { sd.results = 'Error búsqueda: '+e.message; }
-          } else {
-            sd.results = 'Tavily no configurado — usa conocimiento interno.';
-          }
-          messages.push({role:'tool', tool_call_id:tc.id, content:`Búsqueda: "${args.query}"\nResumen: ${sd.summary}\n\nResultados:\n${sd.results}`});
-        }
-        setStep(2,'done'); setStep(3,'active');
-        continue;
-      }
-
-      // Final response
-      setStep(3,'done');
-      const raw = (msg.content||'').trim();
-      let p;
-      try {
-        // Strip any markdown fences
-        const clean = raw.replace(/^```json\s*/,'').replace(/^```\s*/,'').replace(/\s*```$/,'').trim();
-        p = JSON.parse(clean);
-      } catch(e) {
-        // If JSON parse fails, wrap raw content
-        p = {titulo:ctx||'Post generado', ig_post:raw, wa_post:'', image_brief:'Ver post principal.', blog_post:'', char_count_ig:raw.length};
-      }
-
-      currentPost = {
-        ig: p.ig_post||'',
-        wa: p.wa_post||'',
-        img: p.image_brief||'',
-        blog: p.blog_post||''
-      };
-      currentTitle = p.titulo || ctx || 'Post sin título';
-
-      // For blog pilar, if blog_post is empty but ig_post has content, move it
-      if (currentPilar === 'blog' && !currentPost.blog && currentPost.ig) {
-        currentPost.blog = currentPost.ig;
-        currentPost.ig = '';
-      }
-
-      renderPost();
-      document.getElementById('genActions').style.display = 'flex';
-
-      // Save to history
-      addToHistory({titulo:currentTitle, pilar:currentPilar, ig:currentPost.ig, wa:currentPost.wa, img:currentPost.img, blog:currentPost.blog, ts:Date.now()});
-
-      // Show sources
-      if (lastSources.length) {
-        let srcHtml = `<div class="sources-box"><div class="sources-title">🔍 ${lastSources.length} fuente${lastSources.length>1?'s':''} consultada${lastSources.length>1?'s':''} (${searchCount} llamadas Tavily totales este mes)</div>`;
-        lastSources.forEach(s => {
-          srcHtml += `<div class="source-item"><span class="source-query">${(s.query||'').slice(0,35)}</span><span class="source-result"><a href="${s.url}" target="_blank" style="color:#1a56db;text-decoration:none;">${s.title}</a></span></div>`;
-        });
-        srcHtml += `</div>`;
-        document.getElementById('sourcesArea').innerHTML = srcHtml;
-      } else if (tavilyKey) {
-        document.getElementById('sourcesArea').innerHTML = `<div class="sources-box"><div class="sources-title">ℹ El agente usó conocimiento interno para este tema</div></div>`;
-      }
-      break;
+      srcHtml += `</div>`;
+      document.getElementById('sourcesArea').innerHTML = srcHtml;
+    } else if (tavilyKey) {
+      document.getElementById('sourcesArea').innerHTML = `<div class="sources-box"><div class="sources-title">ℹ El agente usó conocimiento interno para este tema</div></div>`;
     }
   } catch(e) {
     document.getElementById('outputArea').innerHTML = `<div class="post-preview"><div class="post-placeholder" style="color:#c62828;">Error: ${e.message}<br><br>Verifica tus API Keys en Configuración.</div></div>`;
   }
   setLoad(btn, false);
+}
+
+// Core agentic function — reusable for both single and bulk
+async function runAgentPost(pilar, ctx, game, nets, aud, maxTok, extraContext) {
+  const sources = [];
+  const messages = [{role:'user', content:
+    `Pilar: ${PILAR_LABELS[pilar]||pilar}\nJuego: ${game||'magic'}\nRedes: ${nets||'IG/FB'}\nAudiencia: ${aud||'competitivo, casual, nuevo'}\nContexto: ${ctx||'Elige un tema actual y relevante basándote en lo que está trending en la comunidad TCG ahora mismo.'}\n${extraContext||''}\n\nIMPORTANTE: Usa search_web para buscar información actualizada ANTES de redactar. El post debe ser completo, con la longitud correcta para el pilar, y reflejar información real y actual.`
+  }];
+
+  let iterations = 0;
+  while (iterations < 6) {
+    iterations++;
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},
+      body:JSON.stringify({
+        model:'llama-3.3-70b-versatile',
+        messages:[{role:'system',content:buildSystem()}, ...messages],
+        tools:TOOL_DEF,
+        tool_choice:'auto',
+        temperature:0.88,
+        max_tokens:maxTok||2800
+      })
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    const choice = data.choices[0];
+    const msg = choice.message;
+    messages.push(msg);
+
+    if (choice.finish_reason === 'tool_calls' && msg.tool_calls?.length) {
+      for (const tc of msg.tool_calls) {
+        let args;
+        try { args = JSON.parse(tc.function.arguments); } catch { args = {query:'Magic TCG news',reason:'search'}; }
+        let sd = {summary:'',results:'Sin resultados',sources:[]};
+        if (tavilyKey) {
+          try { sd = await tavilySearch(args.query); sources.push(...sd.sources); } catch(e) { sd.results='Error: '+e.message; }
+        } else {
+          sd.results = 'Tavily no configurado.';
+        }
+        messages.push({role:'tool', tool_call_id:tc.id, content:`Búsqueda: "${args.query}"\nResumen: ${sd.summary}\n\nResultados:\n${sd.results}`});
+      }
+      continue;
+    }
+
+    const raw = (msg.content||'').trim();
+    let p;
+    try {
+      const clean = raw.replace(/^```json\s*/,'').replace(/^```\s*/,'').replace(/\s*```$/,'').trim();
+      p = JSON.parse(clean);
+    } catch {
+      p = {titulo:ctx||'Post generado', ig_post:raw, wa_post:'', image_brief:'Ver post principal.', blog_post:'', char_count_ig:raw.length};
+    }
+
+    let igContent = p.ig_post||'';
+    let blogContent = p.blog_post||'';
+    // If blog pilar but content ended up in ig_post, move it
+    if (pilar === 'blog' && !blogContent && igContent) { blogContent = igContent; igContent = ''; }
+
+    return {
+      titulo: p.titulo || ctx || 'Post generado',
+      post: {ig:igContent, wa:p.wa_post||'', img:p.image_brief||'', blog:blogContent},
+      sources
+    };
+  }
+  throw new Error('El agente no pudo generar el post después de varios intentos.');
 }
 
 // ── HISTORY ──
@@ -1044,8 +1076,7 @@ function saveEditedPost() {
   const ta = document.getElementById('histModalText');
   const tab = ta.dataset.tab;
   const newH = {...h, ts:Date.now(), titulo:(h.titulo||'Sin título')+' (editado)'};
-  const keyMap = {ig:'ig',wa:'wa',blog:'blog',img:'img'};
-  newH[keyMap[tab]||'ig'] = ta.value;
+  newH[tab==='blog'?'blog':tab==='wa'?'wa':tab==='img'?'img':'ig'] = ta.value;
   postHistory.unshift(newH);
   if (postHistory.length > 10) postHistory = postHistory.slice(0,10);
   localStorage.setItem('gq_history', JSON.stringify(postHistory));
@@ -1171,148 +1202,272 @@ function renderCalendar() {
 function prevMonth() { if(--calMonth<0){calMonth=11;calYear--;} renderCalendar(); }
 function nextMonth() { if(++calMonth>11){calMonth=0;calYear++;} renderCalendar(); }
 
-// ── BULK GENERATION ──
-// Split into multiple calls to avoid token limits
+// ── BULK GENERATION — post por post con barra de progreso ──
+let bulkGeneratedPosts = [];
+let bulkIsRunning = false;
+
 async function generateBulk() {
   if (!apiKey) { alert('Ingresa tu API Key primero.'); return; }
+  if (bulkIsRunning) return;
+  bulkIsRunning = true;
+  bulkGeneratedPosts = [];
   const btn = document.getElementById('bulkBtn');
   setLoad(btn, true);
   const month = document.getElementById('bulkMonth').value;
   const ctx = document.getElementById('bulkContext').value;
   const out = document.getElementById('bulkOutput');
-  out.innerHTML = `<div class="loading-state"><div class="load-ring"></div><div class="load-txt">Buscando info del mes y generando plan...</div></div>`;
 
-  // Step 1: Web context
+  // Step 1: Agent decides the plan for the month
+  out.innerHTML = renderBulkProgress(0, 0, 'El agente está analizando el mes y planificando el contenido...');
+
   let webCtx = '';
   if (tavilyKey) {
     try {
-      const s1 = await tavilySearch(`Magic The Gathering ${month} 2025 nuevos sets lanzamientos`);
-      const s2 = await tavilySearch(`MTG Commander meta baneos ${month} 2025`);
-      webCtx = `Info web actual:\n${s1.summary}\n${s1.results}\n\n${s2.summary}\n${s2.results}`;
+      const s1 = await tavilySearch(`Magic The Gathering ${month} 2025 lanzamientos sets novedades`);
+      const s2 = await tavilySearch(`MTG Commander meta baneos torneos ${month} 2025`);
+      webCtx = `Contexto web actual para ${month}:\n${s1.summary}\n${s1.results}\n\n${s2.summary}\n${s2.results}`;
     } catch(e) { webCtx = ''; }
   }
 
-  // Step 2: Generate weeks 1+2
-  const sys = buildSystem();
-  const week12Prompt = `${sys}\n\nPlan de contenido de GameQuest para ${month} — SEMANAS 1 Y 2 (días 1-14).\n${ctx?'Novedades confirmadas: '+ctx:''}\n${webCtx}\n\nRITMO: Lun=Lore | Mar=Restock | Mié=Tip | Jue=Lanzamiento o Novedad | Vie=Comunidad\n\nGenera exactamente 10 posts (5 por semana). Cada post debe tener su propia plataforma: IG/FB + WhatsApp + TikTok (brief carrusel) + Blog si aplica. Temas distintos entre sí.\n\nSolo responde con JSON, sin texto extra:\n{"posts":[{"semana":1,"dia":"Lunes 5","pilar":"lore","titulo":"título concreto","ig_fb":"copy IG/FB con longitud correcta","whatsapp":"mensaje comunitario","tiktok_brief":"brief carrusel slide a slide","chars_ig":0}]}`;
+  // Step 2: Get the plan from the agent
+  const planPrompt = `${buildSystem()}
 
-  const week34Prompt = `${sys}\n\nPlan de contenido de GameQuest para ${month} — SEMANAS 3 Y 4 (días 15-30).\n${ctx?'Novedades confirmadas: '+ctx:''}\n${webCtx}\n\nRITMO: Lun=Lore | Mar=Restock | Mié=Tip | Jue=Lanzamiento o Novedad | Vie=Comunidad\n\nGenera exactamente 10 posts (5 por semana). Temas completamente distintos a las semanas 1-2. Cada post: IG/FB + WhatsApp + TikTok brief.\n\nSolo responde con JSON:\n{"posts":[{"semana":3,"dia":"Lunes 19","pilar":"tip","titulo":"título concreto","ig_fb":"copy IG/FB","whatsapp":"mensaje comunitario","tiktok_brief":"brief carrusel","chars_ig":0}]}`;
+Eres el planificador de contenido de GameQuest para ${month}.
+${ctx ? 'Novedades confirmadas del mes: ' + ctx : ''}
+${webCtx}
 
-  const blogPrompt = `${sys}\n\nDos artículos de Noticias Quest para ${month} de GameQuest.\n${ctx?'Contexto: '+ctx:''}\n${webCtx}\n\nCada artículo MÍNIMO 4000 caracteres. Con secciones, datos reales, entretenido y consultable.\n\nSolo responde con JSON:\n{"blog_posts":[{"semana":1,"titulo":"título del artículo","contenido":"artículo completo extenso aquí"}]}`;
+Analiza el mes y crea el plan de contenido MÁS INTELIGENTE posible. No sigas un ritmo fijo — usa tu criterio:
+- Si hay lanzamiento de set, crea múltiples posts sobre él (spoilers, prerelease, análisis)
+- Si hay torneo, dedica posts a convocatoria + hype + resultados
+- Varía los pilares según lo que tenga más sentido para el mes
+- Incluye restock cuando aplique, lore cuando hay personajes interesantes del mes
+- Propón exactamente 20 posts para el mes + 2 artículos de Noticias Quest
 
+Para cada post propón: pilar, título específico, semana, día de la semana sugerido.
+
+Responde SOLO con JSON:
+{"plan":[{"idx":1,"pilar":"lore","titulo":"título específico y concreto del post","semana":1,"dia_semana":"Lunes","contexto_adicional":"qué buscar o en qué enfocarse al redactar este post"}],"blogs":[{"idx":21,"titulo":"título del artículo","semana":1,"contexto_adicional":"enfoque del artículo"}]}`;
+
+  let plan = [], blogs = [];
   try {
-    // Run all 3 calls in parallel for speed
-    const [r1, r2, r3] = await Promise.all([
-      fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'user',content:week12Prompt}],temperature:0.82,max_tokens:7000})}),
-      fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'user',content:week34Prompt}],temperature:0.82,max_tokens:7000})}),
-      fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'user',content:blogPrompt}],temperature:0.8,max_tokens:6000})})
-    ]);
-
-    const [d1, d2, d3] = await Promise.all([r1.json(), r2.json(), r3.json()]);
-    if (d1.error) throw new Error(d1.error.message);
-    if (d2.error) throw new Error(d2.error.message);
-
-    let plan1, plan2, blogPlan;
-    try { plan1 = JSON.parse(d1.choices[0].message.content.replace(/```json|```/g,'').trim()); } catch { plan1={posts:[]}; }
-    try { plan2 = JSON.parse(d2.choices[0].message.content.replace(/```json|```/g,'').trim()); } catch { plan2={posts:[]}; }
-    try { blogPlan = JSON.parse(d3.choices[0].message.content.replace(/```json|```/g,'').trim()); } catch { blogPlan={blog_posts:[]}; }
-
-    const allPosts = [...(plan1.posts||[]), ...(plan2.posts||[])];
-    const blogs = blogPlan.blog_posts||[];
-
-    let html = `<div class="alert alert-ok">✅ ${allPosts.length} posts generados (${allPosts.length} días) + ${blogs.length} artículos de Noticias Quest para ${month}${webCtx?' · Con búsqueda web':''}</div>`;
-
-    if (allPosts.length) {
-      allPosts.forEach((p,i) => {
-        const chars = (p.ig_fb||'').length;
-        const pilarClass = PILAR_COLORS[p.pilar]||'e-comunidad';
-        html += `<div class="bulk-post">
-          <div class="bulk-post-header">
-            <div class="bulk-post-meta">
-              <span class="cal-evt ${pilarClass}" style="font-size:9px;">${p.pilar||'post'}</span>
-              <span class="bulk-post-day">${p.dia||''}</span>
-              <span style="font-size:12px;color:#aaa;font-weight:600;">${p.titulo||''}</span>
-              <span style="font-size:10px;color:#ccc;">${chars}c IG</span>
-            </div>
-            <div style="display:flex;gap:5px;flex-wrap:wrap;">
-              <button class="btn btn-ghost" style="padding:3px 8px;font-size:10px;" onclick="copyBulkPost(${i})">Copiar IG</button>
-              <button class="btn btn-gold" style="padding:3px 8px;font-size:10px;" onclick="openSaveCalModal('${(p.titulo||'').replace(/'/g,'').slice(0,40)}','${p.pilar||'tip'}')">+ Cal</button>
-              <button class="btn btn-ghost" style="padding:3px 8px;font-size:10px;" onclick="toggleBulkEdit(${i})">Editar</button>
-            </div>
-          </div>
-          <!-- IG/FB -->
-          <div style="font-size:10px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;">IG / FB</div>
-          <div class="bulk-body" id="bp-ig-${i}" onclick="toggleBulk(this)">${esc(p.ig_fb||'')}</div>
-          <div class="bulk-hint" onclick="toggleBulk(document.getElementById('bp-ig-${i}'))">▼ expandir</div>
-          <!-- WhatsApp -->
-          <div style="font-size:10px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:.07em;margin-top:8px;margin-bottom:3px;">WhatsApp</div>
-          <div class="bulk-body" id="bp-wa-${i}" onclick="toggleBulk(this)">${esc(p.whatsapp||'')}</div>
-          <div class="bulk-hint" onclick="toggleBulk(document.getElementById('bp-wa-${i}'))">▼ expandir</div>
-          <!-- TikTok Brief -->
-          ${p.tiktok_brief?`<div style="font-size:10px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:.07em;margin-top:8px;margin-bottom:3px;">TikTok Brief</div><div class="bulk-body" id="bp-tk-${i}" onclick="toggleBulk(this)">${esc(p.tiktok_brief)}</div><div class="bulk-hint" onclick="toggleBulk(document.getElementById('bp-tk-${i}'))">▼ expandir</div>`:''}
-          <!-- Edit area -->
-          <textarea class="bulk-edit" id="bp-edit-${i}" placeholder="Editar IG/FB aquí...">${(p.ig_fb||'').replace(/</g,'&lt;')}</textarea>
-          <div id="bp-edit-actions-${i}" style="display:none;" class="brow">
-            <button class="btn btn-green" style="padding:4px 10px;font-size:10px;" onclick="saveBulkEdit(${i})">Guardar edición</button>
-            <button class="btn btn-ghost" style="padding:4px 10px;font-size:10px;" onclick="toggleBulkEdit(${i})">Cancelar</button>
-          </div>
-        </div>`;
-      });
-    }
-
-    if (blogs.length) {
-      html += `<div style="font-family:'Inter Tight',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#aaa;margin:16px 0 8px;">📰 Noticias Quest</div>`;
-      blogs.forEach((b,i) => {
-        html += `<div class="bulk-post">
-          <div class="bulk-post-header">
-            <div class="bulk-post-meta">
-              <span class="cal-evt e-blog" style="font-size:9px;">blog</span>
-              <span class="bulk-post-day">Semana ${b.semana||i+1}</span>
-              <span style="font-size:12px;color:#aaa;font-weight:600;">${b.titulo||''}</span>
-              <span style="font-size:10px;color:#ccc;">${(b.contenido||'').length}c</span>
-            </div>
-            <div style="display:flex;gap:5px;">
-              <button class="btn btn-ghost" style="padding:3px 8px;font-size:10px;" onclick="copyEl('bl-${i}')">Copiar</button>
-              <button class="btn btn-gold" style="padding:3px 8px;font-size:10px;" onclick="openSaveCalModal('${(b.titulo||'').replace(/'/g,'').slice(0,40)}','blog')">+ Cal</button>
-            </div>
-          </div>
-          <div class="bulk-body" id="bl-${i}" onclick="toggleBulk(this)">${esc(b.contenido||'')}</div>
-          <div class="bulk-hint" onclick="toggleBulk(document.getElementById('bl-${i}'))">▼ expandir · ${(b.contenido||'').length} chars</div>
-        </div>`;
-      });
-    }
-
-    out.innerHTML = html || `<div class="alert alert-err">No se pudo generar el plan. Intenta de nuevo.</div>`;
-
+    const planRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},
+      body:JSON.stringify({model:'llama-3.3-70b-versatile', messages:[{role:'user',content:planPrompt}], temperature:0.8, max_tokens:3000})
+    });
+    const planData = await planRes.json();
+    if (planData.error) throw new Error(planData.error.message);
+    const raw = planData.choices[0].message.content.replace(/```json|```/g,'').trim();
+    const parsed = JSON.parse(raw);
+    plan = parsed.plan || [];
+    blogs = parsed.blogs || [];
   } catch(e) {
-    out.innerHTML = `<div class="alert alert-err">Error: ${e.message}</div>`;
+    // Fallback plan if parsing fails
+    const pilares = ['lore','restock','tip','lanzamiento','comunidad'];
+    for (let i=0; i<20; i++) {
+      plan.push({idx:i+1, pilar:pilares[i%5], titulo:`Post ${i+1} de ${month}`, semana:Math.floor(i/5)+1, dia_semana:['Lunes','Martes','Miércoles','Jueves','Viernes'][i%5], contexto_adicional:ctx||''});
+    }
+    blogs = [{idx:21,titulo:`Noticias Quest ${month} — Semana 1`,semana:1,contexto_adicional:ctx||''},{idx:22,titulo:`Noticias Quest ${month} — Semana 3`,semana:3,contexto_adicional:ctx||''}];
   }
+
+  const total = plan.length + blogs.length;
+  out.innerHTML = renderBulkProgress(0, total, `Plan listo: ${plan.length} posts + ${blogs.length} blogs. Generando uno a uno...`);
+
+  // Step 3: Generate each post individually with full agent
+  for (let i=0; i<plan.length; i++) {
+    const item = plan[i];
+    out.innerHTML = renderBulkProgress(i, total, `Generando post ${i+1}/${total}: ${item.titulo}`, bulkGeneratedPosts);
+    try {
+      const maxTok = item.pilar === 'blog' ? 5000 : 2800;
+      const result = await runAgentPost(
+        item.pilar,
+        item.titulo + (item.contexto_adicional ? '. ' + item.contexto_adicional : ''),
+        'magic', 'IG/FB, WhatsApp, TikTok', 'competitivo, casual, nuevo',
+        maxTok,
+        webCtx ? `\nContexto del mes ${month}: ${webCtx.slice(0,800)}` : ''
+      );
+      bulkGeneratedPosts.push({
+        ...item, ...result.post,
+        titulo: result.titulo,
+        sources: result.sources
+      });
+    } catch(e) {
+      bulkGeneratedPosts.push({...item, ig:`Error: ${e.message}`, wa:'', img:'', blog:''});
+    }
+    // Show partial results as they come in
+    out.innerHTML = renderBulkProgress(i+1, total, `Post ${i+1}/${total} listo. Continuando...`, bulkGeneratedPosts);
+  }
+
+  // Step 4: Generate blogs
+  for (let i=0; i<blogs.length; i++) {
+    const item = blogs[i];
+    const globalIdx = plan.length + i;
+    out.innerHTML = renderBulkProgress(globalIdx, total, `Generando Noticias Quest ${i+1}/${blogs.length}: ${item.titulo}`, bulkGeneratedPosts);
+    try {
+      const result = await runAgentPost(
+        'blog',
+        item.titulo + (item.contexto_adicional ? '. ' + item.contexto_adicional : ''),
+        'magic', 'blog', 'todos',
+        6000,
+        webCtx ? `\nContexto del mes ${month}: ${webCtx.slice(0,800)}` : ''
+      );
+      bulkGeneratedPosts.push({
+        ...item, pilar:'blog', ...result.post,
+        titulo: result.titulo,
+        sources: result.sources
+      });
+    } catch(e) {
+      bulkGeneratedPosts.push({...item, pilar:'blog', ig:'', wa:'', img:'', blog:`Error: ${e.message}`});
+    }
+    out.innerHTML = renderBulkProgress(globalIdx+1, total, globalIdx+1 >= total ? '¡Plan completo!' : `Artículo ${i+1} listo...`, bulkGeneratedPosts);
+  }
+
+  // Final render
+  out.innerHTML = renderBulkResults(bulkGeneratedPosts, month, webCtx);
   setLoad(btn, false);
+  bulkIsRunning = false;
 }
 
-// Bulk post helpers
-let bulkPostsData = [];
-function copyBulkPost(i) {
-  const el = document.getElementById(`bp-ig-${i}`);
+function renderBulkProgress(done, total, msg, posts) {
+  const pct = total > 0 ? Math.round((done/total)*100) : 0;
+  let html = `
+    <div class="panel" style="margin-bottom:12px;">
+      <div style="font-family:'Inter Tight',sans-serif;font-size:12px;font-weight:800;color:#1a1a1a;margin-bottom:10px;">Generando plan de contenido</div>
+      <div style="background:#f0f0f0;border-radius:100px;height:8px;margin-bottom:8px;overflow:hidden;">
+        <div style="height:100%;background:#CC3333;border-radius:100px;width:${pct}%;transition:width .4s ease;"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:#aaa;font-weight:700;margin-bottom:8px;">
+        <span>${msg}</span>
+        <span>${pct}% · ${done}/${total}</span>
+      </div>
+      <div style="background:#fafafa;border:1.5px solid #e8e8e8;border-radius:8px;padding:10px;max-height:120px;overflow-y:auto;">
+        ${(posts||[]).map(p=>`<div style="font-size:11px;color:#2e7d32;padding:2px 0;border-bottom:1px solid #f0f0f0;">✓ <strong>${p.pilar}</strong> — ${p.titulo||'Post generado'}</div>`).join('') || '<div style="font-size:11px;color:#bbb;">Esperando primer post...</div>'}
+      </div>
+    </div>`;
+  return html;
+}
+
+function renderBulkResults(posts, month, hasWeb) {
+  let html = `<div class="alert alert-ok">✅ Plan completo — ${posts.filter(p=>p.pilar!=='blog').length} posts de RRSS + ${posts.filter(p=>p.pilar==='blog').length} artículos de Noticias Quest para ${month}${hasWeb?' · Con búsqueda web':''}</div>`;
+
+  const rrss = posts.filter(p => p.pilar !== 'blog');
+  const blogPosts = posts.filter(p => p.pilar === 'blog');
+
+  rrss.forEach((p,i) => {
+    const igContent = p.ig || '';
+    const chars = igContent.length;
+    const pilarClass = PILAR_COLORS[p.pilar]||'e-comunidad';
+    // Escape content for textarea (use raw text)
+    html += `<div class="bulk-post" id="bpost-${i}">
+      <div class="bulk-post-header">
+        <div class="bulk-post-meta">
+          <span class="cal-evt ${pilarClass}" style="font-size:9px;">${p.pilar||'post'}</span>
+          <span class="bulk-post-day">Sem ${p.semana||'?'} · ${p.dia_semana||''}</span>
+          <span style="font-size:12px;color:#aaa;font-weight:600;">${p.titulo||''}</span>
+          <span style="font-size:10px;color:${chars>=1600?'#2e7d32':'#e65100'};">${chars}c</span>
+        </div>
+        <div style="display:flex;gap:4px;flex-wrap:wrap;">
+          <button class="btn btn-ghost" style="padding:3px 7px;font-size:10px;" onclick="copyBulkIG(${i})">Copiar IG</button>
+          <button class="btn btn-gold" style="padding:3px 7px;font-size:10px;" onclick="saveBulkToCalendar(${i})">+ Cal</button>
+          <button class="btn btn-ghost" style="padding:3px 7px;font-size:10px;" onclick="toggleBulkEditor(${i})">Editar</button>
+        </div>
+      </div>
+      <div style="font-size:10px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;">IG / FB · ${chars} chars</div>
+      <div class="bulk-body" id="bpig-${i}" onclick="toggleBulk(this)">${esc(igContent)}</div>
+      <div class="bulk-hint" onclick="toggleBulk(document.getElementById('bpig-${i}'))">▼ expandir</div>
+      ${p.wa ? `<div style="font-size:10px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 3px;">WhatsApp</div><div class="bulk-body" id="bpwa-${i}" onclick="toggleBulk(this)">${esc(p.wa)}</div><div class="bulk-hint" onclick="toggleBulk(document.getElementById('bpwa-${i}'))">▼ expandir</div>` : ''}
+      ${p.img ? `<div style="font-size:10px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 3px;">Brief Visual</div><div class="bulk-body" id="bpimg-${i}" onclick="toggleBulk(this)">${esc(p.img)}</div><div class="bulk-hint" onclick="toggleBulk(document.getElementById('bpimg-${i}'))">▼ expandir</div>` : ''}
+      <div id="beditor-${i}" style="display:none;margin-top:10px;">
+        <div style="font-size:10px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;">Editar IG/FB</div>
+        <textarea id="bedita-${i}" style="width:100%;min-height:160px;border:1.5px solid #e8e8e8;border-radius:8px;padding:10px;font-family:'Inter',sans-serif;font-size:13px;line-height:1.7;color:#1a1a1a;resize:vertical;outline:none;" onfocus="this.style.borderColor='#CC3333'" onblur="this.style.borderColor='#e8e8e8'"></textarea>
+        <div class="brow" style="margin-top:6px;">
+          <button class="btn btn-green" style="padding:4px 10px;font-size:10px;" onclick="applyBulkEdit(${i})">Guardar edición</button>
+          <button class="btn btn-ghost" style="padding:4px 10px;font-size:10px;" onclick="toggleBulkEditor(${i})">Cancelar</button>
+        </div>
+      </div>
+    </div>`;
+  });
+
+  if (blogPosts.length) {
+    html += `<div style="font-family:'Inter Tight',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#aaa;margin:16px 0 8px;">📰 Noticias Quest</div>`;
+    blogPosts.forEach((b,i) => {
+      const content = b.blog || b.ig || '';
+      html += `<div class="bulk-post">
+        <div class="bulk-post-header">
+          <div class="bulk-post-meta">
+            <span class="cal-evt e-blog" style="font-size:9px;">blog</span>
+            <span class="bulk-post-day">Semana ${b.semana||i+1}</span>
+            <span style="font-size:12px;color:#aaa;font-weight:600;">${b.titulo||''}</span>
+            <span style="font-size:10px;color:${content.length>=3000?'#2e7d32':'#e65100'};">${content.length}c</span>
+          </div>
+          <div style="display:flex;gap:4px;">
+            <button class="btn btn-ghost" style="padding:3px 7px;font-size:10px;" onclick="copyEl('bblog-${i}')">Copiar</button>
+            <button class="btn btn-gold" style="padding:3px 7px;font-size:10px;" onclick="saveBlogToCalendar(${i},'${(b.titulo||'').replace(/'/g,'').slice(0,40)}')">+ Cal</button>
+          </div>
+        </div>
+        <div class="bulk-body" id="bblog-${i}" onclick="toggleBulk(this)">${esc(content)}</div>
+        <div class="bulk-hint" onclick="toggleBulk(document.getElementById('bblog-${i}'))">▼ expandir · ${content.length} chars</div>
+      </div>`;
+    });
+  }
+
+  return html;
+}
+
+// Bulk helpers
+function copyBulkIG(i) {
+  const el = document.getElementById(`bpig-${i}`);
   if (el) navigator.clipboard.writeText(el.innerText);
 }
-function toggleBulkEdit(i) {
-  const edit = document.getElementById(`bp-edit-${i}`);
-  const actions = document.getElementById(`bp-edit-actions-${i}`);
-  if (!edit) return;
-  const isVisible = edit.classList.contains('visible');
-  edit.classList.toggle('visible', !isVisible);
-  if (actions) actions.style.display = isVisible ? 'none' : 'flex';
+
+function saveBulkToCalendar(i) {
+  const post = bulkGeneratedPosts.filter(p=>p.pilar!=='blog')[i];
+  if (!post) return;
+  // Temporarily set currentPost to save correctly
+  const prevPost = {...currentPost};
+  const prevPilar = currentPilar;
+  const prevTitle = currentTitle;
+  currentPost = {ig:post.ig||'', wa:post.wa||'', img:post.img||'', blog:''};
+  currentPilar = post.pilar||'tip';
+  currentTitle = post.titulo||'Sin título';
+  openSaveCalModal(post.titulo, post.pilar);
+  // Will restore after modal closes (next save click)
 }
-function saveBulkEdit(i) {
-  const edit = document.getElementById(`bp-edit-${i}`);
-  const display = document.getElementById(`bp-ig-${i}`);
-  if (!edit || !display) return;
-  display.innerHTML = esc(edit.value);
-  toggleBulkEdit(i);
-  const b = document.querySelector(`#bp-edit-actions-${i} .btn-green`);
+
+function saveBlogToCalendar(i, title) {
+  const post = bulkGeneratedPosts.filter(p=>p.pilar==='blog')[i];
+  if (!post) return;
+  const prevPost = {...currentPost};
+  currentPost = {ig:'', wa:'', img:'', blog:post.blog||post.ig||''};
+  currentPilar = 'blog';
+  currentTitle = title || post.titulo || 'Noticias Quest';
+  openSaveCalModal(title, 'blog');
+}
+
+function toggleBulkEditor(i) {
+  const ed = document.getElementById(`beditor-${i}`);
+  const ta = document.getElementById(`bedita-${i}`);
+  if (!ed) return;
+  const isOpen = ed.style.display !== 'none';
+  ed.style.display = isOpen ? 'none' : 'block';
+  if (!isOpen && ta) {
+    const igEl = document.getElementById(`bpig-${i}`);
+    ta.value = igEl ? igEl.innerText : '';
+  }
+}
+
+function applyBulkEdit(i) {
+  const ta = document.getElementById(`bedita-${i}`);
+  const display = document.getElementById(`bpig-${i}`);
+  if (!ta || !display) return;
+  display.innerHTML = esc(ta.value);
+  // Update bulkGeneratedPosts
+  const rrss = bulkGeneratedPosts.filter(p=>p.pilar!=='blog');
+  if (rrss[i]) rrss[i].ig = ta.value;
+  toggleBulkEditor(i);
+  const b = document.querySelector(`#bpost-${i} .btn-green`);
   if(b){b.textContent='✅ Guardado';setTimeout(()=>b.textContent='Guardar edición',1500);}
 }
+
 function toggleBulk(el) { if(el) el.classList.toggle('expanded'); }
 function copyEl(id) { const el=document.getElementById(id); if(el) navigator.clipboard.writeText(el.innerText); }
 function copyCurrentPost() {
