@@ -239,7 +239,7 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
   <div class="header">
     <div>
       <div class="header-title">GameQuest — Agente MKT</div>
-      <div class="header-sub">Redactor TCG · Powered by Gemini</div>
+      <div class="header-sub">Redactor TCG · Powered by Groq</div>
     </div>
     <div class="header-right">
       <div class="header-status">
@@ -247,7 +247,7 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
         <span id="statusText">Sin API Key</span>
       </div>
       <div class="api-input-wrap">
-        <input class="api-input" type="password" id="apiKeyInput" placeholder="AIza..." />
+        <input class="api-input" type="password" id="apiKeyInput" placeholder="gsk_..." />
         <button class="btn btn-primary" onclick="saveApiKey()">Activar</button>
       </div>
     </div>
@@ -514,13 +514,13 @@ textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-h
     <div class="config-grid">
       <div class="panel">
         <div class="panel-header">
-          <div class="panel-title">API de Google Gemini</div>
+          <div class="panel-title">API de Groq</div>
           <span class="panel-badge">Requerido</span>
         </div>
-        <p style="font-size:13px;color:#777;margin-bottom:14px;line-height:1.6;">Consigue tu API Key gratis en <strong style="color:#1a1a1a">aistudio.google.com</strong>. Gemini tiene tier gratuito generoso — para este uso el costo es $0.</p>
+        <p style="font-size:13px;color:#777;margin-bottom:14px;line-height:1.6;">Consigue tu API Key gratis en <strong style="color:#1a1a1a">console.groq.com</strong>. Sin tarjeta, sin billing. 100% gratuito.</p>
         <div class="form-group">
           <label class="form-label">API Key</label>
-          <input type="password" class="cfg-input" id="configApiKey" placeholder="AIza..." />
+          <input type="password" class="cfg-input" id="configApiKey" placeholder="gsk_..." />
         </div>
         <button class="btn btn-primary btn-full" onclick="saveApiKey()">Guardar y Activar</button>
         <div class="cost-row">
@@ -652,17 +652,18 @@ async function generatePost() {
 
   try {
     const prompt = `${SYSTEM}\n\nPilar: ${pilarMap[pilar]}\nJuego: ${game}\nRedes: ${nets}\nAudiencia: ${aud}\n${ctx?'Contexto: '+ctx:'Elige un tema relevante para este pilar.'}`;
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},
       body:JSON.stringify({
-        contents:[{role:'user',parts:[{text:prompt}]}],
-        generationConfig:{temperature:0.9,maxOutputTokens:1500,responseMimeType:'text/plain'}
+        model:'llama-3.3-70b-versatile',
+        messages:[{role:'system',content:SYSTEM},{role:'user',content:`Pilar: ${pilarMap[pilar]}\nJuego: ${game}\nRedes: ${nets}\nAudiencia: ${aud}\n${ctx?'Contexto: '+ctx:'Elige un tema relevante para este pilar.'}`}],
+        temperature:0.9,max_tokens:1500
       })
     });
     const data = await res.json();
     if (data.error) throw new Error(data.error.message);
-    const raw = data.candidates[0].content.parts[0].text;
+    const raw = data.choices[0].message.content;
     let p;
     try { p = JSON.parse(raw.replace(/```json|```/g,'').trim()); }
     catch { p = {ig_post:raw,wa_post:raw,image_brief:'No disponible',char_count_ig:raw.length}; }
@@ -691,17 +692,18 @@ async function generateBulk() {
 
   try {
     const prompt = `${SYSTEM}\n\nPlan completo de contenido para ${month} de GameQuest.\n${ctx?'Novedades: '+ctx:''}\n\nRitmo: Lun=Lore, Mar=Restock, Mié=Tip, Jue=Novedades, Vie=Comunidad. Blog: semanas 1 y 3.\n\nResponde SOLO con JSON:\n{"mes":"${month}","posts":[{"semana":1,"dia":"Lunes 1","pilar":"lore","titulo":"título","ig_post":"copy completo","wa_post":"versión WA","image_brief":"brief visual"}],"blog_posts":[{"semana":1,"titulo":"título","intro":"intro 2 párrafos"}]}`;
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},
       body:JSON.stringify({
-        contents:[{role:'user',parts:[{text:prompt}]}],
-        generationConfig:{temperature:0.8,maxOutputTokens:8000,responseMimeType:'text/plain'}
+        model:'llama-3.3-70b-versatile',
+        messages:[{role:'system',content:SYSTEM},{role:'user',content:prompt}],
+        temperature:0.8,max_tokens:8000
       })
     });
     const data = await res.json();
     if (data.error) throw new Error(data.error.message);
-    const raw = data.candidates[0].content.parts[0].text;
+    const raw = data.choices[0].message.content;
     let plan;
     try { plan = JSON.parse(raw.replace(/```json|```/g,'').trim()); } catch { plan=null; }
 
