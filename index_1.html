@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameQuest — Agente de Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: #f2f2f2; color: #1a1a1a; min-height: 100vh; }
+h1,h2,h3,h4 { font-family: 'Inter Tight', sans-serif; font-weight: 800; letter-spacing: -.01em; }
+
+.wrap { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
+
+/* ── Header ── */
+.header {
+  background: #1a1a1a; border-radius: 14px;
+  padding: 20px 28px; margin-bottom: 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+}
+.header-title { font-size: 18px; font-weight: 900; text-transform: uppercase; letter-spacing: .04em; color: #fff; }
+.header-sub { font-size: 10px; color: rgba(255,255,255,.45); font-weight: 600; text-transform: uppercase; letter-spacing: .1em; margin-top: 1px; }
+.header-right { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.header-status { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: rgba(255,255,255,.6); text-transform: uppercase; letter-spacing: .06em; }
+.status-dot { width: 7px; height: 7px; border-radius: 50%; background: #f44336; }
+.status-dot.ok { background: #4caf50; box-shadow: 0 0 6px #4caf50; }
+.api-input-wrap { display: flex; align-items: center; gap: 8px; }
+.api-input {
+  background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.15);
+  border-radius: 8px; color: #fff; padding: 7px 12px;
+  font-family: monospace; font-size: 12px; width: 210px; outline: none;
+  transition: border-color .15s;
+}
+.api-input:focus { border-color: #CC3333; }
+.api-input::placeholder { color: rgba(255,255,255,.3); }
+
+/* ── Nav ── */
+.shortcuts { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+.shortcut-btn {
+  flex: 1; min-width: 130px; padding: 12px 16px; border-radius: 10px;
+  background: #fff; border: 1.5px solid #e8e8e8;
+  font-family: 'Inter Tight', sans-serif; font-size: 12px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .06em; color: #555;
+  cursor: pointer; transition: all .15s;
+  display: flex; align-items: center; gap: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.04);
+}
+.shortcut-btn:hover { border-color: #CC3333; color: #CC3333; background: #fff5f5; }
+.shortcut-btn.active { background: #CC3333; color: #fff; border-color: #CC3333; box-shadow: 0 4px 12px rgba(204,51,51,.25); }
+
+/* ── Sections ── */
+.section { display: none; }
+.section.active { display: block; }
+
+/* ── Panel ── */
+.panel {
+  background: #fff; border: 1.5px solid #e8e8e8; border-radius: 14px;
+  padding: 22px 24px; margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+}
+.panel-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #f0f0f0;
+}
+.panel-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #1a1a1a; }
+.panel-badge { font-size: 10px; font-weight: 700; color: #bbb; text-transform: uppercase; letter-spacing: .08em; }
+
+/* ── Generator grid ── */
+.gen-grid { display: grid; grid-template-columns: 320px 1fr; gap: 16px; align-items: start; }
+
+/* ── Form ── */
+.form-group { margin-bottom: 14px; }
+.form-label { display: block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #aaa; margin-bottom: 6px; }
+.cfg-input {
+  background: #fff; border: 1.5px solid #e8e8e8; border-radius: 7px;
+  color: #1a1a1a; font-family: 'Inter', sans-serif; font-size: 14px;
+  font-weight: 500; padding: 8px 11px; width: 100%;
+  transition: border-color .15s; outline: none; appearance: none;
+}
+.cfg-input:focus { border-color: #CC3333; }
+textarea.cfg-input { resize: vertical; min-height: 88px; font-size: 13px; line-height: 1.5; }
+
+/* ── Tags ── */
+.tag-group { display: flex; flex-wrap: wrap; gap: 7px; }
+.tag {
+  font-size: 11px; font-weight: 800; padding: 5px 12px; border-radius: 20px;
+  border: 1.5px solid #e8e8e8; color: #888; cursor: pointer;
+  transition: all .15s; text-transform: uppercase; letter-spacing: .05em;
+  font-family: 'Inter Tight', sans-serif;
+}
+.tag:hover { border-color: #CC3333; color: #CC3333; }
+.tag.active { background: #CC3333; color: #fff; border-color: #CC3333; }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 7px; padding: 10px 18px;
+  border-radius: 8px; font-family: 'Inter Tight', sans-serif;
+  font-size: 12px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .06em; cursor: pointer; border: none; transition: all .15s;
+}
+.btn-primary { background: #CC3333; color: #fff; box-shadow: 0 4px 12px rgba(204,51,51,.2); }
+.btn-primary:hover:not(:disabled) { background: #aa2222; transform: translateY(-1px); }
+.btn-dark { background: #1a1a1a; color: #fff; }
+.btn-dark:hover:not(:disabled) { background: #333; }
+.btn-ghost { background: #fff; color: #555; border: 1.5px solid #ddd; }
+.btn-ghost:hover:not(:disabled) { border-color: #1a1a1a; color: #1a1a1a; }
+.btn-gold { background: #fff8e1; color: #e65100; border: 1.5px solid #ffe082; }
+.btn-gold:hover:not(:disabled) { background: #fff3cd; }
+.btn:disabled { opacity: .4; cursor: not-allowed; transform: none !important; }
+.btn-full { width: 100%; justify-content: center; padding: 12px; }
+.brow { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+.spin { width: 13px; height: 13px; border: 2px solid rgba(255,255,255,.35); border-top-color: #fff; border-radius: 50%; animation: spin .6s linear infinite; display: none; }
+.btn-ghost .spin, .btn-gold .spin { border-color: rgba(0,0,0,.12); border-top-color: #555; }
+.btn.loading .spin { display: block; } .btn.loading .btn-ico { display: none; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Output ── */
+.output-tabs { display: flex; gap: 7px; }
+.output-tab {
+  font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 800;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 5px 13px; border-radius: 20px;
+  border: 1.5px solid #e8e8e8; cursor: pointer; color: #aaa;
+  background: transparent; transition: all .15s;
+}
+.output-tab:hover { border-color: #CC3333; color: #CC3333; }
+.output-tab.active { background: #CC3333; color: #fff; border-color: #CC3333; }
+
+.post-preview {
+  background: #fafafa; border: 1.5px solid #e8e8e8; border-radius: 10px;
+  padding: 18px; min-height: 180px; font-size: 14px; line-height: 1.75;
+  white-space: pre-wrap; color: #1a1a1a; position: relative;
+}
+.post-placeholder { color: #bbb; font-size: 13px; line-height: 1.65; }
+.char-count { font-size: 10px; color: #bbb; font-weight: 700; letter-spacing: .05em; text-align: right; margin-top: 6px; text-transform: uppercase; }
+.copy-btn {
+  position: absolute; top: 10px; right: 10px;
+  background: #fff; border: 1.5px solid #e8e8e8; border-radius: 6px;
+  color: #888; padding: 4px 10px; font-size: 10px; cursor: pointer;
+  font-family: 'Inter Tight', sans-serif; font-weight: 800;
+  letter-spacing: .06em; text-transform: uppercase; transition: all .15s;
+}
+.copy-btn:hover { border-color: #CC3333; color: #CC3333; }
+
+.loading-state { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 180px; gap: 12px; }
+.load-ring { width: 32px; height: 32px; border: 3px solid #e8e8e8; border-top-color: #CC3333; border-radius: 50%; animation: spin .7s linear infinite; }
+.load-txt { font-size: 11px; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: .08em; }
+
+/* ── Alerts ── */
+.alert { padding: 11px 15px; border-radius: 8px; font-size: 13px; font-weight: 600; margin-bottom: 14px; border: 1.5px solid; }
+.alert-warn { background: #fff8e1; border-color: #ffe082; color: #e65100; }
+.alert-info { background: #e8f0fe; border-color: #afc6f6; color: #1a56db; }
+.alert-ok   { background: #e8f5e9; border-color: #a5d6a7; color: #2e7d32; }
+.alert-err  { background: #fdecea; border-color: #f5c6cb; color: #c62828; }
+
+/* ── Accordion ── */
+.accordion { margin-bottom: 10px; }
+.accordion-header {
+  background: #fff; border: 1.5px solid #e8e8e8; border-radius: 12px;
+  padding: 15px 20px; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all .15s; user-select: none; box-shadow: 0 2px 6px rgba(0,0,0,.04);
+}
+.accordion-header:hover { border-color: #CC3333; }
+.accordion-header.open { border-radius: 12px 12px 0 0; border-bottom-color: transparent; }
+.accordion-title { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; display: flex; align-items: center; gap: 10px; }
+.accordion-arrow { font-size: 11px; color: #aaa; transition: transform .2s; }
+.accordion-header.open .accordion-arrow { transform: rotate(180deg); }
+.accordion-body {
+  background: #fff; border: 1.5px solid #e8e8e8; border-top: none;
+  border-radius: 0 0 12px 12px; padding: 20px; display: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+}
+.accordion-body.open { display: block; }
+
+/* ── Table ── */
+.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+.tbl th { font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #aaa; text-align: left; padding: 8px 12px; border-bottom: 1.5px solid #e8e8e8; }
+.tbl td { padding: 9px 12px; border-bottom: 1px solid #f4f4f4; color: #555; vertical-align: top; line-height: 1.55; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl td:first-child { color: #1a1a1a; font-weight: 700; white-space: nowrap; }
+
+/* ── Chips ── */
+.chip { display: inline-block; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px; margin: 2px; font-family: 'Inter Tight', sans-serif; letter-spacing: .04em; }
+.chip-do   { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+.chip-dont { background: #fdecea; color: #c62828; border: 1px solid #f5c6cb; }
+.chip-warn { background: #fff8e1; color: #e65100; border: 1px solid #ffe082; }
+.chip-info { background: #e8f0fe; color: #1a56db; border: 1px solid #afc6f6; }
+
+/* ── Calendar ── */
+.month-nav { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.month-nav span { font-family: 'Inter Tight', sans-serif; font-size: 16px; font-weight: 800; min-width: 160px; text-align: center; }
+.cal-head { display: grid; grid-template-columns: repeat(7,1fr); gap: 6px; margin-bottom: 4px; }
+.cal-head-lbl { font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: #bbb; text-align: center; padding: 4px 0; }
+.cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 6px; }
+.cal-day { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 8px; min-height: 72px; padding: 7px; cursor: pointer; transition: border-color .15s; }
+.cal-day:hover { border-color: #CC3333; }
+.cal-day.today { border-color: #CC3333; border-width: 2px; }
+.cal-day.empty { background: transparent; border-color: transparent; cursor: default; }
+.cal-day-num { font-family: 'Inter Tight', sans-serif; font-size: 13px; font-weight: 800; color: #ccc; margin-bottom: 4px; }
+.cal-day.today .cal-day-num { color: #CC3333; }
+.cal-evt { font-size: 9px; font-weight: 800; padding: 2px 5px; border-radius: 3px; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Inter Tight', sans-serif; text-transform: uppercase; letter-spacing: .04em; }
+.e-tip       { background: #e8f0fe; color: #1a56db; }
+.e-restock   { background: #fff8e1; color: #e65100; }
+.e-torneo    { background: #fdecea; color: #c62828; }
+.e-lore      { background: #e8f5e9; color: #2e7d32; }
+.e-comunidad { background: #f3e8ff; color: #7c3aed; }
+.legend { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; color: #888; font-family: 'Inter Tight', sans-serif; text-transform: uppercase; letter-spacing: .05em; }
+.legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+
+/* ── Bulk posts ── */
+.bulk-post { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 10px; padding: 16px; margin-bottom: 10px; box-shadow: 0 2px 6px rgba(0,0,0,.04); }
+.bulk-post-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.bulk-post-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.bulk-post-day { font-family: 'Inter Tight', sans-serif; font-size: 13px; font-weight: 800; }
+.bulk-body { font-size: 13px; color: #555; line-height: 1.65; max-height: 90px; overflow: hidden; cursor: pointer; transition: max-height .3s ease; }
+.bulk-body.expanded { max-height: 2000px; }
+.bulk-hint { font-size: 10px; color: #ccc; font-weight: 700; letter-spacing: .05em; margin-top: 6px; text-transform: uppercase; cursor: pointer; }
+
+/* ── Config ── */
+.config-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cost-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; padding-top: 14px; border-top: 1px solid #f0f0f0; }
+.cost-item span { font-size: 10px; font-weight: 700; color: #bbb; text-transform: uppercase; letter-spacing: .06em; display: block; margin-bottom: 3px; }
+.cost-item strong { font-family: 'Inter Tight', sans-serif; font-size: 16px; font-weight: 900; }
+
+@media (max-width: 780px) {
+  .gen-grid, .config-grid { grid-template-columns: 1fr; }
+  .shortcuts .shortcut-btn { min-width: calc(50% - 5px); }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <div class="header-title">GameQuest — Agente MKT</div>
+      <div class="header-sub">Redactor TCG · Powered by Claude</div>
+    </div>
+    <div class="header-right">
+      <div class="header-status">
+        <div class="status-dot" id="statusDot"></div>
+        <span id="statusText">Sin API Key</span>
+      </div>
+      <div class="api-input-wrap">
+        <input class="api-input" type="password" id="apiKeyInput" placeholder="sk-ant-api03-..." />
+        <button class="btn btn-primary" onclick="saveApiKey()">Activar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <div class="shortcuts">
+    <button class="shortcut-btn active" onclick="showSection('generator',this)">✦ Generar Post</button>
+    <button class="shortcut-btn" onclick="showSection('bulk',this)">⚔ Mes Completo</button>
+    <button class="shortcut-btn" onclick="showSection('calendar',this)">◈ Calendario</button>
+    <button class="shortcut-btn" onclick="showSection('editorial',this)">◉ Línea Editorial</button>
+    <button class="shortcut-btn" onclick="showSection('config',this)">◎ Configuración</button>
+  </div>
+
+  <!-- ══ GENERATOR ══ -->
+  <div class="section active" id="section-generator">
+    <div class="gen-grid">
+
+      <div>
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">Parámetros del Post</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Pilar Temático</label>
+            <select class="cfg-input" id="pilarSelect">
+              <option value="tip">🧠 Tip del Aventurero</option>
+              <option value="restock">📦 Restock & Novedades</option>
+              <option value="torneo">⚔️ Torneos & Eventos</option>
+              <option value="lore">📖 Lore & Historia</option>
+              <option value="comunidad">🤝 Comunidad</option>
+              <option value="tiktok">🎬 Guión TikTok (60 seg)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Juego</label>
+            <select class="cfg-input" id="gameSelect">
+              <option value="magic">Magic: The Gathering</option>
+              <option value="pokemon">Pokémon (próximamente)</option>
+              <option value="neuroscape">Neuroscape</option>
+              <option value="general">TCG General</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Red Social</label>
+            <div class="tag-group" id="networkTags">
+              <span class="tag active" data-net="instagram">Instagram</span>
+              <span class="tag active" data-net="facebook">Facebook</span>
+              <span class="tag" data-net="whatsapp">WhatsApp</span>
+              <span class="tag" data-net="tiktok">TikTok</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Audiencia</label>
+            <div class="tag-group" id="audienceTags">
+              <span class="tag active" data-aud="competitivo">Competitivos</span>
+              <span class="tag active" data-aud="casual">Casuales</span>
+              <span class="tag active" data-aud="nuevo">Nuevos</span>
+              <span class="tag" data-aud="coleccionista">Coleccionistas</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Tema / Contexto (opcional)</label>
+            <textarea class="cfg-input" id="contextInput" placeholder="Ej: Tip sobre Mana Curve en Commander, qué es y cómo optimizarla en mazos mid-range..."></textarea>
+          </div>
+
+          <button class="btn btn-primary btn-full" onclick="generatePost()" id="genBtn">
+            <span class="btn-ico">✦</span><span class="spin"></span> Invocar Redactor
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">Post Generado</div>
+            <div class="output-tabs">
+              <button class="output-tab active" onclick="switchTab('ig',this)">IG / FB</button>
+              <button class="output-tab" onclick="switchTab('wa',this)">WhatsApp</button>
+              <button class="output-tab" onclick="switchTab('img',this)">Brief Imagen</button>
+            </div>
+          </div>
+
+          <div id="outputArea">
+            <div class="post-preview">
+              <div class="post-placeholder">El post aparecerá aquí después de invocar al Redactor.<br><br>Ingresa tu API Key de Anthropic en la barra superior para activar el agente.</div>
+            </div>
+          </div>
+
+          <div class="brow" id="genActions" style="display:none;">
+            <button class="btn btn-ghost" onclick="copyCurrentPost()">Copiar texto</button>
+            <button class="btn btn-gold" onclick="saveToCalendar()">+ Guardar en calendario</button>
+            <button class="btn btn-ghost" onclick="generatePost()">↺ Regenerar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MES COMPLETO ══ -->
+  <div class="section" id="section-bulk">
+    <div class="alert alert-warn">⚠ Esta función genera 20–25 posts del mes completo en una sola pasada. Puede demorar hasta 40 segundos.</div>
+
+    <div class="panel" style="max-width:520px;">
+      <div class="panel-header">
+        <div class="panel-title">Plan de Contenido Mensual</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mes a planificar</label>
+        <select class="cfg-input" id="bulkMonth">
+          <option>Enero</option><option>Febrero</option><option>Marzo</option>
+          <option>Abril</option><option selected>Mayo</option><option>Junio</option>
+          <option>Julio</option><option>Agosto</option><option>Septiembre</option>
+          <option>Octubre</option><option>Noviembre</option><option>Diciembre</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Novedades del mes (lanzamientos, torneos, restocks)</label>
+        <textarea class="cfg-input" id="bulkContext" placeholder="Ej: Sale set Tarkir Dragonstorm el 11. Torneo Bracket 3 el día 20. Restock de singles Duskmourn la primera semana..."></textarea>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="generateBulk()" id="bulkBtn">
+        <span class="btn-ico">⚔</span><span class="spin"></span> Generar Plan Mensual
+      </button>
+    </div>
+
+    <div id="bulkOutput"></div>
+  </div>
+
+  <!-- ══ CALENDARIO ══ -->
+  <div class="section" id="section-calendar">
+    <div class="month-nav">
+      <button class="btn btn-ghost" onclick="prevMonth()">← Anterior</button>
+      <span id="calMonthLabel">—</span>
+      <button class="btn btn-ghost" onclick="nextMonth()">Siguiente →</button>
+    </div>
+    <div class="panel">
+      <div class="cal-head">
+        <div class="cal-head-lbl">Lun</div><div class="cal-head-lbl">Mar</div>
+        <div class="cal-head-lbl">Mié</div><div class="cal-head-lbl">Jue</div>
+        <div class="cal-head-lbl">Vie</div><div class="cal-head-lbl">Sáb</div>
+        <div class="cal-head-lbl">Dom</div>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#1a56db"></div>Tip</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#e65100"></div>Restock</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#c62828"></div>Torneo</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#2e7d32"></div>Lore</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>Comunidad</div>
+    </div>
+  </div>
+
+  <!-- ══ LÍNEA EDITORIAL ══ -->
+  <div class="section" id="section-editorial">
+
+    <div class="accordion">
+      <div class="accordion-header open" onclick="toggleAcc(this)">
+        <div class="accordion-title">✦ Identidad de Marca</div>
+        <div class="accordion-arrow">▼</div>
+      </div>
+      <div class="accordion-body open">
+        <table class="tbl">
+          <thead><tr><th>Dimensión</th><th>Definición</th></tr></thead>
+          <tbody>
+            <tr><td>Quiénes somos</td><td>Tienda TCG chilena conducida por jugadores. Somos parte de la comunidad, no estamos por encima de ella.</td></tr>
+            <tr><td>Firma de apertura</td><td>🔥 Saludos Aventureros 🔥 — siempre, sin excepción.</td></tr>
+            <tr><td>Cierre CTA</td><td>Siempre terminar con referencia o link a gamequest.cl</td></tr>
+            <tr><td>Tratamiento</td><td>Tuteo en todo momento. Nunca ustedear.</td></tr>
+            <tr><td>Audiencia principal</td><td>Jugadores Commander/EDH competitivos y casuales. Secundario: nuevos y coleccionistas.</td></tr>
+            <tr><td>Tono</td><td>Cercano y apasionado con autoridad técnica. Como un amigo que sabe mucho, no un manual.</td></tr>
+            <tr><td>Escritura en capas</td><td>Cada post debe funcionar para expertos Y para nuevos. Los avanzados validan, los nuevos aprenden. No patronear.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <div class="accordion-title">◉ Vocabulario y Reglas de Voz</div>
+        <div class="accordion-arrow">▼</div>
+      </div>
+      <div class="accordion-body">
+        <table class="tbl">
+          <thead><tr><th>Regla</th><th>Ejemplos</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Usar siempre</td>
+              <td>
+                <span class="chip chip-do">cartitas</span>
+                <span class="chip chip-do">Aventureros</span>
+                <span class="chip chip-do">mazos</span>
+                <span class="chip chip-do">EDH / Commander</span>
+                <span class="chip chip-do">Game Changers</span>
+                <span class="chip chip-do">Bracket 3</span>
+                <span class="chip chip-do">Stack / La Pila</span>
+                <span class="chip chip-do">singles</span>
+                <span class="chip chip-do">precons</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Jamás escribir</td>
+              <td>
+                <span class="chip chip-dont">nos complace anunciar</span>
+                <span class="chip chip-dont">en el dinámico mundo de</span>
+                <span class="chip chip-dont">soluciones</span>
+                <span class="chip chip-dont">potenciar sinergias</span>
+                <span class="chip chip-dont">innovador</span>
+                <span class="chip chip-dont">es un placer</span>
+                <span class="chip chip-dont">de primer nivel</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <div class="accordion-title">⚔ Pilares y Frecuencia Semanal</div>
+        <div class="accordion-arrow">▼</div>
+      </div>
+      <div class="accordion-body">
+        <table class="tbl">
+          <thead><tr><th>Pilar</th><th>Día</th><th>Canal</th><th>Descripción</th></tr></thead>
+          <tbody>
+            <tr><td>🧠 Tip del Aventurero</td><td>Miércoles</td><td>IG, FB, WA, TikTok</td><td>Mecánicas, estrategias, reglas. Técnico pero accesible.</td></tr>
+            <tr><td>📖 Lore & Historia</td><td>Lunes</td><td>IG, FB</td><td>Historia de cartas, sets, personajes del universo MTG.</td></tr>
+            <tr><td>📦 Restock & Novedades</td><td>Mar / Jue</td><td>IG, FB, WA</td><td>Singles nuevos, precons, novedades de catálogo.</td></tr>
+            <tr><td>⚔ Torneos & Eventos</td><td>Según agenda</td><td>IG, FB, WA</td><td>Convocatoria, resultados y estadísticas de torneos GQ.</td></tr>
+            <tr><td>🤝 Comunidad</td><td>Viernes</td><td>IG, FB, WA</td><td>WhatsApp, visitas a tiendas aliadas, buena onda.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <div class="accordion-title">◈ Estrategia por Juego</div>
+        <div class="accordion-arrow">▼</div>
+      </div>
+      <div class="accordion-body">
+        <table class="tbl">
+          <thead><tr><th>Juego</th><th>Estado</th><th>Volumen</th><th>Estrategia</th></tr></thead>
+          <tbody>
+            <tr><td>Magic: The Gathering</td><td><span class="chip chip-do">Core</span></td><td>70% del contenido</td><td>Tips, torneos, singles, lore — todo el espectro.</td></tr>
+            <tr><td>Pokémon</td><td><span class="chip chip-warn">Próximamente</span></td><td>Anticipación</td><td>Calentar audiencia. Contenido "pronto llegamos".</td></tr>
+            <tr><td>Neuroscape</td><td><span class="chip chip-info">Construyendo</span></td><td>Educativo</td><td>Presentar el juego, construir audiencia antes del stock.</td></tr>
+            <tr><td>One Piece / Riftbound</td><td><span class="chip chip-dont">Sin proveedor</span></td><td>Ocasional</td><td>Solo cuando haya stock real. No generar expectativa vacía.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CONFIGURACIÓN ══ -->
+  <div class="section" id="section-config">
+    <div class="alert alert-info">◈ Sesión 1 activa. Google Calendar y Meta se conectan en fases 2 y 3.</div>
+    <div class="config-grid">
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">API de Anthropic</div>
+          <span class="panel-badge">Requerido</span>
+        </div>
+        <p style="font-size:13px;color:#777;margin-bottom:14px;line-height:1.6;">Crea tu API Key en <strong style="color:#1a1a1a">console.anthropic.com</strong>. Se cobra por uso, no hay suscripción fija.</p>
+        <div class="form-group">
+          <label class="form-label">API Key</label>
+          <input type="password" class="cfg-input" id="configApiKey" placeholder="sk-ant-api03-..." />
+        </div>
+        <button class="btn btn-primary btn-full" onclick="saveApiKey()">Guardar y Activar</button>
+        <div class="cost-row">
+          <div class="cost-item"><span>30 posts/mes</span><strong style="color:#e65100">~$2–3 USD</strong></div>
+          <div class="cost-item"><span>Hosting</span><strong style="color:#2e7d32">$0</strong></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">Google Calendar</div>
+          <span class="panel-badge">Fase 2</span>
+        </div>
+        <p style="font-size:13px;color:#777;margin-bottom:14px;line-height:1.6;">Conecta tu Google Calendar para que el agente cree eventos y alertas automáticamente al generar cada post.</p>
+        <button class="btn btn-ghost btn-full" disabled>Conectar Google Calendar →</button>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">Meta Business</div>
+          <span class="panel-badge">Fase 3</span>
+        </div>
+        <p style="font-size:13px;color:#777;margin-bottom:14px;line-height:1.6;">Programación directa en Instagram y Facebook. Requiere Meta Developer App (gratuito pero burocrático).</p>
+        <button class="btn btn-ghost btn-full" disabled>Conectar Meta →</button>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">GitHub Pages</div>
+          <span class="panel-badge">Hosting gratuito</span>
+        </div>
+        <p style="font-size:13px;color:#777;margin-bottom:14px;line-height:1.6;">Publica este agente con tu propia URL y acceso 24/7, sin costo. Solo necesitas una cuenta en GitHub.</p>
+        <button class="btn btn-dark btn-full" onclick="window.open('https://github.com','_blank')">Ir a GitHub →</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let apiKey = localStorage.getItem('gq_api_key') || '';
+let calYear, calMonth;
+let savedPosts = JSON.parse(localStorage.getItem('gq_posts') || '{}');
+let currentPost = {ig:'',wa:'',img:''};
+let currentTab = 'ig';
+const MONTHS = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+const SYSTEM = `Eres el Redactor Oficial de GameQuest, una tienda TCG chilena especializada en Magic: The Gathering. Escribes contenido para redes sociales con voz específica.
+
+IDENTIDAD: GameQuest es parte de la comunidad TCG, no está por encima de ella. Hablas como jugador experto apasionado, no como vendedor.
+
+REGLAS OBLIGATORIAS:
+1. SIEMPRE abrir con: 🔥 Saludos Aventureros 🔥
+2. SIEMPRE cerrar con CTA a gamequest.cl
+3. SIEMPRE tutear. Jamás ustedear.
+4. Usar terminología TCG natural: EDH, Commander, singles, precons, Game Changers, Bracket 3, Stack/La Pila, mana curve, etc.
+5. Escritura en capas: expertos validan, nuevos aprenden. No patronear.
+6. Tono: cercano, apasionado, con autoridad técnica. Como amigo experto, no manual.
+
+NUNCA ESCRIBIR: "nos complace anunciar", "en el dinámico mundo de", "soluciones", "potenciar sinergias", "innovador", "es un placer", "de primer nivel", ni nada corporativo o que suene claramente IA.
+
+JUEGOS: Magic → core 70%. Pokémon → solo anticipación. Neuroscape → educativo. One Piece/Riftbound → solo con stock real confirmado.
+
+RESPONDE SOLO con este JSON exacto, sin markdown:
+{"ig_post":"texto IG/FB completo","wa_post":"versión corta WhatsApp","image_brief":"descripción visual para diseñador: composición, elementos, colores","char_count_ig":numero}`;
+
+window.onload = () => {
+  const now = new Date();
+  calYear = now.getFullYear(); calMonth = now.getMonth();
+  if (apiKey) { document.getElementById('apiKeyInput').value = apiKey; updateStatus(true); }
+  renderCalendar();
+  document.querySelectorAll('.tag').forEach(t => t.addEventListener('click', () => t.classList.toggle('active')));
+};
+
+function showSection(name, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('section-'+name).classList.add('active');
+  document.querySelectorAll('.shortcut-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+
+function saveApiKey() {
+  const k = (document.getElementById('apiKeyInput').value || document.getElementById('configApiKey')?.value || '').trim();
+  if (!k) return;
+  apiKey = k; localStorage.setItem('gq_api_key', k);
+  if (document.getElementById('configApiKey')) document.getElementById('configApiKey').value = k;
+  updateStatus(true);
+}
+
+function updateStatus(ok) {
+  document.getElementById('statusDot').className = 'status-dot'+(ok?' ok':'');
+  document.getElementById('statusText').textContent = ok ? 'Agente Activo' : 'Sin API Key';
+}
+
+function toggleAcc(h) { h.classList.toggle('open'); h.nextElementSibling.classList.toggle('open'); }
+
+function switchTab(tab, el) {
+  currentTab = tab;
+  document.querySelectorAll('.output-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  if (currentPost.ig) renderPost();
+}
+
+function renderPost() {
+  const c = currentTab==='ig'?currentPost.ig:currentTab==='wa'?currentPost.wa:currentPost.img;
+  document.getElementById('outputArea').innerHTML = `
+    <div class="post-preview">
+      <button class="copy-btn" onclick="copyCurrentPost()">Copiar</button>
+      ${esc(c)}
+    </div>
+    ${currentTab==='ig'?`<div class="char-count">${c.length} caracteres</div>`:''}`;
+}
+
+function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'); }
+
+async function generatePost() {
+  if (!apiKey) { alert('Ingresa tu API Key en la barra superior.'); return; }
+  const btn = document.getElementById('genBtn');
+  setLoad(btn, true);
+  document.getElementById('genActions').style.display = 'none';
+  document.getElementById('outputArea').innerHTML = `<div class="loading-state"><div class="load-ring"></div><div class="load-txt">Redactando post...</div></div>`;
+
+  const pilarMap = {tip:'Tip del Aventurero — mecánica o estrategia TCG educativa',restock:'Restock & Novedades — singles, precons, catálogo nuevo',torneo:'Torneos & Eventos — convocatoria o resultados',lore:'Lore & Historia — carta, set o personaje MTG',comunidad:'Comunidad — WhatsApp, visitas, alianzas, buena onda',tiktok:'Guión TikTok — video 60 segundos, tip rápido'};
+  const pilar = document.getElementById('pilarSelect').value;
+  const game = document.getElementById('gameSelect').value;
+  const ctx = document.getElementById('contextInput').value;
+  const nets = [...document.querySelectorAll('#networkTags .tag.active')].map(t=>t.dataset.net).join(', ');
+  const aud = [...document.querySelectorAll('#audienceTags .tag.active')].map(t=>t.dataset.aud).join(', ');
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1500,system:SYSTEM,
+        messages:[{role:'user',content:`Pilar: ${pilarMap[pilar]}\nJuego: ${game}\nRedes: ${nets}\nAudiencia: ${aud}\n${ctx?'Contexto: '+ctx:'Elige un tema relevante para este pilar.'}`}]})
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    const raw = data.content[0].text;
+    let p;
+    try { p = JSON.parse(raw.replace(/```json|```/g,'').trim()); }
+    catch { p = {ig_post:raw,wa_post:raw,image_brief:'No disponible',char_count_ig:raw.length}; }
+    currentPost = {ig:p.ig_post||'',wa:p.wa_post||'',img:p.image_brief||''};
+    renderPost();
+    document.getElementById('genActions').style.display = 'flex';
+    const now = new Date();
+    const key = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`;
+    if (!savedPosts[key]) savedPosts[key]=[];
+    savedPosts[key].push({type:pilar,preview:currentPost.ig.slice(0,50)});
+    localStorage.setItem('gq_posts', JSON.stringify(savedPosts));
+    if (calYear===now.getFullYear()&&calMonth===now.getMonth()) renderCalendar();
+  } catch(e) {
+    document.getElementById('outputArea').innerHTML = `<div class="post-preview"><div class="post-placeholder" style="color:#c62828;">Error: ${e.message}<br><br>Verifica que tu API Key sea válida.</div></div>`;
+  }
+  setLoad(btn, false);
+}
+
+async function generateBulk() {
+  if (!apiKey) { alert('Ingresa tu API Key primero.'); return; }
+  const btn = document.getElementById('bulkBtn');
+  setLoad(btn, true);
+  const month = document.getElementById('bulkMonth').value;
+  const ctx = document.getElementById('bulkContext').value;
+  document.getElementById('bulkOutput').innerHTML = `<div class="loading-state"><div class="load-ring"></div><div class="load-txt">Generando plan mensual... ~40 seg</div></div>`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:8000,system:SYSTEM,
+        messages:[{role:'user',content:`Plan completo de contenido para ${month} de GameQuest.\n${ctx?'Novedades: '+ctx:''}\n\nRitmo: Lun=Lore, Mar=Restock, Mié=Tip, Jue=Novedades, Vie=Comunidad. Blog: semanas 1 y 3.\n\nResponde SOLO con JSON:\n{"mes":"${month}","posts":[{"semana":1,"dia":"Lunes 1","pilar":"lore","titulo":"título","ig_post":"copy completo","wa_post":"versión WA","image_brief":"brief visual"}],"blog_posts":[{"semana":1,"titulo":"título","intro":"intro 2 párrafos"}]}`}]})
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    const raw = data.content[0].text;
+    let plan;
+    try { plan = JSON.parse(raw.replace(/```json|```/g,'').trim()); } catch { plan=null; }
+
+    if (plan?.posts) {
+      const pc = {tip:'e-tip',restock:'e-restock',torneo:'e-torneo',lore:'e-lore',comunidad:'e-comunidad'};
+      let html = `<div class="alert alert-ok">✅ ${plan.posts.length} posts generados + ${plan.blog_posts?.length||0} artículos de blog para ${plan.mes}</div>`;
+      plan.posts.forEach((p,i) => {
+        html += `<div class="bulk-post">
+          <div class="bulk-post-header">
+            <div class="bulk-post-meta">
+              <span class="cal-evt ${pc[p.pilar]||'e-comunidad'}">${p.pilar}</span>
+              <span class="bulk-post-day">${p.dia}</span>
+              <span style="font-size:12px;color:#aaa;font-weight:600">${p.titulo}</span>
+            </div>
+            <button class="btn btn-ghost" style="padding:5px 12px;font-size:10px;" onclick="copyEl('bp-${i}')">Copiar</button>
+          </div>
+          <div class="bulk-body" id="bp-${i}" onclick="toggleBulk(this)">${esc(p.ig_post)}</div>
+          <div class="bulk-hint" onclick="toggleBulk(this.previousElementSibling)">▼ Clic para expandir · ${p.ig_post.length} chars</div>
+        </div>`;
+      });
+      if (plan.blog_posts?.length) {
+        html += `<div style="font-family:'Inter Tight',sans-serif;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#aaa;margin:20px 0 10px;">Blog Posts</div>`;
+        plan.blog_posts.forEach(b => {
+          html += `<div class="bulk-post">
+            <div style="font-family:'Inter Tight',sans-serif;font-size:14px;font-weight:800;color:#CC3333;margin-bottom:8px;">${b.titulo}</div>
+            <div style="font-size:13px;color:#555;line-height:1.65;white-space:pre-wrap;">${esc(b.intro)}</div>
+          </div>`;
+        });
+      }
+      document.getElementById('bulkOutput').innerHTML = html;
+    } else {
+      document.getElementById('bulkOutput').innerHTML = `<div class="panel"><pre style="white-space:pre-wrap;font-size:12px;color:#555;">${esc(raw)}</pre></div>`;
+    }
+  } catch(e) {
+    document.getElementById('bulkOutput').innerHTML = `<div class="alert alert-err">Error: ${e.message}</div>`;
+  }
+  setLoad(btn, false);
+}
+
+function toggleBulk(el) { el.classList.toggle('expanded'); }
+
+function renderCalendar() {
+  document.getElementById('calMonthLabel').textContent = `${MONTHS[calMonth]} ${calYear}`;
+  const grid = document.getElementById('calGrid');
+  const fd = new Date(calYear,calMonth,1).getDay();
+  const startDow = fd===0?6:fd-1;
+  const days = new Date(calYear,calMonth+1,0).getDate();
+  const today = new Date();
+  const sched = {0:{type:'lore',label:'Lore'},1:{type:'restock',label:'Restock'},2:{type:'tip',label:'Tip'},3:{type:'restock',label:'Novedades'},4:{type:'comunidad',label:'Comunidad'}};
+  let html = '<div class="cal-day empty"></div>'.repeat(startDow);
+  for (let d=1; d<=days; d++) {
+    const dow = (() => { let x=new Date(calYear,calMonth,d).getDay(); return x===0?6:x-1; })();
+    const isToday = today.getFullYear()===calYear&&today.getMonth()===calMonth&&today.getDate()===d;
+    const key = `${calYear}-${calMonth}-${d}`;
+    const saved = savedPosts[key]||[];
+    let evts = '';
+    if (sched[dow]) evts += `<div class="cal-evt e-${sched[dow].type}">${sched[dow].label}</div>`;
+    saved.forEach(s => evts += `<div class="cal-evt e-${s.type}" title="${s.preview}">★ ${s.preview.slice(0,12)}</div>`);
+    html += `<div class="cal-day${isToday?' today':''}"><div class="cal-day-num">${d}</div>${evts}</div>`;
+  }
+  grid.innerHTML = html;
+}
+function prevMonth() { if(--calMonth<0){calMonth=11;calYear--;} renderCalendar(); }
+function nextMonth() { if(++calMonth>11){calMonth=0;calYear++;} renderCalendar(); }
+
+function copyCurrentPost() {
+  const t = currentTab==='ig'?currentPost.ig:currentTab==='wa'?currentPost.wa:currentPost.img;
+  navigator.clipboard.writeText(t).then(()=>{
+    const b=document.querySelector('.copy-btn');
+    if(b){b.textContent='¡Copiado!';setTimeout(()=>b.textContent='Copiar',1500);}
+  });
+}
+function copyEl(id) { const el=document.getElementById(id); if(el) navigator.clipboard.writeText(el.textContent); }
+function saveToCalendar() { renderCalendar(); }
+function setLoad(btn, on) { btn.disabled=on; btn.classList.toggle('loading',on); }
+</script>
+</body>
+</html>
