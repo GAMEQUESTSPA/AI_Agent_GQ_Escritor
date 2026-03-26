@@ -608,7 +608,23 @@ RESPONDE SOLO con este JSON exacto, sin markdown ni texto extra:
 }
 
 
-const TOOL_DEF = [{type:'function',function:{name:'search_web',description:'Busca información actualizada en internet sobre Magic TCG, sets, cartas, baneos, torneos, meta, spoilers, jugadores, novedades.',parameters:{type:'object',properties:{query:{type:'string'},reason:{type:'string'}},required:['query','reason']}}}];
+const TOOL_DEF = [
+  {
+    type: 'function',
+    function: {
+      name: 'search_web',
+      description: 'Busca información actualizada en internet sobre Magic TCG, sets, cartas, baneos, torneos, meta, spoilers, jugadores, novedades.',
+      parameters: {
+        type: 'object',
+        properties: {
+          query: { type: 'string', description: 'Consulta de búsqueda' },
+          reason: { type: 'string', description: 'Por qué necesitas esta búsqueda' }
+        },
+        required: ['query', 'reason']
+      }
+    }
+  }
+];
 
 // ── INIT ──
 window.onload = async () => {
