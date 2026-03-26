@@ -137,7 +137,7 @@ textarea.cfg-input { resize: vertical; min-height: 76px; font-size: 13px; line-h
 .ed-table th { font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #aaa; text-align: left; padding: 7px 10px; border-bottom: 1.5px solid #e8e8e8; }
 .ed-table td { padding: 6px 4px; border-bottom: 1px solid #f4f4f4; vertical-align: top; }
 .ed-table tr:last-child td { border-bottom: none; }
-.ed-input { width: 100%; border: 1.5px solid transparent; border-radius: 6px; padding: 5px 8px; font-family: 'Inter', sans-serif; font-size: 13px; color: #1a1a1a !important; background: #fff; outline: none; transition: all .15s; resize: none; overflow: hidden; }
+.ed-input { width: 100%; border: 1.5px solid transparent; border-radius: 6px; padding: 6px 8px; font-family: 'Inter', sans-serif; font-size: 13px; color: #1a1a1a !important; background: #fff; outline: none; transition: all .15s; resize: none; overflow: hidden; min-height: 32px; box-sizing: border-box; display: block; }
 .ed-input:hover { border-color: #e8e8e8; background: #fafafa; color: #1a1a1a !important; }
 .ed-input:focus { border-color: #CC3333; background: #fff; color: #1a1a1a !important; }
 .ed-input.key { font-weight: 700; color: #1a1a1a !important; min-width: 120px; }
@@ -525,15 +525,15 @@ const PILAR_COLORS = {tip:'e-tip',lore:'e-lore',restock:'e-restock',lanzamiento:
 const PILAR_LENGTHS = {tip:2200,lore:2200,restock:550,lanzamiento:1400,torneo:900,comunidad:650,blog:99999,blog_ranking:99999,tiktok:400};
 
 const PILAR_LABELS = {
-  tip: 'Tip del Aventurero — escribe ENTRE 2000 y 2200 caracteres EXACTOS en ig_post. Explicación completa de mecánica + ejemplo práctico detallado + cómo aplicarlo. NO puedes escribir menos de 2000 chars bajo ninguna circunstancia.',
-  lore: 'Lore & Historia — escribe ENTRE 1800 y 2200 caracteres EXACTOS en ig_post. Historia narrativa extensa, con contexto del lore, personajes, eventos del universo MTG. NO menos de 1800 chars.',
-  restock: 'Restock — escribe entre 400 y 550 caracteres en ig_post. Corto, directo, singles o precons llegaron. Nada más.',
-  lanzamiento: 'Nuevo Lanzamiento — escribe entre 1200 y 1400 caracteres en ig_post. Set nuevo: fechas prerelease, eventos WPN, mecánicas nuevas, cartas destacadas, cómo participar.',
-  torneo: 'Torneos & Eventos — escribe entre 700 y 900 caracteres en ig_post. Datos concretos: fecha, lugar, premios, formato, cómo inscribirse.',
-  comunidad: 'Comunidad — escribe entre 500 y 650 caracteres en ig_post. Cálido, foco en calendario de actividades y colaboraciones.',
-  blog: 'Noticias Quest — escribe MÍNIMO 4000 caracteres en blog_post (NO en ig_post). Artículo completo con intro, múltiples secciones desarrolladas con datos reales, entretenido. Puede ser: análisis del meta actual, ranking de mejores cartas por categoría (ej: top 10 cartas de robo en negro para Commander), reporte de torneos, novedades de sets, baneos y su impacto. El campo blog_post debe estar lleno y extenso.',
-  tiktok: 'TikTok carrusel visual — en image_brief describe slide a slide: Slide 1 portada+gancho+logo GQ → slides de contenido (carta o combo por slide) → slide final CTA. Deja ig_post vacío.',
-  blog_ranking: 'Noticias Quest — Ranking de Cartas. Escribe en blog_post un artículo de MÍNIMO 4000 caracteres con formato ranking: Top 10 (o más) cartas de una categoría específica (ej: mejores removals en blanco, mejores aceleradoras de maná en verde, mejores robadores en negro, etc). Para cada carta: nombre, por qué es buena, en qué mazos va, cuánto cuesta aproximado. Busca en Scryfall o Draftsim para obtener nombres reales de cartas. El artículo debe ser consultable y compartible.'
+  tip: 'Tip del Aventurero — ENTRE 2000 y 2200 caracteres en ig_post. Explicación completa de una mecánica TCG con ejemplo práctico real + cómo aplicarlo en tu mazo. Si llegas a 1800 chars y aún no alcanzas los 2000, agrega más información útil: un segundo ejemplo, casos especiales, errores comunes, variantes. GameQuest habla en plural (nosotros/te dejamos). Sin hashtags.',
+  lore: 'Lore & Historia — escribe ENTRE 1800 y 2200 caracteres en ig_post. TONO NARRATIVO de storytelling puro, NO técnico. Cuenta la historia del plano, personajes o carta como si fuera una novela: conflictos, emociones, el mundo. "Escuela" no "college". PROHIBIDO mencionar mecánicas de juego complejas. Cierra con pregunta natural y específica al contenido (ej: ¿A qué escuela te unirías? ¿Qué te parece el regreso de este plano?). PROHIBIDO: "Comparte tus pensamientos y opiniones en los comentarios.".',
+  restock: 'Restock — entre 400 y 550 caracteres en ig_post. Corto, directo. Singles o precons nuevos en catálogo. CTA a gamequest.cl al final.',
+  lanzamiento: 'Nuevo Lanzamiento — entre 1200 y 1400 caracteres en ig_post. Set nuevo: fechas prerelease, eventos WPN, qué trae el set, cartas destacadas. CTA a gamequest.cl.',
+  torneo: 'Torneos & Eventos — entre 700 y 900 caracteres en ig_post. Datos concretos: fecha, lugar, premios, formato, cómo inscribirse. CTA a gamequest.cl.',
+  comunidad: 'Comunidad — entre 500 y 650 caracteres en ig_post. Cálido, foco en calendario de actividades y colaboraciones.',
+  blog: 'Noticias Quest — escribe MÍNIMO 4000 caracteres en blog_post (NO en ig_post). Artículo completo con intro, múltiples secciones desarrolladas con datos reales verificados, entretenido y consultable. SIEMPRE usar "meta" nunca "metagame". Orden cronológico correcto para lanzamientos. Información verificada con búsqueda web. El campo blog_post debe estar lleno y extenso.',
+  tiktok: 'TikTok carrusel visual — describir en image_brief la estructura slide a slide: Slide 1 portada con gancho + logo GQ → slides de contenido (una carta o combo por slide, con texto e imagen) → slide final CTA. ig_post vacío.',
+  blog_ranking: 'Noticias Quest Ranking — MÍNIMO 4000 caracteres en blog_post. Artículo tipo ranking de cartas MTG. Primero busca en Scryfall las cartas reales de esa categoría y color. Cada carta: nombre real verificado, qué hace exactamente, por qué es buena en Commander, en qué arquetipos va, precio aproximado. Cada entrada del ranking debe tener al menos 150 caracteres de descripción única y diferente a las demás. Sin hashtags. Usar "meta" no "metagame".'
 };
 
 const DEFAULT_EDITORIAL = {
@@ -568,17 +568,22 @@ function buildSystem() {
 IDENTIDAD DE MARCA:
 ${identityStr}
 
-REGLAS INAMOVIBLES:
+REGLAS INAMOVIBLES — se aplican SIEMPRE, incluso cuando se recibe contexto adicional:
 1. Abrir SIEMPRE con: 🔥 Saludos Aventureros 🔥
-2. CTA a gamequest.cl: incluirlo SOLO cuando el contenido lo amerita. SIEMPRE en: Restock, Nuevo Lanzamiento, Torneos. OPCIONAL en: Tip (si hay producto relacionado), Lore (solo si hay cartas en stock), Comunidad (si hay evento próximo). NUNCA forzarlo en posts donde suene forzado o raro.
+2. CTA a gamequest.cl: SIEMPRE en Restock, Nuevo Lanzamiento, Torneos. OPCIONAL en Tip/Lore/Comunidad solo si hay algo concreto que ver en la web. NUNCA forzarlo donde suene raro.
 3. Tutear siempre. Jamás ustedear.
-4. Español latinoamericano neutro. NUNCA usar: vosotros, habéis, vuestro, compartid, ni ninguna forma peninsular.
-5. "Meta" siempre para referirse al metagame. Nunca "metagame".
-6. NO repetir palabras clave en el mismo párrafo — usar sinónimos con criterio editorial.
-7. Si se mencionan spoilers o cartas nuevas, NOMBRAR cartas específicas con sus nombres reales.
-8. Mínimo inglés: "mazo" no "deck". Solo inglés para nombres oficiales (Commander, Stack, Bracket, etc.).
+4. Español latinoamericano neutro. NUNCA usar formas peninsulares (vosotros, habéis, vuestro, compartid).
+5. SIEMPRE "meta" para el metagame. NUNCA "metagame". Esta regla no tiene excepciones aunque el contexto diga otra cosa.
+6. GameQuest habla en PLURAL — "nosotros", "te dejamos", "te contamos". NUNCA en primera persona singular ("yo te dejo", "te cuento").
+7. NO usar hashtags. Nunca. Ni en IG ni en ninguna otra red.
+8. Cierres naturales y breves. NUNCA frases como "Esperamos verte en...", "Que la suerte esté de tu lado", "Comparte tus pensamientos y opiniones". Son artificiales. Usar cierres cortos y directos tipo "¿A qué escuela te unirías? Cuéntanos en los comentarios." y nada más.
+9. Mínimo inglés. "Mazo" no "deck", "escuela" no "college", "baraja" cuando aplique. Solo inglés para nombres oficiales de cartas, mecánicas y formatos (Commander, Stack, Bracket, etc.).
+10. NO repetir palabras clave en el mismo párrafo. Usar sinónimos con criterio editorial.
+11. Si se mencionan cartas, verificar que existan realmente y sean del color/tipo correcto. No inventar cartas.
+12. Tono de LORE: narrativo y de storytelling. No técnico. Contar la historia del personaje/plano/evento como si fuera una novela, no un artículo de Wikipedia.
+13. Longitud del Tip: si sobran caracteres antes del límite, agregar más información útil para el jugador. No cortar antes de tiempo.
 
-NUNCA ESCRIBIR: "nos complace anunciar", "en el dinámico mundo de", "soluciones", "potenciar sinergias", "innovador", "es un placer", "de primer nivel", "somos expertos", nada corporativo ni que suene a IA generada.
+NUNCA ESCRIBIR: "nos complace anunciar", "en el dinámico mundo de", "soluciones", "potenciar sinergias", "innovador", "es un placer", "de primer nivel", "somos expertos", "comparte tus pensamientos", "esperamos que esta información te sea útil", "que la suerte esté de tu lado", nada corporativo, nada que suene a IA generada.
 
 LONGITUDES POR PILAR:
 ${pilaresStr}
@@ -795,12 +800,16 @@ function renderEditorial() {
     tbody2.appendChild(tr);
   });
 
-  document.querySelectorAll('.ed-input').forEach(autoResize);
+  // Force resize after paint
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.ed-input').forEach(autoResize);
+  });
 }
 
 function autoResize(el) {
+  if (!el) return;
   el.style.height = 'auto';
-  el.style.height = el.scrollHeight + 'px';
+  el.style.height = Math.max(el.scrollHeight, 32) + 'px';
 }
 
 function addEdRow(type) {
@@ -951,8 +960,9 @@ async function runAgentPost(pilar, ctx, game, nets, aud, maxTok, extraContext) {
   const pilarLabel = (typeof PILAR_LABELS !== 'undefined' && PILAR_LABELS[pilar]) ? PILAR_LABELS[pilar] : pilar;
   const isBlog = pilar === 'blog' || pilar === 'blog_ranking';
 
-  // For blog, use a dedicated system prompt that forces long content
-  const blogExtra = isBlog ? `\n\nCRÍTICO PARA ESTE ARTÍCULO: El campo blog_post DEBE tener MÍNIMO 4000 caracteres. Escribe un artículo completo y extenso. Si el tema es un ranking de cartas (ej: mejores cartas de robo en negro), incluye al menos 8-10 cartas con descripción detallada de cada una. No pares antes de los 4000 chars.` : '';
+  // For blog, force long content. For ranking, force Scryfall verification
+  const isRanking = pilar === 'blog_ranking';
+  const blogExtra = isBlog ? `\n\nCRÍTICO PARA ESTE ARTÍCULO: El campo blog_post DEBE tener MÍNIMO 4000 caracteres. Escribe un artículo completo y extenso.${isRanking ? ' PRIMERO busca en Scryfall las cartas reales de la categoría solicitada para verificar que existen y son del color/tipo correcto. NUNCA inventes cartas. Cada carta del ranking debe tener descripción ÚNICA y diferente, explicando específicamente qué hace esa carta y por qué es buena.' : ' Desarrolla cada sección con profundidad. Usa "meta" nunca "metagame".'} No pares antes de los 4000 chars.` : '';
 
   const userMsg = `Pilar: ${pilarLabel}\nJuego: ${game||'magic'}\nRedes: ${nets||'IG/FB'}\nAudiencia: ${aud||'competitivo, casual, nuevo'}\nContexto: ${ctx||'Elige un tema actual y relevante basándote en lo que está trending en la comunidad TCG ahora mismo.'}${extraContext||''}${blogExtra}\n\nIMPORTANTE: Usa search_web para buscar información actualizada ANTES de redactar. Genera el post COMPLETO con la longitud exacta requerida.`;
 
