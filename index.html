@@ -143,6 +143,17 @@ textarea.cfg-input { resize: vertical; min-height: 76px; font-size: 13px; line-h
 .ed-input.key { font-weight: 700; color: #1a1a1a !important; min-width: 120px; }
 .ed-del { background: none; border: none; color: #ddd; cursor: pointer; font-size: 14px; padding: 4px 6px; border-radius: 4px; transition: all .15s; }
 .ed-del:hover { color: #c62828; background: #fdecea; }
+/* EDITORIAL GRID */
+.ed-grid { display: flex; flex-direction: column; }
+.ed-header { display: grid; padding: 6px 8px; border-bottom: 1.5px solid #e8e8e8; background: #fafafa; border-radius: 6px 6px 0 0; }
+.ed-header-2 { grid-template-columns: 180px 1fr 32px; }
+.ed-header-3 { grid-template-columns: 160px 120px 1fr 32px; }
+.ed-header span { font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #aaa; padding: 2px 4px; }
+.ed-row { display: grid; border-bottom: 1px solid #f4f4f4; align-items: start; }
+.ed-row-2 { grid-template-columns: 180px 1fr 32px; }
+.ed-row-3 { grid-template-columns: 160px 120px 1fr 32px; }
+.ed-row:last-child { border-bottom: none; }
+.ed-cell { padding: 2px; }
 .chip { display: inline-block; font-size: 10px; font-weight: 800; padding: 2px 7px; border-radius: 4px; margin: 2px; font-family: 'Inter Tight', sans-serif; letter-spacing: .04em; }
 .chip-do { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
 .chip-dont { background: #fdecea; color: #c62828; border: 1px solid #f5c6cb; }
@@ -526,15 +537,14 @@ const PILAR_LENGTHS = {tip:2200,lore:2200,restock:550,lanzamiento:1400,torneo:90
 
 const PILAR_LABELS = {
   tip: 'Tip del Aventurero — ENTRE 2000 y 2200 caracteres en ig_post. Explicación completa de una mecánica TCG con ejemplo práctico real + cómo aplicarlo en tu mazo. Si llegas a 1800 chars y aún no alcanzas los 2000, agrega más información útil: un segundo ejemplo, casos especiales, errores comunes, variantes. GameQuest habla en plural (nosotros/te dejamos). Sin hashtags.',
-  lore: 'Lore & Historia — escribe ENTRE 1800 y 2200 caracteres en ig_post. TONO NARRATIVO de storytelling puro, NO técnico. Cuenta la historia del plano, personajes o carta como si fuera una novela: conflictos, emociones, el mundo. "Escuela" no "college". PROHIBIDO mencionar mecánicas de juego complejas. Cierra con pregunta natural y específica al contenido (ej: ¿A qué escuela te unirías? ¿Qué te parece el regreso de este plano?). PROHIBIDO: "Comparte tus pensamientos y opiniones en los comentarios.".',
+  lore: 'Lore & Historia — ENTRE 1800 y 2200 caracteres en ig_post. TONO NARRATIVO como novela: empieza con gancho emocional ("Hablemos de traición..."), usa preguntas retóricas para meter al lector, describe personajes con sus motivaciones, narra con drama y atmósfera. NUNCA como Wikipedia. NUNCA términos técnicos de juego. Usa "escuela" no "college". Conecta con cartas físicas cuando aplique. Cierre BREVE con pregunta genuina. Sin hashtags.',
   restock: 'Restock — entre 400 y 550 caracteres en ig_post. Corto, directo. Singles o precons nuevos en catálogo. CTA a gamequest.cl al final.',
   lanzamiento: 'Nuevo Lanzamiento — entre 1200 y 1400 caracteres en ig_post. Set nuevo: fechas prerelease, eventos WPN, qué trae el set, cartas destacadas. CTA a gamequest.cl.',
   torneo: 'Torneos & Eventos — entre 700 y 900 caracteres en ig_post. Datos concretos: fecha, lugar, premios, formato, cómo inscribirse. CTA a gamequest.cl.',
   comunidad: 'Comunidad — entre 500 y 650 caracteres en ig_post. Cálido, foco en calendario de actividades y colaboraciones.',
   blog: 'Noticias Quest — escribe MÍNIMO 4000 caracteres en blog_post (NO en ig_post). Artículo completo con intro, múltiples secciones desarrolladas con datos reales verificados, entretenido y consultable. SIEMPRE usar "meta" nunca "metagame". Orden cronológico correcto para lanzamientos. Información verificada con búsqueda web. El campo blog_post debe estar lleno y extenso.',
   tiktok: 'TikTok carrusel visual — describir en image_brief la estructura slide a slide: Slide 1 portada con gancho + logo GQ → slides de contenido (una carta o combo por slide, con texto e imagen) → slide final CTA. ig_post vacío.',
-  blog_ranking: 'Noticias Quest Ranking — MÍNIMO 4000 caracteres en blog_post. Artículo tipo ranking de cartas MTG. Primero busca en Scryfall las cartas reales de esa categoría y color. Cada carta: nombre real verificado, qué hace exactamente, por qué es buena en Commander, en qué arquetipos va, precio aproximado. Cada entrada del ranking debe tener al menos 150 caracteres de descripción única y diferente a las demás. Sin hashtags. Usar "meta" no "metagame".'
-};
+  blog_ranking: 'Noticias Quest Ranking — MÍNIMO 4000 chars en blog_post. MÁXIMO top 20 cartas. Primero busca en Scryfall las cartas reales para verificar que existen y son del color/tipo correcto. Para cada carta: nombre real verificado, qué hace específicamente, por qué es buena en ese contexto, arquetipos donde encaja, precio aproximado USD. Cada descripción ÚNICA — prohibido copiar frases entre cartas. Mínimo 200 chars por carta. Sin hashtags. "Meta" no "metagame".',};
 
 const DEFAULT_EDITORIAL = {
   identity: [
@@ -603,8 +613,25 @@ Describir cada slide con instrucciones claras para el diseñador.
 
 JUEGOS: Magic → core 70%. Pokémon → solo anticipación. Neuroscape → educativo. One Piece/Riftbound → solo con stock real.
 
+EJEMPLO DE TONO LORE (así debe sonar, no como Wikipedia):
+"Hablemos de rivalidad, traición y poder oscuro. Mucho antes de ser el retorcido Evincar de Rath, era Vuel, hijo de Sidar Kondo y hermanastro del héroe Gerrard. ¿Se imaginan crecer a la sombra de alguien destinado a la grandeza? La envidia y una sed insaciable de poder lo consumieron. Eligió un camino diferente. Buscó la fuerza en el lugar más oscuro: Phyrexia."
+→ Así: con emoción, con preguntas que meten al lector, con drama. Nunca como ficha técnica.
+
+TORNEOS — DOS MODOS:
+- Con datos completos (fecha, lugar, premios, formato): post de convocatoria con toda la info
+- Con datos parciales o secretos: post de anticipación y misterio. Ej: "Algo se está cocinando. El GQ Bracket 3 Showdown cuarta edición se pospone, pero hay buenas razones detrás. Por ahora guardamos el secreto..."
+
+NOTICIAS QUEST — REGLAS ESPECIALES:
+- Si el contexto habla de GameQuest (llegaron productos, organizamos eventos, apostamos por algo), el ángulo principal es GameQuest y su historia, no el producto en sí
+- Para Neuroscape u otros juegos nuevos: contar POR QUÉ GameQuest apuesta por ese juego, no qué es el juego
+- Rankings: máximo top 20 bien desarrollados. Cada carta con descripción ÚNICA de al menos 150 chars. Verificar que existen y son del color/tipo correcto antes de listar
+- Prosa fluida, no bullets ni listas
+
+TIKTOK — BRIEF COMPLETO:
+Para cada slide describir: texto principal, imagen de referencia, colores sugeridos, elementos visuales. El diseñador debe poder ejecutarlo sin preguntar nada.
+
 RESPONDE SOLO con este JSON exacto, sin markdown ni texto extra:
-{"titulo":"título corto max 60 chars","ig_post":"texto IG/FB con longitud correcta del pilar","wa_post":"mensaje WhatsApp comunitario con preguntas y dinámica","image_brief":"brief visual con formato decidido y descripción slide a slide","blog_post":"SOLO para Noticias Quest: artículo completo extenso mínimo 4000 chars. Para todos los demás pilares: string vacío exactamente así: ","char_count_ig":0}`;
+{"titulo":"título corto max 60 chars","ig_post":"texto IG/FB con longitud correcta del pilar","wa_post":"mensaje WhatsApp comunitario con preguntas y dinámica","image_brief":"brief visual con formato decidido y descripción slide a slide","blog_post":"SOLO para Noticias Quest: artículo completo extenso mínimo 4000 chars. Para todos los demás pilares dejar como string vacío.","char_count_ig":0}`;
 }
 
 
@@ -711,15 +738,15 @@ async function loadEditorial() {
 
 async function saveEditorial() {
   // Collect current editorial data from DOM
-  const identityRows = [...document.querySelectorAll('#ed-identity-rows tr')];
-  const identity = identityRows.map(tr => {
-    const inputs = tr.querySelectorAll('.ed-input');
+  const identityRows = [...document.querySelectorAll('#ed-identity-rows .ed-row')];
+  const identity = identityRows.map(row => {
+    const inputs = row.querySelectorAll('.ed-input');
     return {key: inputs[0]?.value||'', val: inputs[1]?.value||''};
   }).filter(r => r.key);
 
-  const pilaresRows = [...document.querySelectorAll('#ed-pilares-rows tr')];
-  const pilares = pilaresRows.map(tr => {
-    const inputs = tr.querySelectorAll('.ed-input');
+  const pilaresRows = [...document.querySelectorAll('#ed-pilares-rows .ed-row')];
+  const pilares = pilaresRows.map(row => {
+    const inputs = row.querySelectorAll('.ed-input');
     return {key: inputs[0]?.value||'', len: inputs[1]?.value||'', val: inputs[2]?.value||''};
   }).filter(r => r.key);
 
@@ -778,47 +805,64 @@ function showGhStatus(msg, type) {
 
 function renderEditorial() {
   const ed = editorialData || DEFAULT_EDITORIAL;
-  const tbody1 = document.getElementById('ed-identity-rows');
-  const tbody2 = document.getElementById('ed-pilares-rows');
-  if (!tbody1 || !tbody2) return;
+  const cont1 = document.getElementById('ed-identity-rows');
+  const cont2 = document.getElementById('ed-pilares-rows');
+  if (!cont1 || !cont2) return;
 
-  function makeTA(cls, rows, val) {
+  function makeTA(cls, val) {
     const ta = document.createElement('textarea');
-    ta.className = cls; ta.rows = rows; ta.value = val || '';
-    ta.addEventListener('input', () => autoResize(ta));
+    ta.className = 'ed-input' + (cls ? ' ' + cls : '');
+    ta.value = val || '';
+    ta.style.height = 'auto';
+    ta.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = this.scrollHeight + 'px';
+    });
     return ta;
   }
-  function makeDelBtn() {
+  function makeDelBtn(container) {
     const b = document.createElement('button');
     b.className = 'ed-del'; b.textContent = '✕';
-    b.onclick = () => b.closest('tr').remove();
+    b.onclick = () => container.remove();
     return b;
   }
 
-  tbody1.innerHTML = '';
+  cont1.innerHTML = '';
   (ed.identity || []).forEach(r => {
-    const tr = document.createElement('tr');
-    ['','',''].forEach(() => tr.appendChild(document.createElement('td')));
-    tr.cells[0].appendChild(makeTA('ed-input key', 1, r.key));
-    tr.cells[1].appendChild(makeTA('ed-input', 2, r.val));
-    tr.cells[2].appendChild(makeDelBtn());
-    tbody1.appendChild(tr);
+    const row = document.createElement('div');
+    row.className = 'ed-row ed-row-2';
+    const c1 = document.createElement('div'); c1.className = 'ed-cell';
+    const c2 = document.createElement('div'); c2.className = 'ed-cell';
+    const c3 = document.createElement('div'); c3.className = 'ed-cell';
+    const ta1 = makeTA('key', r.key);
+    const ta2 = makeTA('', r.val);
+    c1.appendChild(ta1); c2.appendChild(ta2); c3.appendChild(makeDelBtn(row));
+    row.appendChild(c1); row.appendChild(c2); row.appendChild(c3);
+    cont1.appendChild(row);
   });
 
-  tbody2.innerHTML = '';
+  cont2.innerHTML = '';
   (ed.pilares || []).forEach(r => {
-    const tr = document.createElement('tr');
-    ['','','',''].forEach(() => tr.appendChild(document.createElement('td')));
-    tr.cells[0].appendChild(makeTA('ed-input key', 1, r.key));
-    tr.cells[1].appendChild(makeTA('ed-input', 1, r.len));
-    tr.cells[2].appendChild(makeTA('ed-input', 2, r.val));
-    tr.cells[3].appendChild(makeDelBtn());
-    tbody2.appendChild(tr);
+    const row = document.createElement('div');
+    row.className = 'ed-row ed-row-3';
+    const c1 = document.createElement('div'); c1.className = 'ed-cell';
+    const c2 = document.createElement('div'); c2.className = 'ed-cell';
+    const c3 = document.createElement('div'); c3.className = 'ed-cell';
+    const c4 = document.createElement('div'); c4.className = 'ed-cell';
+    const ta1 = makeTA('key', r.key);
+    const ta2 = makeTA('', r.len);
+    const ta3 = makeTA('', r.val);
+    c1.appendChild(ta1); c2.appendChild(ta2); c3.appendChild(ta3); c4.appendChild(makeDelBtn(row));
+    row.appendChild(c1); row.appendChild(c2); row.appendChild(c3); row.appendChild(c4);
+    cont2.appendChild(row);
   });
 
-  // Force resize after paint
+  // Resize all textareas after DOM paint
   requestAnimationFrame(() => {
-    document.querySelectorAll('.ed-input').forEach(autoResize);
+    document.querySelectorAll('.ed-input').forEach(ta => {
+      ta.style.height = 'auto';
+      ta.style.height = ta.scrollHeight + 'px';
+    });
   });
 }
 
@@ -829,33 +873,44 @@ function autoResize(el) {
 }
 
 function addEdRow(type) {
-  function makeTA(cls, rows, ph) {
+  function makeTA(cls, ph) {
     const ta = document.createElement('textarea');
-    ta.className = cls; ta.rows = rows; ta.placeholder = ph || '';
-    ta.addEventListener('input', () => autoResize(ta));
+    ta.className = 'ed-input' + (cls ? ' ' + cls : '');
+    ta.placeholder = ph || '';
+    ta.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = this.scrollHeight + 'px';
+    });
     return ta;
   }
-  function makeDelBtn() {
-    const b = document.createElement('button');
-    b.className = 'ed-del'; b.textContent = '✕';
-    b.onclick = () => b.closest('tr').remove();
-    return b;
-  }
   if (type === 'identity') {
-    const tr = document.createElement('tr');
-    ['','',''].forEach(() => tr.appendChild(document.createElement('td')));
-    tr.cells[0].appendChild(makeTA('ed-input key', 1, 'Dimensión'));
-    tr.cells[1].appendChild(makeTA('ed-input', 2, 'Definición'));
-    tr.cells[2].appendChild(makeDelBtn());
-    document.getElementById('ed-identity-rows').appendChild(tr);
+    const row = document.createElement('div');
+    row.className = 'ed-row ed-row-2';
+    const c1 = document.createElement('div'); c1.className = 'ed-cell';
+    const c2 = document.createElement('div'); c2.className = 'ed-cell';
+    const c3 = document.createElement('div'); c3.className = 'ed-cell';
+    const b = document.createElement('button'); b.className = 'ed-del'; b.textContent = '✕';
+    b.onclick = () => row.remove();
+    c1.appendChild(makeTA('key', 'Dimensión'));
+    c2.appendChild(makeTA('', 'Definición'));
+    c3.appendChild(b);
+    row.appendChild(c1); row.appendChild(c2); row.appendChild(c3);
+    document.getElementById('ed-identity-rows').appendChild(row);
   } else {
-    const tr = document.createElement('tr');
-    ['','','',''].forEach(() => tr.appendChild(document.createElement('td')));
-    tr.cells[0].appendChild(makeTA('ed-input key', 1, 'Pilar'));
-    tr.cells[1].appendChild(makeTA('ed-input', 1, 'Longitud'));
-    tr.cells[2].appendChild(makeTA('ed-input', 2, 'Descripción'));
-    tr.cells[3].appendChild(makeDelBtn());
-    document.getElementById('ed-pilares-rows').appendChild(tr);
+    const row = document.createElement('div');
+    row.className = 'ed-row ed-row-3';
+    const c1 = document.createElement('div'); c1.className = 'ed-cell';
+    const c2 = document.createElement('div'); c2.className = 'ed-cell';
+    const c3 = document.createElement('div'); c3.className = 'ed-cell';
+    const c4 = document.createElement('div'); c4.className = 'ed-cell';
+    const b = document.createElement('button'); b.className = 'ed-del'; b.textContent = '✕';
+    b.onclick = () => row.remove();
+    c1.appendChild(makeTA('key', 'Pilar'));
+    c2.appendChild(makeTA('', 'Longitud'));
+    c3.appendChild(makeTA('', 'Descripción'));
+    c4.appendChild(b);
+    row.appendChild(c1); row.appendChild(c2); row.appendChild(c3); row.appendChild(c4);
+    document.getElementById('ed-pilares-rows').appendChild(row);
   }
 }
 
@@ -946,6 +1001,20 @@ async function generatePost() {
   const steps = ['Analizando qué buscar...','Buscando en internet...','Procesando resultados...','Redactando post...'];
   document.getElementById('outputArea').innerHTML = `<div class="loading-state"><div class="load-ring"></div><div class="load-steps">${steps.map((s,i)=>`<div class="load-step ${i===0?'active':''}" id="step-${i}">${s}</div>`).join('')}</div></div>`;
 
+  // Warn if context empty for pilars that need it
+  const needsCtx = ['torneo', 'restock'];
+  const warnCtx = ['tip'];
+  if (needsCtx.includes(currentPilar) && !ctx.trim()) {
+    document.getElementById('outputArea').innerHTML = `<div class="post-preview"><div class="post-placeholder" style="color:#e65100;">⚠ Este pilar requiere contexto para generar contenido útil.<br><br><strong>Torneos & Eventos:</strong> fecha, lugar, formato, premios, inscripción.<br><strong>Restock:</strong> qué productos llegaron al catálogo.</div></div>`;
+    setLoad(btn, false);
+    return;
+  }
+  if (warnCtx.includes(currentPilar) && !ctx.trim()) {
+    document.getElementById('outputArea').innerHTML = `<div class="post-preview"><div class="post-placeholder" style="color:#e65100;">⚠ Para el Tip del Aventurero es muy recomendable ingresar un tema específico en el campo Contexto.<br><br>Sin contexto el agente elegirá un tema genérico que puede no reflejar bien la voz de GameQuest.<br><br><button class="btn btn-primary" style="margin-top:10px;" onclick="forceGenerate()">Generar igual sin contexto</button></div></div>`;
+    setLoad(btn, false);
+    return;
+  }
+
   try {
     const result = await runAgentPost(currentPilar, ctx, game, nets, aud, maxTok);
     currentPost = result.post;
@@ -970,6 +1039,28 @@ async function generatePost() {
   setLoad(btn, false);
 }
 
+async function forceGenerate() {
+  const pilar = document.getElementById('pilarSelect').value;
+  const game = document.getElementById('gameSelect').value;
+  const nets = [...document.querySelectorAll('#networkTags .tag.active')].map(t=>t.dataset.net).join(', ');
+  const aud = [...document.querySelectorAll('#audienceTags .tag.active')].map(t=>t.dataset.aud).join(', ');
+  const maxTok = pilar==='blog'||pilar==='blog_ranking' ? 6000 : 2800;
+  currentPilar = pilar;
+  document.getElementById('genActions').style.display = 'none';
+  document.getElementById('sourcesArea').innerHTML = '';
+  lastSources = [];
+  const steps = ['Analizando qué buscar...','Buscando en internet...','Procesando resultados...','Redactando post...'];
+  document.getElementById('outputArea').innerHTML = `<div class="loading-state"><div class="load-ring"></div><div class="load-steps">${steps.map((s,i)=>`<div class="load-step ${i===0?'active':''}" id="step-${i}">${s}</div>`).join('')}</div></div>`;
+  try {
+    const result = await runAgentPost(pilar, '', game, nets, aud, maxTok);
+    currentPost = result.post; currentTitle = result.titulo; lastSources = result.sources||[];
+    renderPost(); document.getElementById('genActions').style.display = 'flex';
+    addToHistory({titulo:currentTitle,pilar,ig:currentPost.ig,wa:currentPost.wa,img:currentPost.img,blog:currentPost.blog,ts:Date.now()});
+  } catch(e) {
+    document.getElementById('outputArea').innerHTML = `<div class="post-preview"><div class="post-placeholder" style="color:#c62828;">Error: ${e.message}</div></div>`;
+  }
+}
+
 // Core agentic function — reusable for both single and bulk
 async function runAgentPost(pilar, ctx, game, nets, aud, maxTok, extraContext) {
   const sources = [];
@@ -990,14 +1081,17 @@ async function runAgentPost(pilar, ctx, game, nets, aud, maxTok, extraContext) {
     const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method:'POST',
       headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},
-      body:JSON.stringify({
+      // Pilares that don't need web search — disable tool calling
+      const noSearchPilars = ['restock', 'comunidad', 'torneo'];
+      const useTools = !noSearchPilars.includes(pilar);
+      const bodyObj = {
         model:'llama-3.3-70b-versatile',
         messages:[{role:'system',content:buildSystem()}, ...messages],
-        tools:TOOL_DEF,
-        tool_choice:'auto',
         temperature:0.85,
         max_tokens:maxTok||2800
-      })
+      };
+      if (useTools) { bodyObj.tools = TOOL_DEF; bodyObj.tool_choice = 'auto'; }
+      body:JSON.stringify(bodyObj)
     });
     const data = await res.json();
     if (data.error) throw new Error(data.error.message);
@@ -1061,25 +1155,45 @@ async function runAgentPost(pilar, ctx, game, nets, aud, maxTok, extraContext) {
       igContent = '';
     }
 
-    // Post-process: hard replace metagame → meta regardless of model output
-    function fixMeta(s) {
+    // Post-process: hard fixes regardless of model output
+    function fixContent(s) {
       if (!s) return s;
-      return s
-        .replace(/metagame/gi, 'meta')
-        .replace(/Metagame/g, 'Meta')
-        .replace(/METAGAME/g, 'META')
-        .replace(/meta-game/gi, 'meta')
-        .replace(/vosotros/gi, 'ustedes')
-        .replace(/habéis/gi, 'han')
-        .replace(/vuestro/g, 'su')
-        .replace(/vuestra/g, 'su')
-        .replace(/compartid/gi, 'compartan')
-        .replace(/college/gi, 'escuela')
-        .replace(/colleges/gi, 'escuelas');
+      // Fix metagame → meta
+      s = s.replace(/metagame/gi, 'meta').replace(/meta-game/gi, 'meta');
+      // Fix peninsula spanish
+      s = s.replace(/vosotros/gi, 'ustedes').replace(/habéis/gi, 'han');
+      s = s.replace(/vuestro/gi, 'su').replace(/vuestra/gi, 'su');
+      s = s.replace(/compartid/gi, 'compartan').replace(/compartís/gi, 'comparten');
+      // Fix college → escuela
+      s = s.replace(/colleges/gi, 'escuelas').replace(/college/gi, 'escuela');
+      // Fix singular → plural (GameQuest habla en nosotros)
+      s = s.replace(/aquí te dejo/gi, 'aquí te dejamos');
+      s = s.replace(/te dejo/gi, 'te dejamos');
+      s = s.replace(/yo te/gi, 'te');
+      // Remove hashtags — remove entire hashtag words
+      s = s.replace(/#\w+/g, '').replace(/\s{2,}/g, ' ').trim();
+      // Remove artificial closings
+      const artificialClosings = [
+        /[¡!]?Esperamos que (esta información|este artículo|este post) te haya sido útil[.!]?/gi,
+        /[¡!]?Esperamos que hayas disfrutado[^.!]*[.!]?/gi,
+        /[¡!]?Que la suerte esté de (tu|su) lado[^.!]*[.!]?/gi,
+        /[¡!]?Esperamos verte en[^.!]*[.!]?/gi,
+        /[¡!]?Comparte tus pensamientos y opiniones[^.!]*[.!]?/gi,
+        /[¡!]?Únete a nosotros en esta emocionante aventura[^.!]*[.!]?/gi,
+        /¡Así que no te quedes atrás![^.!]*/gi,
+        /¡No te arrepentirás![^.]*/gi,
+      ];
+      artificialClosings.forEach(re => { s = s.replace(re, ''); });
+      // Clean up extra spaces/newlines left by removals
+      s = s.replace(/
+{3,}/g, '
+
+').replace(/  +/g, ' ').trim();
+      return s;
     }
-    igContent = fixMeta(igContent);
-    waContent = fixMeta(waContent);
-    blogContent = fixMeta(blogContent);
+    igContent = fixContent(igContent);
+    waContent = fixContent(waContent);
+    blogContent = fixContent(blogContent);
 
     return {
       titulo: p.titulo || ctx || 'Post generado',
