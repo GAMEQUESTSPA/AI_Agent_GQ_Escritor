@@ -1061,6 +1061,26 @@ async function runAgentPost(pilar, ctx, game, nets, aud, maxTok, extraContext) {
       igContent = '';
     }
 
+    // Post-process: hard replace metagame → meta regardless of model output
+    function fixMeta(s) {
+      if (!s) return s;
+      return s
+        .replace(/metagame/gi, 'meta')
+        .replace(/Metagame/g, 'Meta')
+        .replace(/METAGAME/g, 'META')
+        .replace(/meta-game/gi, 'meta')
+        .replace(/vosotros/gi, 'ustedes')
+        .replace(/habéis/gi, 'han')
+        .replace(/vuestro/g, 'su')
+        .replace(/vuestra/g, 'su')
+        .replace(/compartid/gi, 'compartan')
+        .replace(/college/gi, 'escuela')
+        .replace(/colleges/gi, 'escuelas');
+    }
+    igContent = fixMeta(igContent);
+    waContent = fixMeta(waContent);
+    blogContent = fixMeta(blogContent);
+
     return {
       titulo: p.titulo || ctx || 'Post generado',
       post: {ig:igContent, wa:waContent, img:imgContent, blog:blogContent},
